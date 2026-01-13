@@ -1,0 +1,1901 @@
+{
+  "version": 3,
+  "mode": 6,
+  "savedAt": "2026-01-13T03:02:14.936Z",
+  "skills": [
+    {
+      "row": 2,
+      "col": "D",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_main/2040084000_04.jpg"
+    },
+    {
+      "row": 2,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 2,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2577_2.png"
+    },
+    {
+      "row": 2,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2576_3.png"
+    },
+    {
+      "row": 2,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 2,
+      "col": "E",
+      "imgSrc": "https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2516_3.png"
+    },
+    {
+      "row": 2,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2184_1.png"
+    },
+    {
+      "row": 2,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2672_1.png"
+    },
+    {
+      "row": 2,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2674_3.png"
+    },
+    {
+      "row": 2,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1252_3.png"
+    },
+    {
+      "row": 3,
+      "col": "G",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1252_3.png"
+    },
+    {
+      "row": 4,
+      "col": "D",
+      "imgSrc": "https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/fatal_chain_3.png"
+    },
+    {
+      "row": 4,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2673_1.png"
+    },
+    {
+      "row": 4,
+      "col": "G",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1252_3.png"
+    },
+    {
+      "row": 4,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 4,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 5,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1034_1.png"
+    },
+    {
+      "row": 5,
+      "col": "G",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/714_3.png"
+    },
+    {
+      "row": 5,
+      "col": "G",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1410_3.png"
+    },
+    {
+      "row": 6,
+      "col": "D",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_sub/2040408000.jpg"
+    },
+    {
+      "row": 6,
+      "col": "D",
+      "imgSrc": "https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/fatal_chain_3.png"
+    },
+    {
+      "row": 6,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2672_1.png"
+    },
+    {
+      "row": 6,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 6,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 7,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/26_2.png"
+    },
+    {
+      "row": 7,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2674_3.png"
+    },
+    {
+      "row": 8,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2673_1.png"
+    },
+    {
+      "row": 8,
+      "col": "G",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1500_3.png"
+    },
+    {
+      "row": 8,
+      "col": "G",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1410_3.png"
+    },
+    {
+      "row": 9,
+      "col": "D",
+      "imgSrc": "https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/fatal_chain_3.png"
+    },
+    {
+      "row": 10,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2672_1.png"
+    },
+    {
+      "row": 10,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2673_1.png"
+    },
+    {
+      "row": 10,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 10,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 12,
+      "col": "D",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_sub/2040425000.jpg"
+    },
+    {
+      "row": 12,
+      "col": "G",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1410_3.png"
+    },
+    {
+      "row": 12,
+      "col": "G",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/367_3.png"
+    },
+    {
+      "row": 13,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_main/2040084000_04.jpg"
+    },
+    {
+      "row": 13,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2672_1.png"
+    },
+    {
+      "row": 13,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2673_1.png"
+    },
+    {
+      "row": 13,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 13,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 15,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2674_3.png"
+    },
+    {
+      "row": 15,
+      "col": "H",
+      "imgSrc": "https://gbf.wiki/images/thumb/e/e4/Status_3246.png/25px-Status_3246.png"
+    },
+    {
+      "row": 15,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 15,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 16,
+      "col": "C",
+      "imgSrc": "https://gbf.wiki/images/thumb/c/c6/Status_3245.png/25px-Status_3245.png"
+    },
+    {
+      "row": 16,
+      "col": "D",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_main/2040084000_04.jpg"
+    },
+    {
+      "row": 17,
+      "col": "C",
+      "imgSrc": "https://gbf.wiki/images/thumb/e/e4/Status_3246.png/25px-Status_3246.png"
+    },
+    {
+      "row": 18,
+      "col": "D",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_main/2040084000_04.jpg"
+    },
+    {
+      "row": 19,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 19,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2672_1.png"
+    },
+    {
+      "row": 19,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2184_1.png"
+    },
+    {
+      "row": 19,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2577_2.png"
+    },
+    {
+      "row": 19,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2576_3.png"
+    },
+    {
+      "row": 19,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 19,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1410_3.png"
+    },
+    {
+      "row": 19,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2673_1.png"
+    },
+    {
+      "row": 19,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2674_3.png"
+    },
+    {
+      "row": 19,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1031_3.png"
+    },
+    {
+      "row": 19,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1500_3.png"
+    },
+    {
+      "row": 22,
+      "col": "D",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_sub/2040425000.jpg"
+    },
+    {
+      "row": 23,
+      "col": "D",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_main/2040084000_04.jpg"
+    },
+    {
+      "row": 24,
+      "col": "D",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_sub/2040408000.jpg"
+    },
+    {
+      "row": 24,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2673_1.png"
+    },
+    {
+      "row": 24,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2672_1.png"
+    },
+    {
+      "row": 24,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2674_3.png"
+    },
+    {
+      "row": 24,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 24,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 25,
+      "col": "D",
+      "imgSrc": "https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/fatal_chain_3.png"
+    },
+    {
+      "row": 26,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2184_1.png"
+    },
+    {
+      "row": 26,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1034_1.png"
+    },
+    {
+      "row": 26,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 26,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 27,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2672_1.png"
+    },
+    {
+      "row": 27,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2673_1.png"
+    },
+    {
+      "row": 27,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2674_3.png"
+    },
+    {
+      "row": 29,
+      "col": "D",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_main/2040084000_04.jpg"
+    },
+    {
+      "row": 30,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1031_3.png"
+    },
+    {
+      "row": 30,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2184_1.png"
+    },
+    {
+      "row": 30,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1034_1.png"
+    },
+    {
+      "row": 30,
+      "col": "E",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/26_2.png"
+    },
+    {
+      "row": 30,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2672_1.png"
+    },
+    {
+      "row": 30,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2673_1.png"
+    },
+    {
+      "row": 30,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2674_3.png"
+    },
+    {
+      "row": 30,
+      "col": "G",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1500_3.png"
+    },
+    {
+      "row": 30,
+      "col": "G",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1410_3.png"
+    },
+    {
+      "row": 30,
+      "col": "G",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/367_3.png"
+    },
+    {
+      "row": 30,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 30,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 31,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2576_3.png"
+    },
+    {
+      "row": 32,
+      "col": "D",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_main/2040084000_04.jpg"
+    },
+    {
+      "row": 32,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 32,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "row": 33,
+      "col": "D",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_sub/2040433000.jpg"
+    },
+    {
+      "row": 33,
+      "col": "E",
+      "imgSrc": "https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2516_3.png"
+    },
+    {
+      "row": 33,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2672_1.png"
+    },
+    {
+      "row": 33,
+      "col": "F",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2673_1.png"
+    },
+    {
+      "row": 33,
+      "col": "H",
+      "imgSrc": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2577_2.png"
+    }
+  ],
+  "texts": [
+    {
+      "row": 2,
+      "col": "C",
+      "text": "顺序重要",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 6,
+      "col": "C",
+      "text": "弱体不够补bb召唤",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 7,
+      "col": "C",
+      "text": "关奥义",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 10,
+      "col": "C",
+      "text": "弱体7回",
+      "color": "rgb(198, 40, 40)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 11,
+      "col": "C",
+      "text": "驱散2回",
+      "color": "rgb(198, 40, 40)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 11,
+      "col": "D",
+      "text": "直接A",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 12,
+      "col": "D",
+      "text": "白翼",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 14,
+      "col": "D",
+      "text": "直接A",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 15,
+      "col": "C",
+      "text": "黄刀补光龙11",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 16,
+      "col": "D",
+      "text": "关奥义",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 16,
+      "col": "E",
+      "text": "保持巫妖12和泰坦覆盖",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 16,
+      "col": "E",
+      "text": "65之后留巫妖3，62留巫妖12",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 17,
+      "col": "D",
+      "text": "直接A",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 17,
+      "col": "E",
+      "text": "保持巫妖12",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 17,
+      "col": "E",
+      "text": "65之后留巫妖3，62留巫妖12",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 19,
+      "col": "C",
+      "text": "有妈武直接A",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 19,
+      "col": "C",
+      "text": "没有妈武且能打进55则全队Guard",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 19,
+      "col": "C",
+      "text": "直接进55会导致主角2在hit试炼时无法转好",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 19,
+      "col": "D",
+      "text": "顺序重要",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 20,
+      "col": "D",
+      "text": "直接A",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 21,
+      "col": "D",
+      "text": "直接A",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 22,
+      "col": "D",
+      "text": "黑翼",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 23,
+      "col": "D",
+      "text": "直接A",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 27,
+      "col": "C",
+      "text": "弱体7回",
+      "color": "rgb(198, 40, 40)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 27,
+      "col": "D",
+      "text": "巫妖1/2+光龙11",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 27,
+      "col": "D",
+      "text": "满豆时错开交巫妖12",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 27,
+      "col": "D",
+      "text": "不用管是什么满豆 维持巫妖buff",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 27,
+      "col": "F",
+      "text": "25%之后留巫妖3，22%留巫妖12",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 27,
+      "col": "F",
+      "text": "低于22%用bb解弱体",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 27,
+      "col": "F",
+      "text": "8奥义带银姐焦煤 算2db",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 28,
+      "col": "C",
+      "text": "驱散2回",
+      "color": "rgb(198, 40, 40)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 28,
+      "col": "D",
+      "text": "巫妖1/2 直接A",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 30,
+      "col": "C",
+      "text": "任何试炼",
+      "color": "rgb(198, 40, 40)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 31,
+      "col": "C",
+      "text": "缺就用光龙2",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 32,
+      "col": "C",
+      "text": "召唤直接A",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    },
+    {
+      "row": 33,
+      "col": "C",
+      "text": "先交光龙3",
+      "color": "rgb(255, 107, 107)",
+      "bold": true,
+      "fontSize": "11px"
+    }
+  ],
+  "phases": [
+    {
+      "name": "100%-80%",
+      "rowspan": 10,
+      "rows": [
+        {
+          "index": 0,
+          "coord": 2,
+          "text": "1T",
+          "exists": true
+        },
+        {
+          "index": 1,
+          "coord": 3,
+          "text": "2T",
+          "exists": true
+        },
+        {
+          "index": 2,
+          "coord": 4,
+          "text": "3T",
+          "exists": true
+        },
+        {
+          "index": 3,
+          "coord": 5,
+          "text": "4T",
+          "exists": true
+        },
+        {
+          "index": 4,
+          "coord": 6,
+          "text": "5T",
+          "exists": true
+        },
+        {
+          "index": 5,
+          "coord": 7,
+          "text": "TA4回",
+          "exists": true
+        },
+        {
+          "index": 6,
+          "coord": 8,
+          "text": "2000w奥义",
+          "exists": true
+        },
+        {
+          "index": 7,
+          "coord": 9,
+          "text": "1500技伤",
+          "exists": true
+        },
+        {
+          "index": 8,
+          "coord": 10,
+          "text": "满豆1",
+          "exists": true
+        },
+        {
+          "index": 9,
+          "coord": 11,
+          "text": "满豆2",
+          "exists": true
+        }
+      ],
+      "className": "phase-100-80"
+    },
+    {
+      "name": "80%-60%",
+      "rowspan": 6,
+      "rows": [
+        {
+          "index": 0,
+          "coord": 12,
+          "text": "80%",
+          "exists": true
+        },
+        {
+          "index": 1,
+          "coord": 13,
+          "text": "40HIT",
+          "exists": true
+        },
+        {
+          "index": 2,
+          "coord": 14,
+          "text": "1500w技伤",
+          "exists": true
+        },
+        {
+          "index": 3,
+          "coord": 15,
+          "text": "TA4回",
+          "exists": true
+        },
+        {
+          "index": 4,
+          "coord": 16,
+          "text": "TA3回",
+          "exists": true
+        },
+        {
+          "index": 5,
+          "coord": 17,
+          "text": "奥义4回",
+          "exists": true
+        }
+      ],
+      "className": "phase-80-60"
+    },
+    {
+      "name": "60%-20%",
+      "rowspan": 11,
+      "rows": [
+        {
+          "index": 0,
+          "coord": 18,
+          "text": "60%",
+          "exists": true
+        },
+        {
+          "index": 1,
+          "coord": 19,
+          "text": "苹果",
+          "exists": true
+        },
+        {
+          "index": 2,
+          "coord": 20,
+          "text": "无特动",
+          "exists": true
+        },
+        {
+          "index": 3,
+          "coord": 21,
+          "text": "奥义5回",
+          "exists": true
+        },
+        {
+          "index": 4,
+          "coord": 22,
+          "text": "攻击6回",
+          "exists": true
+        },
+        {
+          "index": 5,
+          "coord": 23,
+          "text": "3500w伤害",
+          "exists": true
+        },
+        {
+          "index": 6,
+          "coord": 24,
+          "text": "弱体10回",
+          "exists": true
+        },
+        {
+          "index": 7,
+          "coord": 25,
+          "text": "FC",
+          "exists": true
+        },
+        {
+          "index": 8,
+          "coord": 26,
+          "text": "60HIT",
+          "exists": true
+        },
+        {
+          "index": 9,
+          "coord": 27,
+          "text": "满豆1",
+          "exists": true
+        },
+        {
+          "index": 10,
+          "coord": 28,
+          "text": "满豆2",
+          "exists": true
+        }
+      ],
+      "className": "phase-60-20"
+    },
+    {
+      "name": "20%-0%",
+      "rowspan": 5,
+      "rows": [
+        {
+          "index": 0,
+          "coord": 29,
+          "text": "20%",
+          "exists": true
+        },
+        {
+          "index": 1,
+          "coord": 30,
+          "text": "试炼",
+          "exists": true
+        },
+        {
+          "index": 2,
+          "coord": 31,
+          "text": "FC",
+          "exists": true
+        },
+        {
+          "index": 3,
+          "coord": 32,
+          "text": "99e",
+          "exists": true
+        },
+        {
+          "index": 4,
+          "coord": 33,
+          "text": "99HIT",
+          "exists": true
+        }
+      ],
+      "className": "phase-20-0"
+    }
+  ],
+  "tTexts": [
+    {
+      "row": 0,
+      "col": "A",
+      "text": "阶段",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": true
+    },
+    {
+      "row": 0,
+      "col": "B",
+      "text": "回合/特动",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": true
+    },
+    {
+      "row": 0,
+      "col": "C",
+      "text": "备注",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": true
+    },
+    {
+      "row": 0,
+      "col": "D",
+      "text": "召唤石",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": true
+    },
+    {
+      "row": 0,
+      "col": "E",
+      "text": "主角",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": true
+    },
+    {
+      "row": 0,
+      "col": "F",
+      "text": "2号位",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": true
+    },
+    {
+      "row": 0,
+      "col": "G",
+      "text": "3号位",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": true
+    },
+    {
+      "row": 0,
+      "col": "H",
+      "text": "4号位",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": true
+    },
+    {
+      "row": 0,
+      "col": "I",
+      "text": "后排1",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": true
+    },
+    {
+      "row": 0,
+      "col": "J",
+      "text": "后排2",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": true
+    },
+    {
+      "row": 2,
+      "col": "A",
+      "text": "100%-80%",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 2,
+      "col": "B",
+      "text": "1T",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 3,
+      "col": "B",
+      "text": "2T",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 4,
+      "col": "B",
+      "text": "3T",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 5,
+      "col": "B",
+      "text": "4T",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 6,
+      "col": "B",
+      "text": "5T",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 7,
+      "col": "B",
+      "text": "TA4回",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 8,
+      "col": "B",
+      "text": "2000w奥义",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 9,
+      "col": "B",
+      "text": "1500技伤",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 10,
+      "col": "B",
+      "text": "满豆1",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 11,
+      "col": "B",
+      "text": "满豆2",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 12,
+      "col": "A",
+      "text": "80%-60%",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 12,
+      "col": "B",
+      "text": "80%",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 13,
+      "col": "B",
+      "text": "40HIT",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 14,
+      "col": "B",
+      "text": "1500w技伤",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 15,
+      "col": "B",
+      "text": "TA4回",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 16,
+      "col": "B",
+      "text": "TA3回",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 17,
+      "col": "B",
+      "text": "奥义4回",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 18,
+      "col": "A",
+      "text": "60%-20%",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 18,
+      "col": "B",
+      "text": "60%",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 19,
+      "col": "B",
+      "text": "苹果",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 20,
+      "col": "B",
+      "text": "无特动",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 21,
+      "col": "B",
+      "text": "奥义5回",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 22,
+      "col": "B",
+      "text": "攻击6回",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 23,
+      "col": "B",
+      "text": "3500w伤害",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 24,
+      "col": "B",
+      "text": "弱体10回",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 25,
+      "col": "B",
+      "text": "FC",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 26,
+      "col": "B",
+      "text": "60HIT",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 27,
+      "col": "B",
+      "text": "满豆1",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 28,
+      "col": "B",
+      "text": "满豆2",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 29,
+      "col": "A",
+      "text": "20%-0%",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 29,
+      "col": "B",
+      "text": "20%",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 30,
+      "col": "B",
+      "text": "试炼",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 31,
+      "col": "B",
+      "text": "FC",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 32,
+      "col": "B",
+      "text": "99e",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    },
+    {
+      "row": 33,
+      "col": "B",
+      "text": "99HIT",
+      "fontSize": "11px",
+      "color": "",
+      "customSize": false,
+      "customColor": false,
+      "isHeader": false
+    }
+  ],
+  "rows": [
+    {
+      "index": 0,
+      "hasPhase": true,
+      "rowspan": 10,
+      "phaseName": "100%-80%",
+      "phaseClass": "phase-100-80"
+    },
+    {
+      "index": 1,
+      "hasPhase": false
+    },
+    {
+      "index": 2,
+      "hasPhase": false
+    },
+    {
+      "index": 3,
+      "hasPhase": false
+    },
+    {
+      "index": 4,
+      "hasPhase": false
+    },
+    {
+      "index": 5,
+      "hasPhase": false
+    },
+    {
+      "index": 6,
+      "hasPhase": false
+    },
+    {
+      "index": 7,
+      "hasPhase": false
+    },
+    {
+      "index": 8,
+      "hasPhase": false
+    },
+    {
+      "index": 9,
+      "hasPhase": false
+    },
+    {
+      "index": 10,
+      "hasPhase": true,
+      "rowspan": 6,
+      "phaseName": "80%-60%",
+      "phaseClass": "phase-80-60"
+    },
+    {
+      "index": 11,
+      "hasPhase": false
+    },
+    {
+      "index": 12,
+      "hasPhase": false
+    },
+    {
+      "index": 13,
+      "hasPhase": false
+    },
+    {
+      "index": 14,
+      "hasPhase": false
+    },
+    {
+      "index": 15,
+      "hasPhase": false
+    },
+    {
+      "index": 16,
+      "hasPhase": true,
+      "rowspan": 11,
+      "phaseName": "60%-20%",
+      "phaseClass": "phase-60-20"
+    },
+    {
+      "index": 17,
+      "hasPhase": false
+    },
+    {
+      "index": 18,
+      "hasPhase": false
+    },
+    {
+      "index": 19,
+      "hasPhase": false
+    },
+    {
+      "index": 20,
+      "hasPhase": false
+    },
+    {
+      "index": 21,
+      "hasPhase": false
+    },
+    {
+      "index": 22,
+      "hasPhase": false
+    },
+    {
+      "index": 23,
+      "hasPhase": false
+    },
+    {
+      "index": 24,
+      "hasPhase": false
+    },
+    {
+      "index": 25,
+      "hasPhase": false
+    },
+    {
+      "index": 26,
+      "hasPhase": false
+    },
+    {
+      "index": 27,
+      "hasPhase": true,
+      "rowspan": 5,
+      "phaseName": "20%-0%",
+      "phaseClass": "phase-20-0"
+    },
+    {
+      "index": 28,
+      "hasPhase": false
+    },
+    {
+      "index": 29,
+      "hasPhase": false
+    },
+    {
+      "index": 30,
+      "hasPhase": false
+    },
+    {
+      "index": 31,
+      "hasPhase": false
+    }
+  ],
+  "headerImages": [
+    {
+      "type": "character",
+      "row": 0,
+      "col": "E",
+      "src": "https://prd-game-a3-granbluefantasy.akamaized.net/assets_en/img_low/sp/assets/leader/sd/270301_mc_1_01.png"
+    },
+    {
+      "type": "character",
+      "row": 0,
+      "col": "F",
+      "src": "https://prd-game-a5-granbluefantasy.akamaized.net/assets_en/img_low/sp/assets/npc/sd/3040357000_02.png"
+    },
+    {
+      "type": "character",
+      "row": 0,
+      "col": "G",
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets_en/img_low/sp/assets/npc/sd/3040291000_01.png"
+    },
+    {
+      "type": "character",
+      "row": 0,
+      "col": "H",
+      "src": "https://prd-game-a2-granbluefantasy.akamaized.net/assets_en/img_low/sp/assets/npc/sd/3710217000_01.png"
+    },
+    {
+      "type": "character",
+      "row": 0,
+      "col": "I",
+      "src": "https://prd-game-a3-granbluefantasy.akamaized.net/assets_en/img_low/sp/assets/npc/sd/3040037000_04.png"
+    },
+    {
+      "type": "character",
+      "row": 0,
+      "col": "J",
+      "src": "https://prd-game-a2-granbluefantasy.akamaized.net/assets_en/img_low/sp/assets/npc/sd/3710175000_01.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "A-B",
+      "index": 0,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_main/2040084000_04.jpg"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "A-B",
+      "index": 1,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_sub/2040433000.jpg"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "A-B",
+      "index": 2,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_sub/2040425000.jpg"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "A-B",
+      "index": 3,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_sub/2040065000_02.jpg"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "A-B",
+      "index": 4,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_sub/2040408000.jpg"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "A-B",
+      "index": 5,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_main/2040084000_04.jpg"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "C",
+      "index": 0,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_sub/2040203000.jpg"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "C",
+      "index": 1,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/party_sub/2040401000.jpg"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "D",
+      "index": 0,
+      "src": "https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/fatal_chain_3.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "E",
+      "index": 0,
+      "src": "https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2516_3.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "E",
+      "index": 1,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1031_3.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "E",
+      "index": 2,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2184_1.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "E",
+      "index": 3,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1034_1.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "E",
+      "index": 4,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/26_2.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "F",
+      "index": 0,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2672_1.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "F",
+      "index": 1,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2673_1.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "F",
+      "index": 2,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2674_3.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "G",
+      "index": 0,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1252_3.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "G",
+      "index": 1,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1253_4.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "G",
+      "index": 2,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/714_3.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "H",
+      "index": 0,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "H",
+      "index": 1,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2576_3.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "H",
+      "index": 2,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2577_2.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "I",
+      "index": 0,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1500_3.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "I",
+      "index": 1,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1409_3.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "I",
+      "index": 2,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1410_3.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "I",
+      "index": 3,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/367_3.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "J",
+      "index": 0,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/798_1.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "J",
+      "index": 1,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/799_1.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "J",
+      "index": 2,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/800_3.png"
+    },
+    {
+      "type": "skill-source",
+      "row": 1,
+      "col": "J",
+      "index": 3,
+      "src": "https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2121_1.png"
+    },
+    {
+      "type": "boss-image",
+      "src": "https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/quest/assets/lobby/305581.png"
+    },
+    {
+      "type": "status-icon",
+      "index": 0,
+      "src": "https://gbf.wiki/images/thumb/c/c6/Status_3245.png/25px-Status_3245.png"
+    },
+    {
+      "type": "status-icon",
+      "index": 1,
+      "src": "https://gbf.wiki/images/thumb/e/e4/Status_3246.png/25px-Status_3246.png"
+    }
+  ],
+  "swapSections": [],
+  "metadata": {
+    "authors": [
+      "真實lowb"
+    ],
+    "lastEditor": "访客"
+  },
+  "mergedCells": [
+    {
+      "row": 19,
+      "col": "E",
+      "colspan": 4
+    }
+  ]
+}
