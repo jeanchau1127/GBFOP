@@ -8075,8 +8075,9 @@
                 var dateStr = date.getFullYear() + '-' + 
                               String(date.getMonth()+1).padStart(2,'0') + '-' + 
                               String(date.getDate()).padStart(2,'0');
-                link.download = 'gbfop_Guide_' + dateStr + '.png';
-                link.href = canvas.toDataURL('image/png');
+                link.download = 'gbfop_Guide_' + dateStr + '.jpg';
+                // 使用 JPEG 格式，质量 0.7，确保文件在 1MB 以下
+                link.href = canvas.toDataURL('image/jpeg', 0.7);
                 link.click();
             }
         }
@@ -8990,4 +8991,5 @@
     </div>
 </body>
 </html>
+
 
