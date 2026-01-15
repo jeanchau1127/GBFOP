@@ -55,21 +55,6 @@
             --p-orange-text: #ffcc80;
             --p-yellow-text: #fff59d;
             --p-green-text: #a5d6a7;
-            --text-on-dark: #e0e0e0;
-            --shadow: rgba(0,0,0,0.4);
-            --t-text-hover: #333;
-            --phase-100-80-bg: #1e1e1e;
-            --phase-100-80-text: #ff6b6b;
-            --phase-80-60-bg: #1e1e1e;
-            --phase-80-60-text: #ffb347;
-            --phase-60-20-bg: #1e1e1e;
-            --phase-60-20-text: #fff176;
-            --phase-20-0-bg: #1e1e1e;
-            --phase-20-0-text: #81c784;
-            --user-text-p1: #ff6b6b;
-            --user-text-p2: #ff8a80;
-            --user-text-p3: #e0e0e0;
-            --user-text-p4: #bdbdbd;
             --btn-bg: #424242;
             --btn-text: #fff;
             --btn-hover-bg: #616161;
@@ -3323,140 +3308,103 @@
     </div>
     <div class="table-wrapper">
     <table class="guide-table" id="guideTable">
-        <thead>
-            <tr class="top-row has-fab"><th colspan="10" style="padding:10px;position:relative;"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/quest/assets/lobby/305581.png" style="max-width:100%;height:auto;"><button class="mini-fab edit" onclick="showQuickAddBoss(this)" title="编辑BOSS图">✎</button></th></tr>
-            <tr class="top-row has-fab"><th colspan="10" style="padding:8px;position:relative;"><span class="skill-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/status/x64/status_3245.png" style="width:33px;height:33px;"></span><span class="skill-box skill-source"><img src="https://huiji-thumb.huijistatic.com/gbf/uploads/thumb/e/e4/Status_3246.png/33px-Status_3246.png" style="width:33px;height:33px;"></span><span class="skill-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/status/x64/status_7790_1.png" style="width:33px;height:33px;"></span><span class="skill-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/status/x64/status_7790_2.png" style="width:33px;height:33px;"></span><span class="skill-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/status/x64/status_7790_3.png" style="width:33px;height:33px;"></span><span class="skill-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/status/x64/status_7790_4.png" style="width:33px;height:33px;"></span><span class="skill-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/status/x64/status_7790_5.png" style="width:33px;height:33px;"></span><span class="skill-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/status/x64/status_7790_6.png" style="width:33px;height:33px;"></span><button class="mini-fab edit" onclick="showQuickAddStatus(this)" title="编辑状态图标">✎</button></th></tr>
-            <tr>
-                <th style="vertical-align:middle;"><span class="coord-header">(0,A)</span><br><span class="header-text t-text" contenteditable="true" onblur="saveToStorage()">阶段/HP</span></th>
-                <th style="vertical-align:middle;"><span class="coord-header">(0,B)</span><br><span class="header-text t-text" contenteditable="true" onblur="saveToStorage()">回合/特动</span></th>
-                <th style="vertical-align:middle;"><span class="coord-header">(0,C)</span><br><span class="header-text t-text" contenteditable="true" onblur="saveToStorage()">备注</span></th>
-                <th style="vertical-align:middle;"><span class="coord-header">(0,D)</span><br><span class="header-text t-text" contenteditable="true" onblur="saveToStorage()">召唤石</span></th>
-                <th class="character-header has-fab"><span class="coord-header">(0,E)</span><br><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/assets/leader/raid_normal/270301_mc_1_01.jpg"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">主角</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
-                <th class="character-header has-fab"><span class="coord-header">(0,F)</span><br><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/assets/npc/raid_normal/3710217000_01.jpg"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">光龙</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
-                <th class="character-header has-fab"><span class="coord-header">(0,G)</span><br><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/assets/npc/raid_normal/3040497000_02.jpg"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">奶嘴</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
-                <th class="character-header has-fab"><span class="coord-header">(0,H)</span><br><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/assets/npc/f/3040291000_91.jpg"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">银姐</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
-                <th class="character-header back-row has-fab"><span class="coord-header">(0,I)</span><br><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/assets/npc/raid_normal/3040630000_02.jpg"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">后排 药师</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
-                <th class="character-header back-row has-fab"><span class="coord-header">(0,J)</span><br><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/assets/npc/f/3040165000_03.jpg"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">后排 塔</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
-            </tr>
-            <tr class="skill-source-row">
-                <td colspan="2" class="source-cell has-fab" style="vertical-align:middle;position:relative;"><span class="coord">(1,A-B)</span><span class="skill-box summon-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/s/2040084000_04.jpg"></span><span class="skill-box summon-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/s/2040425000.jpg"></span><span class="skill-box summon-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/s/2040433000.jpg"></span><span class="skill-box summon-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/s/2040203000.jpg"></span><span class="skill-box summon-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/s/2040408000.jpg"></span><button class="mini-fab edit" onclick="showQuickAddSummon(this.closest('.source-cell'))" title="编辑召唤石">✎</button></td>
-                <td class="source-cell has-fab" style="vertical-align:middle;position:relative;"><span class="coord">(1,C)</span><span class="skill-box summon-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/s/2040065000_02.jpg"></span><span class="skill-box summon-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/assets/summon/s/2040448000.jpg"></span><button class="mini-fab edit" onclick="showQuickAddSummon(this.closest('.source-cell'))" title="编辑召唤石">✎</button></td>
-                <td class="source-cell" style="vertical-align:middle;"><span class="coord">(1,D)</span><span class="skill-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/fatal_chain_3.png"></span></td>
-                <td class="source-cell"><span class="coord">(1,E)</span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2516_3.png"></span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1031_3.png"></span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2184_1.png"></span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1034_1.png"></span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/26_2.png"></span>
-                </td>
-                <td class="source-cell"><span class="coord">(1,F)</span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2575_1.png"></span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2576_3.png"></span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2577_2.png"></span>
-                </td>
-                <td class="source-cell"><span class="coord">(1,G)</span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2215_4.png"></span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2216_4.png"></span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2217_3.png"></span>
-                </td>
-                <td class="source-cell"><span class="coord">(1,H)</span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1252_3.png"></span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/1253_4.png"></span>
-                    <span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/714_3.png"></span>
-                </td>
-                <td class="source-cell"><span class="coord">(1,I)</span><span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2779_1.png" style="width:40px;height:40px;"></span><span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2780_3.png" style="width:40px;height:40px;"></span><span class="skill-box skill-source"><img src="https://prd-game-a-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/2781_3.png" style="width:40px;height:40px;"></span></td>
-                <td class="source-cell"><span class="coord">(1,J)</span><span class="skill-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/fatal_chain_3.png" style="width:40px;height:40px;"></span></td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td rowspan="5"><span class="coord">(2-6,A)</span><span class="t-text phase-name" contenteditable="true" onblur="saveToStorage()">100%-80%</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)" title="删除此阶段">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)" title="在下方插入新阶段">+</button></div></td>
-                <td><span class="coord">(2,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">1T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td>
-                <td class="data-cell"><span class="coord">(2,C)</span></td>
-                <td><span class="coord">(2,D)</span></td>
-                <td class="data-cell"><span class="coord">(2,E)</span></td>
-                <td class="data-cell"><span class="coord">(2,F)</span></td>
-                <td class="data-cell"><span class="coord">(2,G)</span></td>
-                <td class="data-cell"><span class="coord">(2,H)</span></td>
-                <td class="note-cell"><span class="coord">(2,I)</span></td>
-                <td class="note-cell"><span class="coord">(2,J)</span></td>
-            </tr>
-            <tr>
-                <td><span class="coord">(3,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">2T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td>
-                <td class="data-cell"><span class="coord">(3,C)</span></td>
-                <td><span class="coord">(3,D)</span></td>
-                <td class="data-cell"><span class="coord">(3,E)</span></td>
-                <td class="data-cell"><span class="coord">(3,F)</span></td>
-                <td class="data-cell"><span class="coord">(3,G)</span></td>
-                <td class="data-cell"><span class="coord">(3,H)</span></td>
-                <td class="note-cell"><span class="coord">(3,I)</span></td>
-                <td class="note-cell"><span class="coord">(3,J)</span></td>
-            </tr>
-            <tr>
-                <td><span class="coord">(4,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">3T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td>
-                <td class="data-cell"><span class="coord">(4,C)</span></td>
-                <td><span class="coord">(4,D)</span></td>
-                <td class="data-cell"><span class="coord">(4,E)</span></td>
-                <td class="data-cell"><span class="coord">(4,F)</span></td>
-                <td class="data-cell"><span class="coord">(4,G)</span></td>
-                <td class="data-cell"><span class="coord">(4,H)</span></td>
-                <td class="note-cell"><span class="coord">(4,I)</span></td>
-                <td class="note-cell"><span class="coord">(4,J)</span></td>
-            </tr>
-            <tr>
-                <td><span class="coord">(5,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">换人</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td>
-                <td class="data-cell"><span class="coord">(5,C)</span></td>
-                <td><span class="coord">(5,D)</span></td>
-                <td class="data-cell"><span class="coord">(5,E)</span></td>
-                <td class="data-cell"><span class="coord">(5,F)</span></td>
-                <td class="data-cell"><span class="coord">(5,G)</span></td>
-                <td class="data-cell"><span class="coord">(5,H)</span></td>
-                <td class="note-cell"><span class="coord">(5,I)</span></td>
-                <td class="note-cell"><span class="coord">(5,J)</span></td>
-            </tr>
-            <tr>
-                <td><span class="coord">(6,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">4T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td>
-                <td class="data-cell"><span class="coord">(6,C)</span></td>
-                <td><span class="coord">(6,D)</span></td>
-                <td class="data-cell"><span class="coord">(6,E)</span></td>
-                <td class="data-cell"><span class="coord">(6,F)</span></td>
-                <td class="data-cell"><span class="coord">(6,G)</span></td>
-                <td class="data-cell"><span class="coord">(6,H)</span></td>
-                <td class="note-cell"><span class="coord">(6,I)</span></td>
-                <td class="note-cell"><span class="coord">(6,J)</span></td>
-            </tr>
-            <tr class="phase-80-60">
-                <td rowspan="3"><span class="coord">(7-9,A)</span><span class="t-text phase-name" contenteditable="true" onblur="saveToStorage()">80%-60%</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)" title="删除此阶段">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)" title="在下方插入新阶段">+</button></div></td>
-                <td><span class="coord">(7,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">阶段说明</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(7,C)</span></td><td><span class="coord">(7,D)</span></td><td class="data-cell"><span class="coord">(7,E)</span></td><td class="data-cell"><span class="coord">(7,F)</span></td><td class="data-cell"><span class="coord">(7,G)</span></td><td class="data-cell"><span class="coord">(7,H)</span></td><td class="note-cell"><span class="coord">(7,I)</span></td><td class="note-cell"><span class="coord">(7,J)</span></td>
-            </tr>
-            <tr><td><span class="coord">(8,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">满豆</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(8,C)</span></td><td><span class="coord">(8,D)</span></td><td class="data-cell"><span class="coord">(8,E)</span></td><td class="data-cell"><span class="coord">(8,F)</span></td><td class="data-cell"><span class="coord">(8,G)</span></td><td class="data-cell"><span class="coord">(8,H)</span></td><td class="note-cell"><span class="coord">(8,I)</span></td><td class="note-cell"><span class="coord">(8,J)</span></td></tr>
-            <tr><td><span class="coord">(9,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">75%</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(9,C)</span></td><td><span class="coord">(9,D)</span></td><td class="data-cell"><span class="coord">(9,E)</span></td><td class="data-cell"><span class="coord">(9,F)</span></td><td class="data-cell"><span class="coord">(9,G)</span></td><td class="data-cell"><span class="coord">(9,H)</span></td><td class="note-cell"><span class="coord">(9,I)</span></td><td class="note-cell"><span class="coord">(9,J)</span></td></tr>
-            <tr class="phase-60-20">
-                <td rowspan="3"><span class="coord">(10-12,A)</span><span class="t-text phase-name" contenteditable="true" onblur="saveToStorage()">60%-20%</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)" title="删除此阶段">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)" title="在下方插入新阶段">+</button></div></td>
-                <td><span class="coord">(10,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">阶段说明</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(10,C)</span></td><td><span class="coord">(10,D)</span></td><td class="data-cell"><span class="coord">(10,E)</span></td><td class="data-cell"><span class="coord">(10,F)</span></td><td class="data-cell"><span class="coord">(10,G)</span></td><td class="data-cell"><span class="coord">(10,H)</span></td><td class="note-cell"><span class="coord">(10,I)</span></td><td class="note-cell"><span class="coord">(10,J)</span></td>
-            </tr>
-            <tr><td><span class="coord">(11,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">试炼</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(11,C)</span></td><td><span class="coord">(11,D)</span></td><td class="data-cell"><span class="coord">(11,E)</span></td><td class="data-cell"><span class="coord">(11,F)</span></td><td class="data-cell"><span class="coord">(11,G)</span></td><td class="data-cell"><span class="coord">(11,H)</span></td><td class="note-cell"><span class="coord">(11,I)</span></td><td class="note-cell"><span class="coord">(11,J)</span></td></tr>
-            <tr><td><span class="coord">(12,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">50%</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(12,C)</span></td><td><span class="coord">(12,D)</span></td><td class="data-cell"><span class="coord">(12,E)</span></td><td class="data-cell"><span class="coord">(12,F)</span></td><td class="data-cell"><span class="coord">(12,G)</span></td><td class="data-cell"><span class="coord">(12,H)</span></td><td class="note-cell"><span class="coord">(12,I)</span></td><td class="note-cell"><span class="coord">(12,J)</span></td></tr>
-            <tr class="phase-20-0">
-                <td rowspan="2"><span class="coord">(13-14,A)</span><span class="t-text phase-name" contenteditable="true" onblur="saveToStorage()">20%-0%</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)" title="删除此阶段">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)" title="在下方插入新阶段">+</button></div></td>
-                <td><span class="coord">(13,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">收尾</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(13,C)</span></td><td><span class="coord">(13,D)</span></td><td class="data-cell"><span class="coord">(13,E)</span></td><td class="data-cell"><span class="coord">(13,F)</span></td><td class="data-cell"><span class="coord">(13,G)</span></td><td class="data-cell"><span class="coord">(13,H)</span></td><td class="note-cell"><span class="coord">(13,I)</span></td><td class="note-cell"><span class="coord">(13,J)</span></td>
-            </tr>
-            <tr><td><span class="coord">(14,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">击杀</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(14,C)</span></td><td><span class="coord">(14,D)</span></td><td class="data-cell"><span class="coord">(14,E)</span></td><td class="data-cell"><span class="coord">(14,F)</span></td><td class="data-cell"><span class="coord">(14,G)</span></td><td class="data-cell"><span class="coord">(14,H)</span></td><td class="note-cell"><span class="coord">(14,I)</span></td><td class="note-cell"><span class="coord">(14,J)</span></td></tr>
-        </tbody>
+    <thead>
+        <tr class="top-row has-fab"><th colspan="10" style="padding:10px;position:relative;"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/quest/assets/lobby/305581.png" style="max-width:100%;height:auto;"><button class="mini-fab edit" onclick="showQuickAddBoss(this)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></button></th></tr>
+        <tr class="top-row has-fab"><th colspan="10" style="padding:8px;position:relative;min-height:50px;"><span class="skill-box skill-source"><img src="https://gbf.wiki/images/thumb/c/c6/Status_3245.png/25px-Status_3245.png" style="width:33px;height:33px;"></span><span class="skill-box skill-source"><img src="https://gbf.wiki/images/thumb/e/e4/Status_3246.png/25px-Status_3246.png" style="width:33px;height:33px;"></span><button class="mini-fab edit" onclick="showQuickAddStatus(this)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></button></th></tr>
+        <tr>
+            <th><span class="coord-header">(0,A)</span><br><span class="header-text t-text">阶段</span></th>
+            <th><span class="coord-header">(0,B)</span><br><span class="header-text t-text">回合/特动</span></th>
+            <th><span class="coord-header">(0,C)</span><br><span class="header-text t-text">备注</span></th>
+            <th><span class="coord-header">(0,D)</span><br><span class="header-text t-text">召唤石</span></th>
+            <th class="character-header has-fab"><span class="coord-header">(0,E)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">主角</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
+            <th class="character-header has-fab"><span class="coord-header">(0,F)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">2号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
+            <th class="character-header has-fab"><span class="coord-header">(0,G)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">3号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
+            <th class="character-header has-fab"><span class="coord-header">(0,H)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">4号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
+            <th class="character-header back-row has-fab"><span class="coord-header">(0,I)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="display:none"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">后排1</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
+            <th class="character-header back-row has-fab"><span class="coord-header">(0,J)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="display:none"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">后排2</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
+        </tr>
+        <tr class="skill-source-row">
+            <td colspan="2" class="source-cell has-fab" style="vertical-align:middle;position:relative;"><span class="coord">(1,A-B)</span><button class="mini-fab edit" onclick="showQuickAddSummon(this.closest('.source-cell'))"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></button></td>
+            <td class="source-cell has-fab" style="vertical-align:middle;position:relative;"><span class="coord">(1,C)</span><button class="mini-fab edit" onclick="showQuickAddSummon(this.closest('.source-cell'))"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></button></td>
+            <td class="source-cell"><span class="coord">(1,D)</span><span class="skill-box skill-source"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/ui/icon/ability/m/fatal_chain_3.png" style="width:40px;height:40px;"></span></td>
+            <td class="source-cell"><span class="coord">(1,E)</span></td>
+            <td class="source-cell"><span class="coord">(1,F)</span></td>
+            <td class="source-cell"><span class="coord">(1,G)</span></td>
+            <td class="source-cell"><span class="coord">(1,H)</span></td>
+            <td class="source-cell"><span class="coord">(1,I)</span></td>
+            <td class="source-cell"><span class="coord">(1,J)</span></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="1"><span class="coord">(2,A)</span><span class="t-text phase-name" contenteditable="true" onblur="saveToStorage()">100%-?</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)">+</button></div></td>
+            <td><span class="coord">(2,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">1T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td>
+            <td class="data-cell"><span class="coord">(2,C)</span></td>
+            <td><span class="coord">(2,D)</span></td>
+            <td class="data-cell"><span class="coord">(2,E)</span></td>
+            <td class="data-cell"><span class="coord">(2,F)</span></td>
+            <td class="data-cell"><span class="coord">(2,G)</span></td>
+            <td class="data-cell"><span class="coord">(2,H)</span></td>
+            <td class="note-cell"><span class="coord">(2,I)</span></td>
+            <td class="note-cell"><span class="coord">(2,J)</span></td>
+        </tr>
+    </tbody>
     </table>
+
     </div><!-- .table-wrapper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
         <script>
-        var STORAGE_KEY='gbf_guide_data';
-        var THEME_KEY='gbf_guide_theme';
-        var AUTHOR_KEY='gbf_guide_author'; // 创作者昵称存储键
+        // ========== GBFGuide 命名空间 ==========
+        /**
+         * GBF 攻略模板应用主命名空间
+         * @namespace GBFGuide
+         */
+        var GBFGuide = window.GBFGuide || {};
+        
+        // ========== 配置常量模块 ==========
+        /**
+         * 全局配置常量
+         * @namespace GBFGuide.Config
+         */
+        GBFGuide.Config = {
+            // 版本号
+            DATA_VERSION: 4,
+            
+            // 存储键
+            STORAGE_KEY: 'gbf_guide_data',
+            THEME_KEY: 'gbf_guide_theme',
+            AUTHOR_KEY: 'gbf_guide_author',
+            
+            // 尺寸常量
+            ICON_SIZE: {
+                BASE: 40,              // 基础图标尺寸
+                SKILL_BOX: 44,         // 技能框尺寸
+                SUMMON_MAX_HEIGHT: 48, // 召唤石最大高度
+                MINI_FAB: 24,          // 小型浮动按钮
+                EDIT_BTN: 32           // 编辑按钮尺寸
+            },
+            
+            // 列映射（A-M 共13列，支持9人模式）
+            COLUMNS: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'],
+            
+            // 空图片占位符
+            EMPTY_IMAGE_SRC: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+            
+            // 防抖和节流延迟（毫秒）
+            DEBOUNCE_DELAY: 500,
+            THROTTLE_DELAY: 100
+        };
+        
+        // ========== 兼容层：保留旧的全局变量引用 ==========
+        var STORAGE_KEY = GBFGuide.Config.STORAGE_KEY;
+        var THEME_KEY = GBFGuide.Config.THEME_KEY;
+        var AUTHOR_KEY = GBFGuide.Config.AUTHOR_KEY;
+        var EMPTY_IMAGE_SRC = GBFGuide.Config.EMPTY_IMAGE_SRC;
+        
+        // ========== 其他全局变量（待后续迁移到命名空间）==========
         var draggedElement=null;
         var floatingIcon=document.getElementById('floatingIcon');
         var statusBar=document.getElementById('statusBar');
-        var selectedCells=[]; // 保留变量定义以防其他代码引用
-        
-        // [P4-34] 空图片占位符常量 - 移至全局作用域顶部
-        var EMPTY_IMAGE_SRC = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
         
         // ========== 创作者系统 (Author System) ==========
         var AuthorSystem = {
@@ -5336,37 +5284,6 @@
             }
         };
         
-        // ========== 通用函数：更新角色头像空状态（全局作用域）==========
-        window.updateCharacterEmptyState = function(characterCoord) {
-            var characterHeader = findCharacterHeader(characterCoord);
-            if (!characterHeader) return;
-            
-            var characterImg = characterHeader.querySelector('img');
-            var isEmpty = !isValidImage(characterImg);
-            var existingHint = characterHeader.querySelector('.empty-state-hint');
-            
-            if (isEmpty && !existingHint) {
-                var isMainChar = (characterCoord === 'E');
-                var wikiUrl = isMainChar ? 'https://gbf.huijiwiki.com/wiki/%E8%81%8C%E4%B8%9A%E7%9B%AE%E5%BD%95' : 'https://gbf.huijiwiki.com/wiki/SSR%E4%BA%BA%E7%89%A9';
-                var wikiText = isMainChar ? '🔗 Wiki查询职业' : '🔗 Wiki查询';
-                var emptyText = isMainChar ? '拖入职业图片' : '拖入角色图片';
-                
-                var hint = createEmptyHint({
-                    className: 'empty-state-hint',
-                    text: emptyText,
-                    buttons: [
-                        { text: wikiText, url: wikiUrl },
-                        { text: '🔗 编队查询', url: 'https://game.granbluefantasy.jp/#party/index/0/npc/0' }
-                    ]
-                });
-                characterHeader.appendChild(hint);
-                characterHeader.classList.add('has-empty-state');
-            } else if (!isEmpty && existingHint) {
-                existingHint.remove();
-                characterHeader.classList.remove('has-empty-state');
-            }
-        };
-        
         // ========== 通用函数：更新BOSS栏空状态（全局作用域）==========
         window.updateBossEmptyState = function() {
             var topRows = document.querySelectorAll('.top-row');
@@ -5964,17 +5881,20 @@
         window.onload=function(){
             loadDefaultFontSize();
             loadIconScale();
-            applyDefaultFontSize();
+            // applyDefaultFontSize(); // [删除] loadTemplate 内部会调用
             loadCoordsState();
             
             // 初始化创作者系统
             initAuthorSystem();
             
-            // 加载数据
+            // 加载数据 (内部逻辑已经包含了 initDynamicElements)
             loadFromStorage();
             
-            // 初始化所有动态元素（关键！）
-            initDynamicElements();
+            // [删除] 下面这行是重复调用，loadFromStorage -> loadTemplate 已经做过了
+            // initDynamicElements();
+            
+            // [新增] 刷新阶段颜色，确保页面加载时颜色正确
+            refreshPhaseColors();
             
             // [修改] 使用统一函数检查按钮状态
             updateSwapButtonState();
@@ -5983,9 +5903,6 @@
             window.addEventListener('resize', function() {
                 setTimeout(adjustAllSummonDeleteButtons, 100);
             });
-            
-            // 恢复数据后重新应用字体大小
-            applyDefaultFontSize();
         };
         
         function bindCellEvents(cell){
@@ -6485,7 +6402,6 @@
                         var tbody = document.querySelector('tbody');
                         var lastPhaseCell = tbody.querySelector('tr:last-child td[rowspan]') || tbody.querySelector('td[rowspan]:last-of-type');
                         var phaseRow = document.createElement('tr');
-                        phaseRow.className = 'phase-100-80';
                         // [修复] 使用 getDataCellsHtml 动态生成列，支持 9 人模式
                         var extraCells = getDataCellsHtml(0);
                         phaseRow.innerHTML = '<td rowspan="1"><span class="coord">(0,A)</span><span class="t-text phase-name" contenteditable="true" onblur="saveToStorage()">阶段状态</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)" title="删除此阶段">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)" title="在下方插入新阶段">+</button></div></td><td><span class="coord">(0,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(0,C)</span></td><td><span class="coord">(0,D)</span></td>' + extraCells;
@@ -6899,8 +6815,8 @@
                     if(window.updateSkillSourceEmptyState) {
                         window.updateSkillSourceEmptyState(config.skillCoord);
                     }
-                    if(window.updateCharacterEmptyState) {
-                        window.updateCharacterEmptyState(config.coord.match(/\(0,([A-Z])\)/)[1]);
+                    if(window.updateCharEmptyStateByCoord) {
+                        window.updateCharEmptyStateByCoord(config.coord);
                     }
                 });
                 
@@ -7136,8 +7052,8 @@
                         }
                         restoreData(data);
                     } else {
-                        // [新增] 新用户：没有任何存档，自动弹出Boss选择窗口
-                        loadTemplate(6, true);
+                        // [新增] 新用户：没有任何存档，先加载6人空模板，再弹出Boss选择窗口
+                        loadTemplate(6, true); // 先加载干净的6人模板
                         setTimeout(function() {
                             showBossSelectModal();
                         }, 300);
@@ -7230,6 +7146,11 @@
         }
         
         // [修复] 增加 isRestoring 参数，用于在加载存档时静默切换骨架
+        // [技术债 - P2] 当前使用 innerHTML 字符串拼接构造 HTML，存在以下隐患：
+        //   1. 如果数据源（如 Excel）包含特殊字符，可能导致 XSS 风险
+        //   2. 代码可读性和维护性较差
+        //   3. 性能略低于 DOM API
+        // 建议：未来重构为使用 createElement/appendChild 等 DOM API 方法
         function loadTemplate(mode, isRestoring) {
             var is9Man = (mode === 9);
             var thead = document.querySelector('thead');
@@ -7334,7 +7255,7 @@
                 dataCellsHtml += '<td class="' + cls + '"><span class="coord">(2,' + col + ')</span></td>';
             });
             
-            var rowHTML = '<tr class="phase-100-80">' +
+            var rowHTML = '<tr>' +
                 '<td rowspan="1"><span class="coord">(2,A)</span><span class="t-text phase-name" contenteditable="true" onblur="saveToStorage()">100%-?</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)">+</button></div></td>' +
                 '<td><span class="coord">(2,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">1T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td>' +
                 '<td class="data-cell"><span class="coord">(2,C)</span></td>' +
@@ -7349,6 +7270,9 @@
             
             // 刷新坐标和保存
             recalculateAllCoords();
+            
+            // [新增] 刷新阶段颜色，确保颜色循环正确
+            refreshPhaseColors();
             
             // [新增] 强制应用一次默认字号设置，解决文字和按钮大小不对的问题
             applyDefaultFontSize();
@@ -7895,7 +7819,6 @@
             input.onkeydown=function(e){if(e.key==='Enter')submit();if(e.key==='Escape')close();};
         }
         
-        function addRow(){var tbody=document.querySelector('tbody'),rowCount=tbody.querySelectorAll('tr').length+2,tr=document.createElement('tr');tr.innerHTML='<td><span class="coord">('+rowCount+',B)</span></td><td class="data-cell"><span class="coord">('+rowCount+',C)</span></td><td><span class="coord">('+rowCount+',D)</span></td><td class="data-cell"><span class="coord">('+rowCount+',E)</span></td><td class="data-cell"><span class="coord">('+rowCount+',F)</span></td><td class="data-cell"><span class="coord">('+rowCount+',G)</span></td><td class="data-cell"><span class="coord">('+rowCount+',H)</span></td><td class="note-cell"><span class="coord">('+rowCount+',I)</span></td><td class="note-cell"><span class="coord">('+rowCount+',J)</span></td>';tbody.appendChild(tr);tr.querySelectorAll('td').forEach(function(cell){bindCellEvents(cell);});}
         // [修复] 导出图片功能 - 使用 fetch + blob 方式处理跨域图片
         function exportAsImage(){
             var tableWrapper = document.querySelector('.table-wrapper');
@@ -8075,9 +7998,8 @@
                 var dateStr = date.getFullYear() + '-' + 
                               String(date.getMonth()+1).padStart(2,'0') + '-' + 
                               String(date.getDate()).padStart(2,'0');
-                link.download = 'gbfop_Guide_' + dateStr + '.jpg';
-                // 使用 JPEG 格式，质量 0.7，确保文件在 1MB 以下
-                link.href = canvas.toDataURL('image/jpeg', 0.7);
+                link.download = 'gbfop_Guide_' + dateStr + '.png';
+                link.href = canvas.toDataURL('image/png');
                 link.click();
             }
         }
@@ -8129,27 +8051,6 @@
         }
         function clearAllSilent(){document.querySelectorAll('tbody td').forEach(function(cell){cell.querySelectorAll('.skill-box:not(.skill-source)').forEach(function(box){box.remove();});cell.querySelectorAll('.user-text-wrapper').forEach(function(wrapper){wrapper.remove();});cell.querySelectorAll('.user-text').forEach(function(txt){txt.remove();});});}
         function clearAll(){if(confirm('清空所有?')){clearAllSilent();saveToStorage();}}
-        // 阶段内添加行 (已更新：包含右侧+号)
-        function addRowToPhase(btn){
-            var phaseCell=btn.closest('td');
-            var phaseRow=phaseCell.closest('tr');
-            var rowspan=parseInt(phaseCell.getAttribute('rowspan'))||1;
-            var tbody=document.querySelector('tbody');
-            var rows=Array.from(tbody.querySelectorAll('tr'));
-            var phaseIndex=rows.indexOf(phaseRow);
-            var lastRowIndex=phaseIndex+rowspan-1;
-            var newRow=document.createElement('tr');
-            newRow.innerHTML='<td><span class="coord">(0,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(0,C)</span></td><td><span class="coord">(0,D)</span></td><td class="data-cell"><span class="coord">(0,E)</span></td><td class="data-cell"><span class="coord">(0,F)</span></td><td class="data-cell"><span class="coord">(0,G)</span></td><td class="data-cell"><span class="coord">(0,H)</span></td><td class="note-cell"><span class="coord">(0,I)</span></td><td class="note-cell"><span class="coord">(0,J)</span></td>';
-            if(lastRowIndex<rows.length-1){rows[lastRowIndex].after(newRow);}else{tbody.appendChild(newRow);}
-            phaseCell.setAttribute('rowspan',rowspan+1);
-            newRow.querySelectorAll('td').forEach(function(cell){bindCellEvents(cell);});
-            // 为新添加的B列文字绑定不可删除逻辑
-            var bText = newRow.querySelector('.b-cell-content .t-text');
-            if(bText && window.setupUndeletableText) window.setupUndeletableText(bText, 'T');
-            recalculateAllCoords();
-            applyDefaultFontSize(); // 应用默认字号到新添加的行
-            saveToStorage();
-        }
         function deleteRow(btn){
             var row=btn.closest('tr');
             var tbody=document.querySelector('tbody');
@@ -8991,5 +8892,3 @@
     </div>
 </body>
 </html>
-
-
