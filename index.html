@@ -3185,6 +3185,126 @@
             background: #757575;
             transform: translateY(-1px);
         }
+        
+        /* ========== 分享代码弹窗专用样式 ========== */
+        
+        /* 分享弹窗右上角关闭按钮 - 现代 WebApp 风格 */
+        .share-modal-close-x {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: transparent;
+            color: #999;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 10;
+            padding: 0;
+        }
+        
+        /* 悬停/点击效果 - 增强版珊瑚红高亮 */
+        .share-modal-close-x:hover {
+            background-color: #ff4757; /* 鲜艳的珊瑚红 */
+            color: #ffffff;            /* 图标变纯白，高对比 */
+            transform: rotate(90deg);  /* 优雅的旋转动画 */
+            box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4); /* 红色辉光投影 */
+        }
+        
+        .share-modal-close-x:active {
+            transform: rotate(90deg) scale(0.95);
+            box-shadow: 0 2px 8px rgba(255, 71, 87, 0.5);
+        }
+        
+        /* 暗色模式适配 */
+        [data-theme="dark"] .share-modal-close-x {
+            color: #aaa;
+        }
+        
+        [data-theme="dark"] .share-modal-close-x:hover {
+            background-color: #ff6b81; /* 暗色模式下的柔和粉红 */
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(255, 107, 129, 0.4); /* 粉红辉光 */
+        }
+        
+        [data-theme="dark"] .share-modal-close-x:active {
+            box-shadow: 0 2px 8px rgba(255, 107, 129, 0.5);
+        }
+        
+        .share-code-textarea {
+            width: 100%;
+            height: 160px;
+            margin: 10px 0 20px 0;
+            padding: 14px;
+            background: var(--bg-table);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.5;
+            resize: vertical;
+            outline: none;
+            transition: all 0.2s ease;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .share-code-textarea:focus {
+            border-color: #2196f3;
+            box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.15);
+            background: var(--bg-table);
+        }
+        [data-theme="dark"] .share-code-textarea {
+            background: rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        [data-theme="dark"] .share-code-textarea:focus {
+            border-color: #4a7ab8;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Toast 提示样式 */
+        .toast-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-modal);
+            color: var(--text-primary);
+            padding: 14px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            z-index: 10003;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            animation: toastSlideIn 0.3s ease-out;
+            border-left: 4px solid #2196f3;
+        }
+        .toast-notification.success {
+            border-left-color: #4caf50;
+        }
+        .toast-notification.error {
+            border-left-color: #f44336;
+        }
+        .toast-notification.loading {
+            border-left-color: #ff9800;
+        }
+        @keyframes toastSlideIn {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes toastSlideOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(100px); }
+        }
+        .toast-notification.hiding {
+            animation: toastSlideOut 0.3s ease-out forwards;
+        }
     </style>
 </head>
 <body>
@@ -3233,6 +3353,9 @@
             <div class="toolbar-divider"></div>
             <button class="t-btn t-btn-ghost" onclick="exportJSON()" data-tooltip="导出配置 JSON">
                 <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>导出
+            </button>
+            <button class="t-btn t-btn-ghost" onclick="openShareModal()" data-tooltip="生成/导入分享代码 (Gzip压缩)">
+                <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>分享代码
             </button>
             <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
             <button class="t-btn t-btn-ghost" onclick="document.getElementById('importFile').click()" data-tooltip="导入配置 JSON">
@@ -3316,12 +3439,12 @@
             <th><span class="coord-header">(0,B)</span><br><span class="header-text t-text">回合/特动</span></th>
             <th><span class="coord-header">(0,C)</span><br><span class="header-text t-text">备注</span></th>
             <th><span class="coord-header">(0,D)</span><br><span class="header-text t-text">召唤石</span></th>
-            <th class="character-header has-fab"><span class="coord-header">(0,E)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">主角</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
-            <th class="character-header has-fab"><span class="coord-header">(0,F)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">2号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
-            <th class="character-header has-fab"><span class="coord-header">(0,G)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">3号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
-            <th class="character-header has-fab"><span class="coord-header">(0,H)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">4号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
-            <th class="character-header back-row has-fab"><span class="coord-header">(0,I)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="display:none"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">后排1</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
-            <th class="character-header back-row has-fab"><span class="coord-header">(0,J)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="display:none"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">后排2</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
+            <th class="character-header has-fab"><span class="coord-header">(0,E)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">主角</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
+            <th class="character-header has-fab"><span class="coord-header">(0,F)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">2号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
+            <th class="character-header has-fab"><span class="coord-header">(0,G)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">3号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
+            <th class="character-header has-fab"><span class="coord-header">(0,H)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">4号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
+            <th class="character-header back-row has-fab"><span class="coord-header">(0,I)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="display:none"><span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">后排1</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
+            <th class="character-header back-row has-fab"><span class="coord-header">(0,J)</span><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="display:none"><span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">后排2</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest('.character-header'))" title="编辑角色"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div></th>
         </tr>
         <tr class="skill-source-row">
             <td colspan="2" class="source-cell has-fab" style="vertical-align:middle;position:relative;"><span class="coord">(1,A-B)</span><button class="mini-fab edit" onclick="showQuickAddSummon(this.closest('.source-cell'))"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></button></td>
@@ -3337,8 +3460,8 @@
     </thead>
     <tbody>
         <tr>
-            <td rowspan="1"><span class="coord">(2,A)</span><span class="t-text phase-name" contenteditable="true" onblur="saveToStorage()">100%-?</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)">+</button></div></td>
-            <td><span class="coord">(2,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">1T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td>
+            <td rowspan="1"><span class="coord">(2,A)</span><span class="t-text phase-name" contenteditable="true" onblur="GBFGuide.Storage.save()">100%-?</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)">+</button></div></td>
+            <td><span class="coord">(2,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="GBFGuide.Storage.save()">1T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td>
             <td class="data-cell"><span class="coord">(2,C)</span></td>
             <td><span class="coord">(2,D)</span></td>
             <td class="data-cell"><span class="coord">(2,E)</span></td>
@@ -3393,6 +3516,257 @@
             // 防抖和节流延迟（毫秒）
             DEBOUNCE_DELAY: 500,
             THROTTLE_DELAY: 100
+        };
+        
+        // ========== 工具函数模块 ==========
+        /**
+         * 通用工具函数
+         * @namespace GBFGuide.Utils
+         */
+        GBFGuide.Utils = {
+            /**
+             * 防抖函数 - 在指定延迟内多次调用只执行最后一次
+             * @param {Function} fn - 要防抖的函数
+             * @param {number} delay - 延迟时间（毫秒）
+             * @returns {Function} 防抖后的函数
+             * @example
+             * var debouncedSave = GBFGuide.Utils.debounce(saveData, 500);
+             * debouncedSave(); // 多次调用只执行最后一次
+             */
+            debounce: function(fn, delay) {
+                var timer = null;
+                return function() {
+                    var context = this;
+                    var args = arguments;
+                    if (timer) {
+                        clearTimeout(timer);
+                    }
+                    timer = setTimeout(function() {
+                        fn.apply(context, args);
+                    }, delay);
+                };
+            },
+            
+            /**
+             * 节流函数 - 在指定时间间隔内最多执行一次
+             * @param {Function} fn - 要节流的函数
+             * @param {number} delay - 时间间隔（毫秒）
+             * @returns {Function} 节流后的函数
+             * @example
+             * var throttledResize = GBFGuide.Utils.throttle(handleResize, 100);
+             * window.addEventListener('resize', throttledResize);
+             */
+            throttle: function(fn, delay) {
+                var lastTime = 0;
+                return function() {
+                    var now = Date.now();
+                    if (now - lastTime >= delay) {
+                        lastTime = now;
+                        fn.apply(this, arguments);
+                    }
+                };
+            },
+            
+            /**
+             * 检查是否为有效的图片 URL
+             * @param {string} src - 图片 URL
+             * @returns {boolean} 是否为有效图片
+             * @example
+             * GBFGuide.Utils.isValidImageSrc('https://example.com/image.png'); // true
+             * GBFGuide.Utils.isValidImageSrc(''); // false
+             * GBFGuide.Utils.isValidImageSrc(EMPTY_IMAGE_SRC); // false
+             */
+            isValidImageSrc: function(src) {
+                // 检查是否为空或仅包含空白字符
+                if (!src || !src.trim()) {
+                    return false;
+                }
+                
+                // 检查是否为空图片占位符
+                if (src === GBFGuide.Config.EMPTY_IMAGE_SRC) {
+                    return false;
+                }
+                
+                // 检查是否包含空图片的 base64 标识
+                if (src.includes('data:image/gif;base64')) {
+                    return false;
+                }
+                
+                return true;
+            },
+            
+            /**
+             * 安全解析 JSON 字符串
+             * @param {string} str - JSON 字符串
+             * @param {*} defaultValue - 解析失败时的默认值
+             * @returns {*} 解析结果或默认值
+             * @example
+             * var data = GBFGuide.Utils.safeParseJSON('{"key":"value"}', {});
+             * var invalid = GBFGuide.Utils.safeParseJSON('invalid json', null); // 返回 null
+             */
+            safeParseJSON: function(str, defaultValue) {
+                try {
+                    return JSON.parse(str);
+                } catch (e) {
+                    console.warn('[GBFGuide.Utils] JSON 解析失败:', e.message);
+                    return defaultValue;
+                }
+            }
+        };
+        
+        // ========== 存储管理模块 ==========
+        /**
+         * localStorage 存储管理（带防抖）
+         * @namespace GBFGuide.Storage
+         */
+        GBFGuide.Storage = {
+            /**
+             * 防抖计时器 ID
+             * @private
+             * @type {number|null}
+             */
+            _debounceTimer: null,
+            
+            /**
+             * 是否有待保存的数据
+             * @private
+             * @type {boolean}
+             */
+            _pendingSave: false,
+            
+            /**
+             * 防抖保存 - 在指定延迟内多次调用只执行最后一次
+             * 用于频繁的用户操作（如拖拽、编辑文本等）
+             * @example
+             * GBFGuide.Storage.save(); // 多次快速调用只会执行一次
+             */
+            save: function() {
+                var self = this;
+                this._pendingSave = true;
+                
+                // 清除之前的计时器
+                if (this._debounceTimer) {
+                    clearTimeout(this._debounceTimer);
+                }
+                
+                // 设置新的计时器
+                this._debounceTimer = setTimeout(function() {
+                    self._doSave();
+                }, GBFGuide.Config.DEBOUNCE_DELAY);
+            },
+            
+            /**
+             * 立即保存 - 强制执行待处理的保存操作
+             * 用于页面关闭前或需要立即保存的场景
+             * @example
+             * window.addEventListener('beforeunload', function() {
+             *     GBFGuide.Storage.flush();
+             * });
+             */
+            flush: function() {
+                if (this._pendingSave) {
+                    // 清除计时器
+                    if (this._debounceTimer) {
+                        clearTimeout(this._debounceTimer);
+                        this._debounceTimer = null;
+                    }
+                    // 立即执行保存
+                    this._doSave();
+                }
+            },
+            
+            /**
+             * 执行实际的保存操作
+             * @private
+             */
+            _doSave: function() {
+                try {
+                    // 调用现有的 collectData 函数收集数据
+                    var data = collectData();
+                    
+                    // 保存到 localStorage
+                    localStorage.setItem(
+                        GBFGuide.Config.STORAGE_KEY,
+                        JSON.stringify(data)
+                    );
+                    
+                    // 重置待保存标记
+                    this._pendingSave = false;
+                    
+                    console.log('[GBFGuide.Storage] 数据已保存');
+                } catch (e) {
+                    // 处理存储错误
+                    if (e.name === 'QuotaExceededError') {
+                        console.error('[GBFGuide.Storage] localStorage 已满，无法保存');
+                        alert('存储空间已满，请清理浏览器数据或导出存档后清除。');
+                    } else {
+                        console.error('[GBFGuide.Storage] 保存失败:', e);
+                    }
+                }
+            },
+            
+            /**
+             * 加载数据 - 从 localStorage 读取并解析数据
+             * @returns {Object|null} 解析后的数据对象，失败时返回 null
+             * @example
+             * var data = GBFGuide.Storage.load();
+             * if (data) {
+             *     restoreData(data);
+             * }
+             */
+            load: function() {
+                try {
+                    // 从 localStorage 读取原始数据
+                    var raw = localStorage.getItem(GBFGuide.Config.STORAGE_KEY);
+                    
+                    // 如果没有数据，返回 null
+                    if (!raw) {
+                        return null;
+                    }
+                    
+                    // 解析 JSON
+                    var data = JSON.parse(raw);
+                    
+                    console.log('[GBFGuide.Storage] 数据已加载');
+                    return data;
+                    
+                } catch (e) {
+                    // 处理加载错误
+                    if (e instanceof SyntaxError) {
+                        console.error('[GBFGuide.Storage] 存档 JSON 格式错误:', e);
+                        this._showLoadError('存档数据已损坏，无法加载。\n建议：清除存档或从备份导入。');
+                    } else {
+                        console.error('[GBFGuide.Storage] 加载失败:', e);
+                        this._showLoadError('加载存档时发生错误：' + e.message);
+                    }
+                    return null;
+                }
+            },
+            
+            /**
+             * 显示加载错误提示
+             * @private
+             * @param {string} message - 错误消息
+             */
+            _showLoadError: function(message) {
+                alert(message);
+            },
+            
+            /**
+             * 清除存档 - 删除 localStorage 中的数据
+             * @example
+             * if (confirm('确定要清除所有数据吗？')) {
+             *     GBFGuide.Storage.clear();
+             * }
+             */
+            clear: function() {
+                try {
+                    localStorage.removeItem(GBFGuide.Config.STORAGE_KEY);
+                    console.log('[GBFGuide.Storage] 存档已清除');
+                } catch (e) {
+                    console.error('[GBFGuide.Storage] 清除存档失败:', e);
+                }
+            }
         };
         
         // ========== 兼容层：保留旧的全局变量引用 ==========
@@ -3798,7 +4172,7 @@
                 
                 var parentCell = box.closest('td, th');
                 box.remove();
-                saveToStorage();
+                GBFGuide.Storage.save();
                 
                 // 更新空状态
                 if (parentCell) {
@@ -4467,7 +4841,7 @@
                 if(newSize>=10&&newSize<=24){
                     currentContextTarget.style.fontSize=newSize+'px';
                     currentContextTarget.setAttribute('data-custom-size','true');
-                    saveToStorage();
+                    GBFGuide.Storage.save();
                 }else{
                     alert('字号范围: 10-24');
                 }
@@ -4485,7 +4859,7 @@
             colorInput.addEventListener('change',function(){
                 currentContextTarget.style.color=this.value;
                 currentContextTarget.setAttribute('data-custom-color','true');
-                saveToStorage();
+                GBFGuide.Storage.save();
                 this.remove();
             });
             colorInput.addEventListener('blur',function(){this.remove();});
@@ -4506,7 +4880,7 @@
                 }else{
                     currentContextTarget.remove();
                 }
-                saveToStorage();
+                GBFGuide.Storage.save();
             }
         }
         function resetTextStyle(){
@@ -4516,7 +4890,7 @@
                 currentContextTarget.style.fontSize='';
                 currentContextTarget.style.color='';
                 applyDefaultFontSize();
-                saveToStorage();
+                GBFGuide.Storage.save();
             }
         }
         
@@ -4577,7 +4951,7 @@
                         // 如果URL为空，设置为占位符
                         img.src = EMPTY_IMAGE_SRC;
                     }
-                    saveToStorage();
+                    GBFGuide.Storage.save();
                     if(window.updateBossEmptyState) window.updateBossEmptyState();
                 }
                 close();
@@ -4684,7 +5058,7 @@
                     }
                 });
                 
-                saveToStorage();
+                GBFGuide.Storage.save();
                 close();
             };
             
@@ -4710,7 +5084,7 @@
                 var newUrl = input.value.trim();
                 if(newUrl && newUrl !== currentUrl){
                     img.src = newUrl;
-                    saveToStorage();
+                    GBFGuide.Storage.save();
                 }
                 overlay.remove();
                 modal.remove();
@@ -4983,7 +5357,7 @@
                     }
                 }
                 
-                saveToStorage();
+                GBFGuide.Storage.save();
                 
                 // 更新角色头像的空状态 (修复版 - 支持换人行坐标)
                 var coordEl = headerCell.querySelector('.coord-header');
@@ -5132,7 +5506,7 @@
                     cell.appendChild(newAddBtn);
                 }
                 
-                saveToStorage();
+                GBFGuide.Storage.save();
                 
                 // 更新召唤石空状态 (修复版 - 支持换人行坐标)
                 var coordEl = cell.querySelector('.coord');
@@ -5337,7 +5711,7 @@
                 var text = this.textContent.trim();
                 if (text === '') {
                     this.textContent = defaultName;
-                    saveToStorage();
+                    GBFGuide.Storage.save();
                 }
             };
             
@@ -5348,7 +5722,7 @@
                     setTimeout(function() {
                         if (self.textContent.trim() === '') {
                             self.textContent = defaultName;
-                            saveToStorage();
+                            GBFGuide.Storage.save();
                         }
                     }, 5000);
                 }
@@ -5459,7 +5833,7 @@
                             });
                         }
                         
-                        saveToStorage();
+                        GBFGuide.Storage.save();
                         window.updateCharEmptyState(charHeader, config);
                         window.updateSkillSourceEmptyState(config.skillCoord);
                     };
@@ -5472,7 +5846,7 @@
                     charNameSpan = document.createElement('span');
                     charNameSpan.className = 'header-text t-text char-name';
                     charNameSpan.setAttribute('contenteditable', 'true');
-                    charNameSpan.setAttribute('onblur', 'saveToStorage()');
+                    charNameSpan.setAttribute('onblur', 'GBFGuide.Storage.save()');
                     charNameSpan.textContent = config.name;
                     var editBtn = charHeader.querySelector('.mini-fab.edit, .btn-edit-glass');
                     if (editBtn) {
@@ -5517,7 +5891,7 @@
                             if (br) this.insertBefore(img, br.nextSibling);
                             else this.appendChild(img);
                         }
-                        saveToStorage();
+                        GBFGuide.Storage.save();
                         window.updateCharEmptyState(charHeader, config);
                     }
                 };
@@ -5595,7 +5969,7 @@
                             dragImageSize: 20
                         });
                         this.appendChild(box);
-                        saveToStorage();
+                        GBFGuide.Storage.save();
                         window.updateSkillSourceEmptyState(config.skillCoord);
                     }
                 };
@@ -5632,7 +6006,7 @@
                         e.stopPropagation();
                         if (confirm('确定要清空' + config.name + '吗？')) {
                             summonCell.querySelectorAll('.skill-box').forEach(function(b) { b.remove(); });
-                            saveToStorage();
+                            GBFGuide.Storage.save();
                             window.updateSummonEmptyState(config.coord, config.maxCount, config.showButton);
                         }
                     };
@@ -5692,7 +6066,7 @@
                         var addBtn = this.querySelector('.mini-fab.add');
                         if (addBtn) this.insertBefore(box, addBtn);
                         else this.appendChild(box);
-                        saveToStorage();
+                        GBFGuide.Storage.save();
                         window.updateSummonEmptyState(config.coord, config.maxCount, config.showButton);
                     }
                 };
@@ -5768,7 +6142,7 @@
                         if (url) {
                             var bossImg = this.querySelector('img');
                             if(bossImg) bossImg.src = url;
-                            saveToStorage();
+                            GBFGuide.Storage.save();
                             if(window.updateBossEmptyState) window.updateBossEmptyState();
                         }
                     };
@@ -5824,7 +6198,7 @@
                             var editBtn = this.querySelector('.mini-fab.edit, .btn-edit-glass');
                             if(editBtn) this.insertBefore(box, editBtn);
                             else this.appendChild(box);
-                            saveToStorage();
+                            GBFGuide.Storage.save();
                         }
                     };
                 }
@@ -5905,6 +6279,11 @@
             });
         };
         
+        // [重构] 页面关闭前强制保存待处理的数据
+        window.addEventListener('beforeunload', function() {
+            GBFGuide.Storage.flush();
+        });
+        
         function bindCellEvents(cell){
             // 1. 拖拽进入：添加高亮样式
             cell.addEventListener('dragenter', function(e){
@@ -5940,7 +6319,7 @@
                     clone.classList.remove('skill-source');
                     clone.classList.add('has-fab');
                     bindDragEvents(clone, 20);
-                    clone.addEventListener('contextmenu',function(ev){ev.preventDefault();this.remove();saveToStorage();});
+                    clone.addEventListener('contextmenu',function(ev){ev.preventDefault();this.remove();GBFGuide.Storage.save();});
                     // 添加删除按钮
                     var delBtn = document.createElement('button');
                     delBtn.className = 'mini-fab delete';
@@ -5949,7 +6328,7 @@
                     delBtn.onclick = function(ev){
                         ev.stopPropagation();
                         clone.remove();
-                        saveToStorage();
+                        GBFGuide.Storage.save();
                     };
                     clone.appendChild(delBtn);
                     
@@ -5966,7 +6345,7 @@
                         this.appendChild(clone);
                     }
                     if(!draggedElement.classList.contains('skill-source')){var sourceCell=draggedElement.closest('td')||draggedElement.closest('th');if(sourceCell===this){draggedElement.remove();}}
-                    saveToStorage();
+                    GBFGuide.Storage.save();
                 }
             });
             
@@ -5981,7 +6360,7 @@
         document.addEventListener('contextmenu',function(e){
             // 原有的技能/文字右键逻辑
             var box=e.target.closest('.skill-box');
-            if(box&&!box.classList.contains('skill-source')){e.preventDefault();box.remove();saveToStorage();return;}
+            if(box&&!box.classList.contains('skill-source')){e.preventDefault();box.remove();GBFGuide.Storage.save();return;}
             var text=e.target.closest('.user-text');
             if(text){showContextMenu(e,text,'user-text');return;}
             var ttext=e.target.closest('.t-text');
@@ -6404,7 +6783,7 @@
                         var phaseRow = document.createElement('tr');
                         // [修复] 使用 getDataCellsHtml 动态生成列，支持 9 人模式
                         var extraCells = getDataCellsHtml(0);
-                        phaseRow.innerHTML = '<td rowspan="1"><span class="coord">(0,A)</span><span class="t-text phase-name" contenteditable="true" onblur="saveToStorage()">阶段状态</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)" title="删除此阶段">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)" title="在下方插入新阶段">+</button></div></td><td><span class="coord">(0,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(0,C)</span></td><td><span class="coord">(0,D)</span></td>' + extraCells;
+                        phaseRow.innerHTML = '<td rowspan="1"><span class="coord">(0,A)</span><span class="t-text phase-name" contenteditable="true" onblur="GBFGuide.Storage.save()">阶段状态</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)" title="删除此阶段">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)" title="在下方插入新阶段">+</button></div></td><td><span class="coord">(0,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="GBFGuide.Storage.save()">T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(0,C)</span></td><td><span class="coord">(0,D)</span></td>' + extraCells;
                         tbody.appendChild(phaseRow);
                         phaseRow.querySelectorAll('td').forEach(function(cell){ bindCellEvents(cell); });
                         // 绑定不可删除逻辑
@@ -6531,7 +6910,7 @@
                         box.className='skill-box has-fab';
                         box.innerHTML='<img src="'+s.imgSrc+'" style="width:40px;height:40px;">';
                         bindDragEvents(box, 20);
-                        box.addEventListener('contextmenu',function(e){e.preventDefault();this.remove();saveToStorage();});
+                        box.addEventListener('contextmenu',function(e){e.preventDefault();this.remove();GBFGuide.Storage.save();});
                         // 添加删除按钮
                         var delBtn = document.createElement('button');
                         delBtn.className = 'mini-fab delete';
@@ -6540,7 +6919,7 @@
                         delBtn.onclick = function(ev){
                             ev.stopPropagation();
                             box.remove();
-                            saveToStorage();
+                            GBFGuide.Storage.save();
                         };
                         box.appendChild(delBtn);
                         
@@ -6599,7 +6978,7 @@
                         delBtn.onclick=function(ev){
                             ev.stopPropagation();
                             wrapper.remove();
-                            saveToStorage();
+                            GBFGuide.Storage.save();
                         };
                         
                         wrapper.appendChild(span);
@@ -6610,7 +6989,7 @@
                             if(!this.textContent.trim()){
                                 wrapper.remove();
                             }
-                            saveToStorage();
+                            GBFGuide.Storage.save();
                         });
                         
                         span.addEventListener('paste',function(e){
@@ -6888,7 +7267,7 @@
                         charColsHtml += '<td class="swap-char-cell character-header has-fab' + backClass + '" style="position:relative;">' +
                             '<span class="coord-header">(SW' + swapNum + ',' + col + ')</span><br>' +
                             '<img src="' + charSrc + '" style="' + imgStyle + '">' +
-                            '<span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">' + charName + '</span>' +
+                            '<span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">' + charName + '</span>' +
                             '<div class="btn-edit-glass" onclick="showQuickAddCharacterForSwap(this.closest(\'.swap-char-cell\'))">' + editIcon + '</div>' +
                             '</td>';
                     });
@@ -7011,7 +7390,7 @@
             var lastRowIndex=phaseIndex+rowspan-1;
             var newRow=document.createElement('tr');
             var extraCells = getDataCellsHtml(0); // 坐标稍后会重算
-            newRow.innerHTML='<td><span class="coord">(0,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(0,C)</span></td><td><span class="coord">(0,D)</span></td>' + extraCells;
+            newRow.innerHTML='<td><span class="coord">(0,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="GBFGuide.Storage.save()">T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(0,C)</span></td><td><span class="coord">(0,D)</span></td>' + extraCells;
             if(lastRowIndex<rows.length-1){rows[lastRowIndex].after(newRow);}else{tbody.appendChild(newRow);}
             phaseCell.setAttribute('rowspan',rowspan+1);
             newRow.querySelectorAll('td').forEach(function(cell){bindCellEvents(cell);});
@@ -7020,7 +7399,10 @@
             if(bText && window.setupUndeletableText) window.setupUndeletableText(bText, 'T');
         }
         
-        function saveToStorage(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(collectData()));}catch(e){}}
+        function saveToStorage(){
+            // [重构] 使用新的 GBFGuide.Storage 模块（带防抖）
+            GBFGuide.Storage.save();
+        }
         function loadFromStorage(){
             try{
                 var saved=localStorage.getItem(STORAGE_KEY);
@@ -7078,7 +7460,7 @@
                         loadTemplate(savedMode, true);
                     }
                     restoreData(data);
-                    saveToStorage();
+                    GBFGuide.Storage.save();
                     alert('导入成功!');
                 }catch(err){
                     alert('导入失败');
@@ -7207,7 +7589,7 @@
             
             // 循环生成表头格 (注意：src 已改为 EMPTY_IMAGE_SRC)
             backs.forEach(function(b){
-                extraHeader += '<th class="character-header ' + b.cls + ' has-fab"><span class="coord-header">(0,' + b.c + ')</span><br><img src="' + EMPTY_IMAGE_SRC + '" style="display:none"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">' + b.n + '</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest(\'.character-header\'))" title="编辑角色">' + editIcon + '</div></th>';
+                extraHeader += '<th class="character-header ' + b.cls + ' has-fab"><span class="coord-header">(0,' + b.c + ')</span><br><img src="' + EMPTY_IMAGE_SRC + '" style="display:none"><span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">' + b.n + '</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest(\'.character-header\'))" title="编辑角色">' + editIcon + '</div></th>';
                 extraSource += '<td class="source-cell"><span class="coord">(1,' + b.c + ')</span></td>';
             });
             
@@ -7227,10 +7609,10 @@
                     '<th><span class="coord-header">(0,B)</span><br><span class="header-text t-text">回合/特动</span></th>' +
                     '<th><span class="coord-header">(0,C)</span><br><span class="header-text t-text">备注</span></th>' +
                     '<th><span class="coord-header">(0,D)</span><br><span class="header-text t-text">召唤石</span></th>' +
-                    '<th class="character-header has-fab"><span class="coord-header">(0,E)</span><br><img src="' + EMPTY_IMAGE_SRC + '"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">主角</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest(\'.character-header\'))" title="编辑角色">' + editIcon + '</div></th>' +
-                    '<th class="character-header has-fab"><span class="coord-header">(0,F)</span><br><img src="' + EMPTY_IMAGE_SRC + '"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">2号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest(\'.character-header\'))" title="编辑角色">' + editIcon + '</div></th>' +
-                    '<th class="character-header has-fab"><span class="coord-header">(0,G)</span><br><img src="' + EMPTY_IMAGE_SRC + '"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">3号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest(\'.character-header\'))" title="编辑角色">' + editIcon + '</div></th>' +
-                    '<th class="character-header has-fab"><span class="coord-header">(0,H)</span><br><img src="' + EMPTY_IMAGE_SRC + '"><span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">4号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest(\'.character-header\'))" title="编辑角色">' + editIcon + '</div></th>' +
+                    '<th class="character-header has-fab"><span class="coord-header">(0,E)</span><br><img src="' + EMPTY_IMAGE_SRC + '"><span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">主角</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest(\'.character-header\'))" title="编辑角色">' + editIcon + '</div></th>' +
+                    '<th class="character-header has-fab"><span class="coord-header">(0,F)</span><br><img src="' + EMPTY_IMAGE_SRC + '"><span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">2号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest(\'.character-header\'))" title="编辑角色">' + editIcon + '</div></th>' +
+                    '<th class="character-header has-fab"><span class="coord-header">(0,G)</span><br><img src="' + EMPTY_IMAGE_SRC + '"><span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">3号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest(\'.character-header\'))" title="编辑角色">' + editIcon + '</div></th>' +
+                    '<th class="character-header has-fab"><span class="coord-header">(0,H)</span><br><img src="' + EMPTY_IMAGE_SRC + '"><span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">4号位</span><div class="btn-edit-glass" onclick="showQuickAddCharacter(this.closest(\'.character-header\'))" title="编辑角色">' + editIcon + '</div></th>' +
                     extraHeader +
                 '</tr>' +
                 '<tr class="skill-source-row">' +
@@ -7256,8 +7638,8 @@
             });
             
             var rowHTML = '<tr>' +
-                '<td rowspan="1"><span class="coord">(2,A)</span><span class="t-text phase-name" contenteditable="true" onblur="saveToStorage()">100%-?</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)">+</button></div></td>' +
-                '<td><span class="coord">(2,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">1T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td>' +
+                '<td rowspan="1"><span class="coord">(2,A)</span><span class="t-text phase-name" contenteditable="true" onblur="GBFGuide.Storage.save()">100%-?</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)">+</button></div></td>' +
+                '<td><span class="coord">(2,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="GBFGuide.Storage.save()">1T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td>' +
                 '<td class="data-cell"><span class="coord">(2,C)</span></td>' +
                 '<td><span class="coord">(2,D)</span></td>' +
                 dataCellsHtml +
@@ -7291,15 +7673,15 @@
                     try {
                         var data = JSON.parse(defaultJson);
                         restoreData(data);
-                        saveToStorage();
+                        GBFGuide.Storage.save();
                         alert(is9Man ? '已切换至【9人模式】并加载默认配置' : '已切换至【6人模式】并加载默认配置');
                     } catch(e) {
                         console.error('默认JSON解析失败:', e);
-                        saveToStorage();
+                        GBFGuide.Storage.save();
                         alert(is9Man ? '已切换至【极妈模板】' : '已切换至【极法模板】');
                     }
                 } else {
-                    saveToStorage();
+                    GBFGuide.Storage.save();
                     alert(is9Man ? '已切换至【极妈模板】' : '已切换至【极法模板】');
                 }
             }
@@ -7342,7 +7724,7 @@
                 charColsHtml += '<td class="swap-char-cell character-header has-fab has-empty-state' + backClass + '" style="position:relative;">' +
                     '<span class="coord-header">(SW' + swapRowCounter + ',' + col + ')</span><br>' +
                     '<img src="' + EMPTY_IMAGE_SRC + '" style="display:none">' +
-                    '<span class="header-text t-text char-name" contenteditable="true" onblur="saveToStorage()">' + names[idx] + '</span>' +
+                    '<span class="header-text t-text char-name" contenteditable="true" onblur="GBFGuide.Storage.save()">' + names[idx] + '</span>' +
                     '<div class="btn-edit-glass" onclick="showQuickAddCharacterForSwap(this.closest(\'.swap-char-cell\'))">' + editIcon + '</div>' +
                     '</td>';
             });
@@ -7390,7 +7772,7 @@
             initSwapRowElements(trHeader, trSource);
             
             if(typeof applyIconScaling === 'function') applyIconScaling();
-            saveToStorage();
+            GBFGuide.Storage.save();
             
             // 滚动到新区域
             trHeader.scrollIntoView({behavior: "smooth"});
@@ -7409,7 +7791,7 @@
                     trSource.remove();
                 }
                 trHeader.remove();
-                saveToStorage();
+                GBFGuide.Storage.save();
             }
         }
         
@@ -7493,7 +7875,7 @@
                         }
                         // 更新空状态
                         updateSwapCharEmptyState(this);
-                        saveToStorage();
+                        GBFGuide.Storage.save();
                     }
                 });
                 
@@ -7587,7 +7969,7 @@
                         } else {
                             updateSwapSourceEmptyState(cellRef);
                         }
-                        saveToStorage();
+                        GBFGuide.Storage.save();
                     }
                 });
                 
@@ -7685,7 +8067,7 @@
             if(defaultData){
                 if(confirm('确定加载保存的配置？当前内容将被覆盖。')){
                     restoreData(JSON.parse(defaultData));
-                    saveToStorage();
+                    GBFGuide.Storage.save();
                     alert('配置已加载');
                 }
             } else {
@@ -7753,7 +8135,7 @@
                     ev.stopPropagation();
                     var parentCell = wrapper.closest('td');
                     wrapper.remove();
-                    saveToStorage();
+                    GBFGuide.Storage.save();
                     // 更新备注单元格空状态
                     if(parentCell && window.updateNoteEmptyState) window.updateNoteEmptyState(parentCell);
                 };
@@ -7770,7 +8152,7 @@
                         // 更新备注单元格空状态
                         if(parentCell && window.updateNoteEmptyState) window.updateNoteEmptyState(parentCell);
                     }
-                    saveToStorage();
+                    GBFGuide.Storage.save();
                 });
                 
                 span.addEventListener('paste',function(e){
@@ -7808,7 +8190,7 @@
                 });
                 
                 cell.appendChild(wrapper);
-                saveToStorage();
+                GBFGuide.Storage.save();
                 // 更新备注单元格空状态
                 if(window.updateNoteEmptyState) window.updateNoteEmptyState(cell);
                 close();
@@ -8050,7 +8432,7 @@
             });
         }
         function clearAllSilent(){document.querySelectorAll('tbody td').forEach(function(cell){cell.querySelectorAll('.skill-box:not(.skill-source)').forEach(function(box){box.remove();});cell.querySelectorAll('.user-text-wrapper').forEach(function(wrapper){wrapper.remove();});cell.querySelectorAll('.user-text').forEach(function(txt){txt.remove();});});}
-        function clearAll(){if(confirm('清空所有?')){clearAllSilent();saveToStorage();}}
+        function clearAll(){if(confirm('清空所有?')){clearAllSilent();GBFGuide.Storage.save();}}
         function deleteRow(btn){
             var row=btn.closest('tr');
             var tbody=document.querySelector('tbody');
@@ -8094,7 +8476,7 @@
             }
             
             recalculateAllCoords();
-            saveToStorage();
+            GBFGuide.Storage.save();
         }
         
         // [改进] 辅助函数：根据模式生成对应的数据格
@@ -8142,7 +8524,7 @@
             // 2. 创建新行 - [修改] 动态生成后半部分
             var newRow = document.createElement('tr');
             var extraCells = getDataCellsHtml(0); // 坐标稍后会重算
-            newRow.innerHTML = '<td><span class="coord">(0,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(0,C)</span></td><td><span class="coord">(0,D)</span></td>' + extraCells;
+            newRow.innerHTML = '<td><span class="coord">(0,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="GBFGuide.Storage.save()">T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(0,C)</span></td><td><span class="coord">(0,D)</span></td>' + extraCells;
 
             // 3. 插入新行
             currentRow.after(newRow);
@@ -8170,7 +8552,7 @@
             // 6. 刷新
             recalculateAllCoords();
             applyDefaultFontSize();
-            saveToStorage();
+            GBFGuide.Storage.save();
         }
         
         // 删除整个阶段
@@ -8205,7 +8587,7 @@
             
             recalculateAllCoords();
             refreshPhaseColors();
-            saveToStorage();
+            GBFGuide.Storage.save();
         }
         
         // [新增] 刷新所有阶段的颜色 (红->橙->黄->绿 循环)
@@ -8243,7 +8625,7 @@
             // 2. 创建新阶段行 (默认1行高度) - [修改] 动态生成后半部分
             var newPhaseRow = document.createElement('tr');
             var extraCells = getDataCellsHtml(0); // 坐标稍后会重算
-            newPhaseRow.innerHTML = '<td rowspan="1"><span class="coord">(0,A)</span><span class="t-text phase-name" contenteditable="true" onblur="saveToStorage()">新阶段</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)" title="删除此阶段">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)" title="在下方插入新阶段">+</button></div></td><td><span class="coord">(0,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="saveToStorage()">T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(0,C)</span></td><td><span class="coord">(0,D)</span></td>' + extraCells;
+            newPhaseRow.innerHTML = '<td rowspan="1"><span class="coord">(0,A)</span><span class="t-text phase-name" contenteditable="true" onblur="GBFGuide.Storage.save()">新阶段</span><br><div class="a-cell-buttons"><button class="phase-del-btn" onclick="deletePhase(this)" title="删除此阶段">−</button><button class="phase-btn" onclick="insertPhaseBelow(this)" title="在下方插入新阶段">+</button></div></td><td><span class="coord">(0,B)</span><div class="b-cell-content"><button class="del-btn" onclick="deleteRow(this)">−</button><span class="t-text" contenteditable="true" onblur="GBFGuide.Storage.save()">T</span><button class="add-row-btn" onclick="insertRowBelow(this)">+</button></div></td><td class="data-cell"><span class="coord">(0,C)</span></td><td><span class="coord">(0,D)</span></td>' + extraCells;
 
             // 3. 插入 DOM
             if (referenceRow) {
@@ -8272,7 +8654,7 @@
             refreshPhaseColors();
             recalculateAllCoords();
             applyDefaultFontSize();
-            saveToStorage();
+            GBFGuide.Storage.save();
         }
         
         // ========== 格子合并功能（新版） ==========
@@ -8307,7 +8689,7 @@
                 ev.stopPropagation();
                 var parentCell = wrapper.closest('td');
                 wrapper.remove();
-                saveToStorage();
+                GBFGuide.Storage.save();
                 // 更新备注单元格空状态
                 if(parentCell && window.updateNoteEmptyState) window.updateNoteEmptyState(parentCell);
             };
@@ -8324,7 +8706,7 @@
                     // 更新备注单元格空状态
                     if(parentCell && window.updateNoteEmptyState) window.updateNoteEmptyState(parentCell);
                 }
-                saveToStorage();
+                GBFGuide.Storage.save();
             });
             
             span.addEventListener('paste',function(e){
@@ -8356,7 +8738,7 @@
             span.focus();
             span.select();
             
-            saveToStorage();
+            GBFGuide.Storage.save();
         }
         
         // 向右合并单元格
@@ -8409,7 +8791,7 @@
             // 更新按钮状态
             updateCellButtons(cell);
             
-            saveToStorage();
+            GBFGuide.Storage.save();
         }
         
         // 完全拆分单元格
@@ -8454,7 +8836,7 @@
             // 更新按钮状态
             updateCellButtons(cell);
             
-            saveToStorage();
+            GBFGuide.Storage.save();
         }
         
         // 更新单元格按钮状态
@@ -8691,7 +9073,7 @@
             }
             if(iCell) updateRowControls(iCell);
             
-            saveToStorage();
+            GBFGuide.Storage.save();
         }
         
         // 整行拆分逻辑
@@ -8761,7 +9143,7 @@
                 if(iCell) updateRowControls(iCell);
             }, 0);
             
-            saveToStorage();
+            GBFGuide.Storage.save();
         }
         
         // 修改collectData以保存合并信息
@@ -8890,5 +9272,278 @@
             <button class="boss-select-cancel" onclick="closeBossSelectModal()">取消</button>
         </div>
     </div>
+
+    <!-- 分享代码弹窗 -->
+    <div id="shareCodeModal" class="boss-select-modal" onclick="if(event.target===this) closeShareModal()">
+        <div class="boss-select-content" style="max-width: 600px; width: 90%; position: relative;">
+            <!-- 右上角关闭按钮 -->
+            <button class="share-modal-close-x" onclick="closeShareModal()" aria-label="关闭">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            
+            <div class="boss-select-title">📋 配置代码分享</div>
+            <div class="boss-select-hint">基于 Gzip 压缩的纯文本代码，适合在 NGA 等论坛分享。<br>复制下方代码分享，或将代码粘贴到此处导入。</div>
+            <textarea id="shareCodeInput" class="share-code-textarea" placeholder="在此处粘贴分享代码..." spellcheck="false"></textarea>
+            <div style="display: flex; gap: 12px; justify-content: space-between; margin-top: 10px;">
+                <button class="t-btn t-btn-primary" onclick="generateShareCode(this)" style="flex: 1; justify-content: center; min-width: 140px;">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px">
+                        <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
+                        <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
+                    </svg>生成并复制
+                </button>
+                <button class="t-btn t-btn-primary" onclick="importShareCode()" style="flex: 1; justify-content: center; min-width: 140px; background-color: var(--p-blue-border); border-color: var(--p-blue-border); color: #fff;">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>读取导入
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== Toast 提示系统 ==========
+        function showToast(message, type = 'info') {
+            var toast = document.createElement('div');
+            toast.className = 'toast-notification ' + type;
+            
+            var icon = '';
+            if (type === 'success') icon = '✅';
+            else if (type === 'error') icon = '❌';
+            else if (type === 'loading') icon = '⏳';
+            else icon = 'ℹ️';
+            
+            toast.innerHTML = '<span style="font-size:18px">' + icon + '</span><span>' + message + '</span>';
+            document.body.appendChild(toast);
+            
+            if (type !== 'loading') {
+                setTimeout(function() {
+                    toast.classList.add('hiding');
+                    setTimeout(function() {
+                        if (toast.parentNode) toast.parentNode.removeChild(toast);
+                    }, 300);
+                }, 3000);
+            }
+            
+            return toast;
+        }
+        
+        function hideToast(toast) {
+            if (!toast || !toast.parentNode) return;
+            toast.classList.add('hiding');
+            setTimeout(function() {
+                if (toast.parentNode) toast.parentNode.removeChild(toast);
+            }, 300);
+        }
+        
+        // ========== 分享代码功能模块 ==========
+        
+        function openShareModal() {
+            var modal = document.getElementById('shareCodeModal');
+            modal.classList.add('active');
+            document.getElementById('shareCodeInput').value = '';
+            document.getElementById('shareCodeInput').focus();
+        }
+        
+        function closeShareModal() {
+            var modal = document.getElementById('shareCodeModal');
+            modal.classList.remove('active');
+        }
+        
+        function validateImportData(data) {
+            if (!data || typeof data !== 'object') {
+                throw new Error('数据格式无效');
+            }
+            if (!data.version) {
+                throw new Error('缺少版本信息，可能是旧版本数据');
+            }
+            if (!data.mode || (data.mode !== 6 && data.mode !== 9)) {
+                throw new Error('模式信息无效（必须是 6 人或 9 人模式）');
+            }
+            if (!data.phases || !Array.isArray(data.phases)) {
+                throw new Error('阶段数据缺失或格式错误');
+            }
+            return true;
+        }
+        
+        async function generateShareCode(btn) {
+            var input = document.getElementById('shareCodeInput');
+            var loadingToast = null;
+            
+            try {
+                loadingToast = showToast('正在生成分享代码...', 'loading');
+                
+                var data = collectData();
+                data.isShareCode = true;
+                data.exportTime = new Date().toISOString();
+                var jsonStr = JSON.stringify(data);
+                
+                var finalCode = '';
+                var compressionType = '';
+                
+                if (window.CompressionStream) {
+                    try {
+                        const stream = new Blob([jsonStr]).stream();
+                        const compressedStream = stream.pipeThrough(new CompressionStream("gzip"));
+                        const response = await new Response(compressedStream);
+                        const blob = await response.blob();
+                        
+                        const buffer = await blob.arrayBuffer();
+                        const base64 = btoa(new Uint8Array(buffer).reduce((data, byte) => data + String.fromCharCode(byte), ''));
+                        
+                        finalCode = 'GBFOP_G1:' + base64;
+                        compressionType = 'Gzip';
+                    } catch (gzipErr) {
+                        console.warn('Gzip 压缩失败，降级到 Base64:', gzipErr);
+                        throw gzipErr;
+                    }
+                } else {
+                    throw new Error('不支持 Gzip');
+                }
+                
+                if (!finalCode) {
+                    var base64 = btoa(unescape(encodeURIComponent(jsonStr)));
+                    finalCode = 'GBFOP_B1:' + base64;
+                    compressionType = 'Base64';
+                }
+                
+                input.value = finalCode;
+                input.select();
+                
+                try {
+                    await navigator.clipboard.writeText(finalCode);
+                    
+                    hideToast(loadingToast);
+                    
+                    var originalHTML = btn.innerHTML;
+                    btn.innerHTML = '✅ 已复制！';
+                    btn.disabled = true;
+                    
+                    var sizeInfo = '原始: ' + (jsonStr.length / 1024).toFixed(1) + 'KB → 压缩: ' + (finalCode.length / 1024).toFixed(1) + 'KB';
+                    showToast('代码已生成并复制！(' + compressionType + ')<br>' + sizeInfo, 'success');
+                    
+                    setTimeout(function() {
+                        btn.innerHTML = originalHTML;
+                        btn.disabled = false;
+                    }, 2000);
+                } catch (clipErr) {
+                    hideToast(loadingToast);
+                    showToast('代码已生成，请手动复制！', 'success');
+                }
+            } catch (err) {
+                if (loadingToast) hideToast(loadingToast);
+                console.error('生成代码失败:', err);
+                showToast('生成代码失败：' + err.message, 'error');
+            }
+        }
+        
+        async function importShareCode() {
+            var input = document.getElementById('shareCodeInput');
+            var code = input.value.trim();
+            
+            if (!code) {
+                showToast('请先粘贴分享代码！', 'error');
+                return;
+            }
+            
+            var loadingToast = null;
+            
+            try {
+                loadingToast = showToast('正在解析代码...', 'loading');
+                
+                var jsonStr = '';
+                var compressionType = '';
+                
+                if (code.startsWith('GBFOP_G1:')) {
+                    code = code.substring(9);
+                    compressionType = 'Gzip';
+                    
+                    if (!window.DecompressionStream) {
+                        throw new Error('您的浏览器不支持 Gzip 解压，请使用 Chrome 80+ 或 Edge 80+');
+                    }
+                    
+                    const binaryString = atob(code);
+                    const bytes = new Uint8Array(binaryString.length);
+                    for (let i = 0; i < binaryString.length; i++) {
+                        bytes[i] = binaryString.charCodeAt(i);
+                    }
+                    
+                    const stream = new Blob([bytes]).stream();
+                    const decompressedStream = stream.pipeThrough(new DecompressionStream("gzip"));
+                    const response = await new Response(decompressedStream);
+                    jsonStr = await response.text();
+                    
+                } else if (code.startsWith('GBFOP_B1:')) {
+                    code = code.substring(9);
+                    compressionType = 'Base64';
+                    jsonStr = decodeURIComponent(escape(atob(code)));
+                    
+                } else if (code.startsWith('GBFOP:')) {
+                    code = code.substring(6);
+                    compressionType = 'Gzip (旧格式)';
+                    
+                    if (!window.DecompressionStream) {
+                        throw new Error('您的浏览器不支持 Gzip 解压');
+                    }
+                    
+                    const binaryString = atob(code);
+                    const bytes = new Uint8Array(binaryString.length);
+                    for (let i = 0; i < binaryString.length; i++) {
+                        bytes[i] = binaryString.charCodeAt(i);
+                    }
+                    
+                    const stream = new Blob([bytes]).stream();
+                    const decompressedStream = stream.pipeThrough(new DecompressionStream("gzip"));
+                    const response = await new Response(decompressedStream);
+                    jsonStr = await response.text();
+                    
+                } else {
+                    throw new Error('代码格式不正确，请确保复制了完整的分享代码（应以 GBFOP_ 开头）');
+                }
+                
+                var data = JSON.parse(jsonStr);
+                
+                validateImportData(data);
+                
+                if (confirm('确定要覆盖当前配置吗？\n\n导入信息：\n- 模式：' + data.mode + '人\n- 阶段数：' + (data.phases ? data.phases.length : 0) + '\n- 压缩方式：' + compressionType)) {
+                    hideToast(loadingToast);
+                    loadingToast = showToast('正在导入配置...', 'loading');
+                    
+                    restoreData(data);
+                    
+                    closeShareModal();
+                    
+                    hideToast(loadingToast);
+                    
+                    showToast('配置导入成功！', 'success');
+                }
+                
+            } catch (err) {
+                if (loadingToast) hideToast(loadingToast);
+                console.error('导入失败:', err);
+                
+                var errorMsg = '代码解析失败';
+                if (err.message.includes('atob') || err.message.includes('invalid character')) {
+                    errorMsg = '代码格式错误，请检查是否完整复制（不要有换行或空格）';
+                } else if (err.message.includes('JSON')) {
+                    errorMsg = '数据格式损坏，无法解析 JSON';
+                } else if (err.message.includes('Decompression')) {
+                    errorMsg = '解压失败，代码可能已损坏或不完整';
+                } else if (err.message.includes('不支持')) {
+                    errorMsg = err.message;
+                } else if (err.message.includes('版本') || err.message.includes('模式') || err.message.includes('阶段')) {
+                    errorMsg = '数据验证失败：' + err.message;
+                } else {
+                    errorMsg = err.message;
+                }
+                
+                showToast(errorMsg, 'error');
+            }
+        }
+    </script>
 </body>
 </html>
