@@ -126,6 +126,31 @@
         /* 数据行悬停效果 */
         .guide-table tbody tr:not(.add-phase-row):hover td { background: rgba(33, 150, 243, 0.05); }
         [data-theme="dark"] .guide-table tbody tr:not(.add-phase-row):hover td { background: rgba(33, 150, 243, 0.1); }
+        
+        /* ========== BOSS 栏与状态栏视觉分割优化 ========== */
+        /* BOSS 大图行 - 悬浮层级，投射阴影到下方 */
+        .top-row:first-child {
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 3px 8px -2px rgba(0,0,0,0.1);
+        }
+        
+        /* 状态图标行 - 承接层级，稍微留出呼吸空间 */
+        .top-row:nth-child(2) {
+            position: relative;
+            z-index: 5;
+        }
+        
+        .top-row:nth-child(2) th {
+            padding-top: 12px; /* 稍微给点呼吸感 */
+        }
+        
+        /* 暗色模式下加强阴影效果 */
+        [data-theme="dark"] .top-row:first-child {
+            box-shadow: 0 3px 10px -2px rgba(0,0,0,0.3);
+        }
+        /* ========== BOSS 栏与状态栏视觉分割优化结束 ========== */
+        
         .top-row th { background: var(--bg-top-row); }
         .source-cell { background: var(--bg-top-row); color: var(--text-on-dark); }
         .character-header { background: var(--bg-char-header) !important; position: relative; padding: 10px 4px 28px 4px !important; min-height: 180px; min-width: 110px; height: 180px; }
@@ -1930,17 +1955,30 @@
         }
         
         /* 2. 表头 GBF 风格增强 */
+        /* 在 tr 上设置高度（主要方法） */
+        .guide-table thead tr.top-row {
+            height: 180px;  /* 第一行（BOSS 图标行）高度 */
+        }
+        
+        .guide-table thead tr.top-row:nth-child(2) {
+            height: 60px;   /* 第二行（状态图标行）高度 */
+        }
+        
+        /* 在 th 上也设置高度（双重保险） */
         .guide-table thead tr.top-row th {
             background: var(--bg-header) !important; /* 背景改为与表格头部一致的浅灰色 */
             color: var(--text-primary);              /* 文字颜色改为深色 */
             border-bottom: none !important;          /* 去掉原本每行都有的边框 */
-            padding-top: 15px;                       /* 增加一点顶部空间 */
+            padding: 10px;                           /* 统一管理 padding */
+            position: relative;                      /* 统一管理 position */
+            height: 180px;                           /* 第一行高度 */
         }
         
         /* 专门给第二行（状态图标行）底部加一条金线，作为与正文的分割 */
         .guide-table thead tr.top-row:nth-child(2) th {
             border-bottom: 3px solid #c2a05d !important; /* GBF 金色实线 */
-            padding-bottom: 15px;
+            padding: 8px;                            /* 第二行的 padding */
+            height: 60px;                            /* 第二行高度 */
         }
         
         [data-theme="dark"] .guide-table thead tr.top-row th {
@@ -3115,10 +3153,28 @@
             margin-bottom: 24px;
         }
         .boss-select-grid {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 两列布局 */
             gap: 24px;
-            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        /* 全宽选项 - 让自定义按钮横跨整行 */
+        .boss-option.option-full-width {
+            grid-column: 1 / -1; /* 横跨所有列 */
+        }
+        
+        /* 自定义按钮的特殊样式 */
+        .boss-option.option-custom .boss-img-wrapper {
+            border: 2px dashed #ccc;
+            background: rgba(102, 187, 106, 0.03);
+        }
+        
+        /* 自定义模式悬停效果 - 绿色光晕 */
+        .boss-option.option-custom:hover .boss-img-wrapper {
+            border-color: #66bb6a;
+            box-shadow: 0 12px 30px rgba(102, 187, 106, 0.35);
+            transform: scale(1.02);
         }
         .boss-option {
             cursor: pointer;
@@ -3442,8 +3498,8 @@
     <div class="table-wrapper">
     <table class="guide-table" id="guideTable">
     <thead>
-        <tr class="top-row has-fab"><th colspan="10" style="padding:10px;position:relative;"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/quest/assets/lobby/305581.png" style="max-width:100%;height:auto;"><button class="mini-fab edit" onclick="showQuickAddBoss(this)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></button></th></tr>
-        <tr class="top-row has-fab"><th colspan="10" style="padding:8px;position:relative;min-height:50px;"><span class="skill-box skill-source"><img src="https://gbf.wiki/images/thumb/c/c6/Status_3245.png/25px-Status_3245.png" style="width:33px;height:33px;"></span><span class="skill-box skill-source"><img src="https://gbf.wiki/images/thumb/e/e4/Status_3246.png/25px-Status_3246.png" style="width:33px;height:33px;"></span><button class="mini-fab edit" onclick="showQuickAddStatus(this)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></button></th></tr>
+        <tr class="top-row has-fab"><th colspan="10" style="position:relative;"><img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/quest/assets/lobby/305581.png" style="max-width:100%;height:auto;"><button class="mini-fab edit" onclick="showQuickAddBoss(this)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></button></th></tr>
+        <tr class="top-row has-fab"><th colspan="10" style="position:relative;"><span class="skill-box skill-source"><img src="https://gbf.wiki/images/thumb/c/c6/Status_3245.png/25px-Status_3245.png" style="width:33px;height:33px;"></span><span class="skill-box skill-source"><img src="https://gbf.wiki/images/thumb/e/e4/Status_3246.png/25px-Status_3246.png" style="width:33px;height:33px;"></span><button class="mini-fab edit" onclick="showQuickAddStatus(this)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></button></th></tr>
         <tr>
             <th><span class="coord-header">(0,A)</span><br><span class="header-text t-text">阶段</span></th>
             <th><span class="coord-header">(0,B)</span><br><span class="header-text t-text">回合/特动</span></th>
@@ -6254,7 +6310,12 @@
             // 2. 动态更新"重置"按钮的提示
             var resetBtn = document.getElementById('btnReset');
             if (resetBtn) {
-                if (is9Man) {
+                // ========== 修复：使用 getCurrentMode() 获取真实模式 ==========
+                var currentMode = getCurrentMode();
+                
+                if (currentMode === 'custom') {
+                    resetBtn.setAttribute('data-tooltip', '⚠️ 重置为【自定义空白模板】默认状态');
+                } else if (currentMode === 9) {
                     resetBtn.setAttribute('data-tooltip', '⚠️ 重置为【9人模式】默认状态');
                 } else {
                     resetBtn.setAttribute('data-tooltip', '⚠️ 重置为【6人模式】默认状态');
@@ -6778,6 +6839,15 @@
         }
         
         function restoreData(data){
+            // ========== 方案 B：记录加载的模式 ==========
+            if (data.mode) {
+                window._currentLoadedMode = data.mode;
+            } else {
+                // 向后兼容：如果数据中没有 mode 字段，根据表格列数推断
+                var is9Man = document.querySelector('thead .back-row-2') !== null;
+                window._currentLoadedMode = is9Man ? 9 : 6;
+            }
+            
             // 先恢复行结构 - 改进版：根据详细的行信息恢复
             if(data.phases && data.phases.length > 0){
                 var existingPhaseCells = document.querySelectorAll('td[rowspan]');
@@ -7492,7 +7562,17 @@
         }
         
         function confirmSwitchMode(mode) {
-            var modeName = (mode === 9) ? '极妈模板' : '极法模板';
+            var modeName = '';
+            
+            // 根据模式设置名称
+            if (mode === 9) {
+                modeName = '极妈模板';
+            } else if (mode === 6) {
+                modeName = '极法模板';
+            } else if (mode === 'custom') {
+                modeName = '自定义空白模板';
+            }
+            
             var msg = '【重要提醒】\n\n' +
                       '即将切换到 ' + modeName + '\n\n' +
                       '⚠️ 此操作将清空当前表格的所有内容！\n\n' +
@@ -7502,7 +7582,41 @@
             
             if (confirm(msg)) {
                 closeBossSelectModal();
-                loadTemplate(mode);
+                
+                // 记录即将加载的模式（方案 B）
+                window._currentLoadedMode = mode;
+                
+                // 根据模式加载不同的模板
+                if (mode === 'custom') {
+                    // ========== 加载自定义空白模板 ==========
+                    loadEmptyTemplate();
+                } else {
+                    // 加载预设模板（极妈/极法）
+                    loadTemplate(mode);
+                }
+            }
+        }
+        
+        // ========== 自定义空白模板加载函数 ==========
+        function loadEmptyTemplate() {
+            // 👇👇👇 第二步：请在下方粘贴空模板 JSON 👇👇👇
+            // ========== 空白模板 JSON（请在此处粘贴） ==========
+            var emptyTemplateJSON = '{"version":3,"mode":"custom","savedAt":"2026-01-19T08:44:47.395Z","skills":[],"texts":[],"phases":[{"name":"新阶段","rowspan":1,"rows":[{"index":0,"coord":2,"text":"1T","exists":true}],"className":"phase-100-80"}],"tTexts":[{"row":0,"col":"A","text":"阶段","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"B","text":"回合/特动","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"C","text":"备注","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"D","text":"召唤石","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"E","text":"主角","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"F","text":"2号位","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"G","text":"3号位","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"H","text":"4号位","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"I","text":"后排1","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"J","text":"后排2","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":2,"col":"A","text":"新阶段","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":false},{"row":2,"col":"B","text":"1T","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":false}],"rows":[{"index":0,"hasPhase":true,"rowspan":1,"phaseName":"新阶段","phaseClass":"phase-100-80"}],"headerImages":[],"swapSections":[],"metadata":{"authors":["真實lowb"],"lastEditor":"真實lowb"},"mergedCells":[]}';
+
+            // ========== 空白模板 JSON 结束 ==========
+            // 👆👆👆 第二步：JSON 粘贴区域结束 👆👆👆
+            
+            try {
+                // 解析 JSON 字符串
+                var data = JSON.parse(emptyTemplateJSON);
+                
+                // 使用现有的 restoreData 函数加载数据
+                restoreData(data);
+                
+                showToast('已加载自定义空白模板', 'success');
+            } catch (err) {
+                console.error('加载空白模板失败:', err);
+                showToast('❌ 加载空白模板失败：' + err.message, 'error');
             }
         }
         
@@ -7612,8 +7726,8 @@
                 : 'https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/quest/assets/lobby/305581.png';
             
             // 重写 thead
-            thead.innerHTML = '<tr class="top-row has-fab"><th colspan="' + colSpan + '" style="padding:10px;position:relative;"><img src="' + bossImgUrl + '" style="max-width:100%;height:auto;"><button class="mini-fab edit" onclick="showQuickAddBoss(this)">' + editIcon + '</button></th></tr>' +
-                '<tr class="top-row has-fab"><th colspan="' + colSpan + '" style="padding:8px;position:relative;min-height:50px;">' + statusHtml + '<button class="mini-fab edit" onclick="showQuickAddStatus(this)">' + editIcon + '</button></th></tr>' +
+            thead.innerHTML = '<tr class="top-row has-fab"><th colspan="' + colSpan + '" style="position:relative;"><img src="' + bossImgUrl + '" style="max-width:100%;height:auto;"><button class="mini-fab edit" onclick="showQuickAddBoss(this)">' + editIcon + '</button></th></tr>' +
+                '<tr class="top-row has-fab"><th colspan="' + colSpan + '" style="position:relative;">' + statusHtml + '<button class="mini-fab edit" onclick="showQuickAddStatus(this)">' + editIcon + '</button></th></tr>' +
                 '<tr>' +
                     '<th><span class="coord-header">(0,A)</span><br><span class="header-text t-text">阶段</span></th>' +
                     '<th><span class="coord-header">(0,B)</span><br><span class="header-text t-text">回合/特动</span></th>' +
@@ -8087,17 +8201,53 @@
         
         // 恢复功能 - 重置为初始状态
         function resetData(){
-            if (!confirm('⚠️ 警告：恢复初始状态将清空所有当前编辑的内容。\n\n确定要继续吗？')) {
+            if (!confirm('⚠️ 警告：重置将清空所有当前编辑的内容。\n\n确定要继续吗？')) {
                 return;
             }
             // 1. 清空本地存储
             localStorage.removeItem(STORAGE_KEY);
             // 2. 重置换人行计数器
             swapRowCounter = 0;
-            // 3. 检测当前是 6人 还是 9人 模式
+            // 3. 获取当前模式（使用方案 B：从数据推断）
+            var currentMode = getCurrentMode();
+            // 4. 根据模式重置
+            if (currentMode === 'custom') {
+                loadEmptyTemplate();
+                showToast('已重置为空白模板', 'success');
+            } else {
+                loadTemplate(currentMode);
+                showToast('已重置为' + (currentMode === 9 ? '9人' : '6人') + '模式默认状态', 'success');
+            }
+        }
+        
+        // ========== 辅助函数：获取当前模式 ==========
+        function getCurrentMode() {
+            // 1. 优先从全局变量获取（如果已记录）
+            if (window._currentLoadedMode) {
+                return window._currentLoadedMode;
+            }
+            
+            // 2. 从 DOM 推断（向后兼容）
             var is9Man = document.querySelector('thead .back-row-2') !== null;
-            // 4. 重新加载对应模板
-            loadTemplate(is9Man ? 9 : 6);
+            
+            // 3. 检查是否是空模板特征（简单后备检测）
+            var tbody = document.querySelector('.guide-table tbody');
+            if (tbody && !is9Man) {  // 只在 6 列时检查
+                var dataRows = tbody.querySelectorAll('tr:not(.skill-source-row):not(.add-phase-row)');
+                
+                // 简单判断：1行数据 + 无技能图标 + 阶段名是"新阶段"
+                if (dataRows.length === 1) {
+                    var hasSkills = tbody.querySelector('.skill-box img[src]:not([src=""])');
+                    var phaseName = document.querySelector('.phase-name');
+                    var isNewPhase = phaseName && phaseName.textContent.trim() === '新阶段';
+                    
+                    if (!hasSkills && isNewPhase) {
+                        return 'custom';
+                    }
+                }
+            }
+            
+            return is9Man ? 9 : 6;
         }
         
         function saveAsDefault(){if(confirm('确认保存当前配置？')){localStorage.setItem(STORAGE_KEY+'_default',JSON.stringify(collectData()));alert('已保存为默认');}}
@@ -9266,17 +9416,30 @@
             <div class="boss-select-title">选择副本模式</div>
             <div class="boss-select-hint">⚠️ 切换模式将重置表格，请先导出保存当前配置</div>
             <div class="boss-select-grid">
+                <!-- 极妈模板 (9人) -->
                 <div class="boss-option option-9man" onclick="confirmSwitchMode(9)">
                     <div class="boss-img-wrapper">
                         <img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/quest/assets/lobby/305701.png" alt="9人模式">
                     </div>
                     <div class="boss-option-label">极妈模板</div>
                 </div>
+                <!-- 极法模板 (6人) -->
                 <div class="boss-option option-6man" onclick="confirmSwitchMode(6)">
                     <div class="boss-img-wrapper">
                         <img src="https://prd-game-a1-granbluefantasy.akamaized.net/assets/img/sp/quest/assets/lobby/305581.png" alt="6人模式">
                     </div>
                     <div class="boss-option-label">极法模板</div>
+                </div>
+                <!-- 自定义空白模板 -->
+                <div class="boss-option option-custom option-full-width" onclick="confirmSwitchMode('custom')">
+                    <div class="boss-img-wrapper">
+                        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#66bb6a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                    </div>
+                    <div class="boss-option-label">自定义 / 空白模板</div>
                 </div>
             </div>
             <button class="boss-select-cancel" onclick="closeBossSelectModal()">取消</button>
@@ -9364,6 +9527,425 @@
             modal.classList.remove('active');
         }
         
+        // ========== 方案 A+D：结构重组 + 图片去重压缩系统 ==========
+        
+        /**
+         * 压缩数组对象：将对象数组转换为 [keys, values[]] 格式
+         * @param {Array} arr - 对象数组
+         * @param {Array} keys - 要提取的键名列表
+         * @param {Function} trimFn - 可选的值剪裁函数
+         * @returns {Array} [keys, values[]]
+         */
+        function compressArrayOfObjects(arr, keys, trimFn) {
+            if (!arr || arr.length === 0) return null;
+            
+            var values = arr.map(function(obj) {
+                var row = keys.map(function(key) {
+                    var val = obj[key];
+                    // 标准化空值
+                    if (val === null || val === undefined || val === false) return "";
+                    if (val === true) return 1;
+                    return val;
+                });
+                
+                // 应用剪裁函数（去除末尾空值）
+                if (trimFn) return trimFn(row);
+                return row;
+            });
+            
+            return [keys, values];
+        }
+        
+        /**
+         * 解压数组对象：将 [keys, values[]] 还原为对象数组
+         * @param {Array} compressed - [keys, values[]]
+         * @returns {Array} 对象数组
+         */
+        function decompressArrayOfObjects(compressed) {
+            if (!compressed || !Array.isArray(compressed)) return [];
+            
+            var keys = compressed[0];
+            var values = compressed[1];
+            
+            return values.map(function(row) {
+                var obj = {};
+                keys.forEach(function(key, i) {
+                    var val = row[i];
+                    // 还原空值
+                    if (val === undefined || val === "") {
+                        obj[key] = "";
+                    } else if (val === 1 && (key === 'bold' || key === 'customSize' || key === 'customColor' || key === 'isHeader' || key === 'exists')) {
+                        obj[key] = true;
+                    } else {
+                        obj[key] = val;
+                    }
+                });
+                return obj;
+            });
+        }
+        
+        /**
+         * 剪裁数组末尾的空值
+         */
+        function trimTrailingEmpty(arr) {
+            var result = arr.slice();
+            while (result.length > 0 && result[result.length - 1] === "") {
+                result.pop();
+            }
+            return result;
+        }
+        
+        /**
+         * 主压缩函数：结构重组 + 图片去重
+         * @param {Object} data - 原始数据对象
+         * @returns {Object} 压缩后的数据
+         */
+        function minifyData(data) {
+            var result = {
+                v: "MIN_V2", // 版本标记
+                version: data.version,
+                mode: data.mode,
+                savedAt: data.savedAt
+            };
+            
+            // ========== 第一步：构建图片 URL 字典（方案 D） ==========
+            var allUrls = [];
+            
+            // 收集所有图片 URL
+            if (data.skills) {
+                data.skills.forEach(function(s) {
+                    if (s.imgSrc) allUrls.push(s.imgSrc);
+                });
+            }
+            if (data.headerImages) {
+                data.headerImages.forEach(function(h) {
+                    if (h.src) allUrls.push(h.src);
+                });
+            }
+            if (data.swapSections) {
+                data.swapSections.forEach(function(swap) {
+                    if (swap.characters) {
+                        swap.characters.forEach(function(c) {
+                            if (c.src) allUrls.push(c.src);
+                        });
+                    }
+                    if (swap.skills) {
+                        swap.skills.forEach(function(s) {
+                            if (s.src) allUrls.push(s.src);
+                        });
+                    }
+                });
+            }
+            
+            // 去重并建立字典
+            var urlDict = [];
+            var urlMap = {}; // URL -> 索引映射
+            allUrls.forEach(function(url) {
+                if (url && !urlMap.hasOwnProperty(url)) {
+                    urlMap[url] = urlDict.length;
+                    urlDict.push(url);
+                }
+            });
+            
+            result.urls = urlDict;
+            
+            // ========== 第二步：压缩各个数组（方案 A） ==========
+            
+            // 1. 压缩 skills（替换 URL 为索引）
+            if (data.skills && data.skills.length > 0) {
+                var skillsWithIndex = data.skills.map(function(s) {
+                    return {
+                        row: s.row,
+                        col: s.col,
+                        imgSrc: urlMap[s.imgSrc] // URL -> 索引
+                    };
+                });
+                result.skills = compressArrayOfObjects(skillsWithIndex, ["row", "col", "imgSrc"]);
+            }
+            
+            // 2. 压缩 texts
+            if (data.texts && data.texts.length > 0) {
+                result.texts = compressArrayOfObjects(
+                    data.texts, 
+                    ["row", "col", "text", "color", "bold", "fontSize"],
+                    trimTrailingEmpty
+                );
+            }
+            
+            // 3. 压缩 tTexts
+            if (data.tTexts && data.tTexts.length > 0) {
+                result.tTexts = compressArrayOfObjects(
+                    data.tTexts,
+                    ["row", "col", "text", "fontSize", "color", "customSize", "customColor", "isHeader"],
+                    trimTrailingEmpty
+                );
+            }
+            
+            // 4. 压缩 headerImages（替换 URL 为索引）
+            if (data.headerImages && data.headerImages.length > 0) {
+                var headerImgsWithIndex = data.headerImages.map(function(h) {
+                    return {
+                        type: h.type,
+                        row: h.row,
+                        col: h.col,
+                        index: h.index,
+                        src: urlMap[h.src] // URL -> 索引
+                    };
+                });
+                result.headerImages = compressArrayOfObjects(
+                    headerImgsWithIndex,
+                    ["type", "row", "col", "index", "src"],
+                    trimTrailingEmpty
+                );
+            }
+            
+            // 5. 压缩 rows
+            if (data.rows && data.rows.length > 0) {
+                result.rows = compressArrayOfObjects(
+                    data.rows,
+                    ["index", "hasPhase", "rowspan", "phaseName", "phaseClass"],
+                    trimTrailingEmpty
+                );
+            }
+            
+            // 6. 压缩 phases（复杂结构，需要特殊处理）
+            if (data.phases && data.phases.length > 0) {
+                result.phases = data.phases.map(function(phase) {
+                    var compressedPhase = {
+                        name: phase.name,
+                        rowspan: phase.rowspan,
+                        className: phase.className || ""
+                    };
+                    
+                    // 压缩 phase.rows
+                    if (phase.rows && phase.rows.length > 0) {
+                        compressedPhase.rows = compressArrayOfObjects(
+                            phase.rows,
+                            ["index", "coord", "text", "exists"],
+                            trimTrailingEmpty
+                        );
+                    }
+                    
+                    return compressedPhase;
+                });
+            }
+            
+            // 7. 压缩 swapSections（替换 URL 为索引）
+            if (data.swapSections && data.swapSections.length > 0) {
+                result.swapSections = data.swapSections.map(function(swap) {
+                    var compressedSwap = {
+                        id: swap.id,
+                        index: swap.index,
+                        positionIndex: swap.positionIndex
+                    };
+                    
+                    // 压缩 characters
+                    if (swap.characters && swap.characters.length > 0) {
+                        var charsWithIndex = swap.characters.map(function(c) {
+                            return {
+                                col: c.col,
+                                index: c.index,
+                                name: c.name,
+                                src: c.src ? urlMap[c.src] : "" // URL -> 索引
+                            };
+                        });
+                        compressedSwap.characters = compressArrayOfObjects(
+                            charsWithIndex,
+                            ["col", "index", "name", "src"],
+                            trimTrailingEmpty
+                        );
+                    }
+                    
+                    // 压缩 skills
+                    if (swap.skills && swap.skills.length > 0) {
+                        var skillsWithIndex = swap.skills.map(function(s) {
+                            return {
+                                col: s.col,
+                                cellIndex: s.cellIndex,
+                                imgIndex: s.imgIndex,
+                                src: urlMap[s.src] // URL -> 索引
+                            };
+                        });
+                        compressedSwap.skills = compressArrayOfObjects(
+                            skillsWithIndex,
+                            ["col", "cellIndex", "imgIndex", "src"]
+                        );
+                    }
+                    
+                    return compressedSwap;
+                });
+            }
+            
+            // 8. 保留 metadata（不压缩，数据量小）
+            if (data.metadata) {
+                result.metadata = data.metadata;
+            }
+            
+            // 9. 保留其他字段
+            if (data.isShareCode) result.isShareCode = data.isShareCode;
+            if (data.exportTime) result.exportTime = data.exportTime;
+            
+            return result;
+        }
+        
+        /**
+         * 主解压函数：还原结构 + 还原图片 URL
+         * @param {Object} minified - 压缩后的数据
+         * @returns {Object} 原始数据对象
+         */
+        function unminifyData(minified) {
+            // 兼容性检查：如果不是压缩格式，直接返回
+            if (!minified || typeof minified !== 'object') {
+                return minified;
+            }
+            if (!minified.v || minified.v !== "MIN_V2") {
+                // 旧版 JSON 格式
+                return minified;
+            }
+            
+            var data = {
+                version: minified.version,
+                mode: minified.mode,
+                savedAt: minified.savedAt
+            };
+            
+            // 获取 URL 字典
+            var urlDict = minified.urls || [];
+            
+            // ========== 还原各个数组 ==========
+            
+            // 1. 还原 skills（索引 -> URL）
+            if (minified.skills) {
+                var skills = decompressArrayOfObjects(minified.skills);
+                data.skills = skills.map(function(s) {
+                    return {
+                        row: s.row,
+                        col: s.col,
+                        imgSrc: urlDict[s.imgSrc] || "" // 索引 -> URL
+                    };
+                });
+            } else {
+                data.skills = [];
+            }
+            
+            // 2. 还原 texts
+            if (minified.texts) {
+                data.texts = decompressArrayOfObjects(minified.texts);
+            } else {
+                data.texts = [];
+            }
+            
+            // 3. 还原 tTexts
+            if (minified.tTexts) {
+                data.tTexts = decompressArrayOfObjects(minified.tTexts);
+            } else {
+                data.tTexts = [];
+            }
+            
+            // 4. 还原 headerImages（索引 -> URL）
+            if (minified.headerImages) {
+                var headerImgs = decompressArrayOfObjects(minified.headerImages);
+                data.headerImages = headerImgs.map(function(h) {
+                    return {
+                        type: h.type,
+                        row: h.row,
+                        col: h.col,
+                        index: h.index,
+                        src: urlDict[h.src] || "" // 索引 -> URL
+                    };
+                });
+            } else {
+                data.headerImages = [];
+            }
+            
+            // 5. 还原 rows
+            if (minified.rows) {
+                data.rows = decompressArrayOfObjects(minified.rows);
+            } else {
+                data.rows = [];
+            }
+            
+            // 6. 还原 phases
+            if (minified.phases) {
+                data.phases = minified.phases.map(function(phase) {
+                    var restoredPhase = {
+                        name: phase.name,
+                        rowspan: phase.rowspan,
+                        className: phase.className || ""
+                    };
+                    
+                    // 还原 phase.rows
+                    if (phase.rows) {
+                        restoredPhase.rows = decompressArrayOfObjects(phase.rows);
+                    } else {
+                        restoredPhase.rows = [];
+                    }
+                    
+                    return restoredPhase;
+                });
+            } else {
+                data.phases = [];
+            }
+            
+            // 7. 还原 swapSections（索引 -> URL）
+            if (minified.swapSections) {
+                data.swapSections = minified.swapSections.map(function(swap) {
+                    var restoredSwap = {
+                        id: swap.id,
+                        index: swap.index,
+                        positionIndex: swap.positionIndex
+                    };
+                    
+                    // 还原 characters
+                    if (swap.characters) {
+                        var chars = decompressArrayOfObjects(swap.characters);
+                        restoredSwap.characters = chars.map(function(c) {
+                            return {
+                                col: c.col,
+                                index: c.index,
+                                name: c.name,
+                                src: c.src !== "" ? urlDict[c.src] : "" // 索引 -> URL
+                            };
+                        });
+                    } else {
+                        restoredSwap.characters = [];
+                    }
+                    
+                    // 还原 skills
+                    if (swap.skills) {
+                        var skills = decompressArrayOfObjects(swap.skills);
+                        restoredSwap.skills = skills.map(function(s) {
+                            return {
+                                col: s.col,
+                                cellIndex: s.cellIndex,
+                                imgIndex: s.imgIndex,
+                                src: urlDict[s.src] || "" // 索引 -> URL
+                            };
+                        });
+                    } else {
+                        restoredSwap.skills = [];
+                    }
+                    
+                    return restoredSwap;
+                });
+            } else {
+                data.swapSections = [];
+            }
+            
+            // 8. 还原 metadata
+            if (minified.metadata) {
+                data.metadata = minified.metadata;
+            }
+            
+            // 9. 还原其他字段
+            if (minified.isShareCode) data.isShareCode = minified.isShareCode;
+            if (minified.exportTime) data.exportTime = minified.exportTime;
+            
+            return data;
+        }
+        
+        // ========== 压缩系统结束 ==========
+        
         function validateImportData(data) {
             if (!data || typeof data !== 'object') {
                 throw new Error('数据格式无效');
@@ -9390,7 +9972,13 @@
                 var data = collectData();
                 data.isShareCode = true;
                 data.exportTime = new Date().toISOString();
-                var jsonStr = JSON.stringify(data);
+                
+                // ========== 应用 A+D 压缩 ==========
+                var originalSize = JSON.stringify(data).length;
+                var minifiedData = minifyData(data);
+                var jsonStr = JSON.stringify(minifiedData);
+                var compressedSize = jsonStr.length;
+                // ========== 压缩完成 ==========
                 
                 var finalCode = '';
                 var compressionType = '';
@@ -9433,7 +10021,10 @@
                     btn.innerHTML = '✅ 已复制！';
                     btn.disabled = true;
                     
-                    var sizeInfo = '原始: ' + (jsonStr.length / 1024).toFixed(1) + 'KB → 压缩: ' + (finalCode.length / 1024).toFixed(1) + 'KB';
+                    // 显示压缩效果统计
+                    var structureReduction = ((originalSize - compressedSize) / originalSize * 100).toFixed(1);
+                    var finalReduction = ((originalSize - finalCode.length) / originalSize * 100).toFixed(1);
+                    var sizeInfo = '原始: ' + (originalSize / 1024).toFixed(1) + 'KB → 结构压缩: ' + (compressedSize / 1024).toFixed(1) + 'KB (-' + structureReduction + '%) → Gzip: ' + (finalCode.length / 1024).toFixed(1) + 'KB (总计-' + finalReduction + '%)';
                     showToast('代码已生成并复制！(' + compressionType + ')<br>' + sizeInfo, 'success');
                     
                     setTimeout(function() {
@@ -9515,7 +10106,11 @@
                     throw new Error('代码格式不正确，请确保复制了完整的分享代码（应以 GBFOP_ 开头）');
                 }
                 
-                var data = JSON.parse(jsonStr);
+                var rawData = JSON.parse(jsonStr);
+                
+                // ========== 应用 A+D 解压 ==========
+                var data = unminifyData(rawData);
+                // ========== 解压完成 ==========
                 
                 validateImportData(data);
                 
