@@ -9722,7 +9722,7 @@
                             输入 6 位短码读取，或点击生成上传
                         </div>
                         <div style="display: flex; gap: 10px;">
-                            <input type="text" id="cloudShareCodeInput" class="share-code-textarea" style="flex: 1; width: auto; height: 48px; margin: 0; font-size: 18px; text-align: center; letter-spacing: 2px; font-weight: bold; text-transform: uppercase;" placeholder="6位短码" maxlength="8">
+                            <input type="text" id="cloudShareCodeInput" class="share-code-textarea" style="flex: 1; width: auto; height: 48px; margin: 0; font-size: 18px; text-align: center; letter-spacing: 2px; font-weight: bold;" placeholder="6位短码" maxlength="8">
                             <button class="t-btn t-btn-primary" onclick="importCloudShareCode(this)" style="width: 100px; flex-shrink: 0; justify-content: center; height: 48px; font-size: 15px;">
                                 导入
                             </button>
@@ -10738,7 +10738,7 @@
         // B2. 导入云端短码
         async function importCloudShareCode(btn) {
             var input = document.getElementById('cloudShareCodeInput'); // 注意：下方的小输入框
-            var code = input.value.trim().toUpperCase();
+            var code = input.value.trim();
             var originalText = btn.innerHTML;
             
             if (!code) { 
@@ -10790,3 +10790,4 @@
     </script>
 </body>
 </html>
+
