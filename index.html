@@ -3361,6 +3361,258 @@
         .toast-notification.hiding {
             animation: toastSlideOut 0.3s ease-out forwards;
         }
+
+        /* ========== 新版云端 UI & 历史记录样式 ========== */
+        
+        /* 隐藏式本地代码区 */
+        .local-code-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            display: none; /* 默认隐藏 */
+        }
+        
+        .local-code-toggle {
+            font-size: 12px;
+            color: var(--text-coord);
+            text-align: center;
+            cursor: pointer;
+            margin-top: 10px;
+            text-decoration: underline;
+            user-select: none;
+        }
+        
+        .local-code-toggle:hover { 
+            color: #2196f3; 
+        }
+        
+        /* 历史记录列表容器 */
+        .history-list-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 4px;
+        }
+        
+        /* 单个历史卡片 */
+        .history-card {
+            background: var(--bg-table);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+        
+        .history-card:hover {
+            border-color: #2196f3;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-1px);
+        }
+        
+        /* 卡片左侧信息 */
+        .history-info { 
+            flex: 1; 
+            min-width: 0; 
+            margin-right: 15px; 
+        }
+        
+        .history-title-row { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            margin-bottom: 4px; 
+        }
+        
+        .history-code { 
+            font-family: 'Courier New', monospace; 
+            background: rgba(33,150,243,0.1); 
+            color: #1976d2; 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            font-size: 13px; 
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .history-code:hover {
+            background: rgba(33,150,243,0.2);
+            transform: scale(1.05);
+        }
+        
+        .history-name-input {
+            border: none; 
+            background: transparent; 
+            font-weight: 600; 
+            color: var(--text-primary);
+            font-size: 14px; 
+            width: 100%; 
+            outline: none; 
+            border-bottom: 1px dashed transparent;
+            transition: border 0.2s;
+        }
+        
+        .history-name-input:focus { 
+            border-bottom-color: #2196f3; 
+        }
+        
+        .history-meta { 
+            font-size: 11px; 
+            color: var(--text-coord); 
+            display: flex; 
+            gap: 10px; 
+        }
+        
+        /* 卡片右侧按钮组 */
+        .history-actions { 
+            display: flex; 
+            gap: 6px; 
+            flex-shrink: 0; 
+        }
+        
+        .h-btn {
+            width: 32px; 
+            height: 32px; 
+            border-radius: 6px; 
+            border: 1px solid var(--border-color);
+            background: transparent; 
+            color: var(--text-secondary); 
+            cursor: pointer;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: all 0.2s;
+            font-size: 16px;
+        }
+        
+        .h-btn:hover { 
+            background: rgba(0,0,0,0.05); 
+            color: var(--text-primary); 
+        }
+        
+        .h-btn.load { 
+            color: #fff; 
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); 
+            border: none; 
+        }
+        
+        .h-btn.load:hover { 
+            box-shadow: 0 2px 8px rgba(33,150,243,0.4); 
+            transform: translateY(-1px);
+        }
+        
+        .h-btn.delete:hover { 
+            color: #f44336; 
+            border-color: #f44336; 
+            background: rgba(244,67,54,0.05); 
+        }
+        
+        /* ========== 方案A：历史记录标签化样式 ========== */
+        
+        /* 1. 标题输入框 - 更像标题，更大更粗 */
+        .history-name-input {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            border: none;
+            background: transparent;
+            width: 100%;
+            outline: none;
+            border-bottom: 1px dashed transparent;
+            transition: border 0.2s;
+        }
+        
+        .history-name-input:focus {
+            border-bottom-color: #2196f3;
+        }
+        
+        .history-name-input::placeholder {
+            color: var(--text-coord);
+            font-weight: 400;
+        }
+        
+        /* 2. 标签容器 */
+        .history-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
+        }
+        
+        /* 3. 膠囊标签 */
+        .h-tag {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            background: #f0f2f5;
+            color: #666;
+            border: 1px solid #e0e0e0;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        
+        .h-tag:hover {
+            background: #e8eaed;
+            transform: translateY(-1px);
+        }
+        
+        /* 短码标签特殊样式 */
+        .h-tag.tag-code {
+            background: rgba(33,150,243,0.1);
+            color: #1976d2;
+            border-color: rgba(33,150,243,0.3);
+            font-weight: 600;
+        }
+        
+        .h-tag.tag-code:hover {
+            background: rgba(33,150,243,0.15);
+        }
+        
+        /* 暗色模式适配 */
+        [data-theme="dark"] .h-tag {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            color: #ccc;
+        }
+        
+        [data-theme="dark"] .h-tag:hover {
+            background: rgba(255,255,255,0.15);
+        }
+        
+        [data-theme="dark"] .h-tag.tag-code {
+            background: rgba(33,150,243,0.2);
+            color: #64b5f6;
+            border-color: rgba(33,150,243,0.4);
+        }
+        
+        /* 移除旧的 history-code 样式（已被标签替代） */
+        .history-code {
+            display: none;
+        }
+        
+        /* 移除旧的 history-meta 样式（已被标签替代） */
+        .history-meta {
+            display: none;
+        }
+        
+        /* Tab 样式优化 */
+        .share-view {
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -9448,32 +9700,71 @@
 
     <!-- 分享代码弹窗 -->
     <div id="shareCodeModal" class="boss-select-modal" onclick="if(event.target===this) closeShareModal()">
-        <div class="boss-select-content" style="max-width: 600px; width: 90%; position: relative;">
-            <!-- 右上角关闭按钮 -->
-            <button class="share-modal-close-x" onclick="closeShareModal()" aria-label="关闭">
-                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
+        <div class="boss-select-content" style="max-width: 550px;">
+            <div class="boss-select-title" style="text-align: center;">一图流云端</div>
+            <button class="share-modal-close-x" onclick="closeShareModal()" style="top: 20px; right: 20px;">×</button>
             
-            <div class="boss-select-title">📋 配置代码分享</div>
-            <div class="boss-select-hint">基于 Gzip 压缩的纯文本代码，适合在 NGA 等论坛分享。<br>复制下方代码分享，或将代码粘贴到此处导入。</div>
-            <textarea id="shareCodeInput" class="share-code-textarea" placeholder="在此处粘贴分享代码..." spellcheck="false"></textarea>
-            <div style="display: flex; gap: 12px; justify-content: space-between; margin-top: 10px;">
-                <button class="t-btn t-btn-primary" onclick="generateShareCode(this)" style="flex: 1; justify-content: center; min-width: 140px;">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px">
-                        <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
-                        <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
-                    </svg>生成并复制
-                </button>
-                <button class="t-btn t-btn-primary" onclick="importShareCode()" style="flex: 1; justify-content: center; min-width: 140px; background-color: var(--p-blue-border); border-color: var(--p-blue-border); color: #fff;">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="17 8 12 3 7 8"></polyline>
-                        <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>读取导入
-                </button>
+            <div style="margin-top: 20px;">
+                <!-- Tab 切换 -->
+                <div style="display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 20px;">
+                    <button id="tabCloud" class="share-mode-tab active" onclick="switchShareTab('cloud')" style="flex: 1; padding: 12px; border: none; background: none; cursor: pointer; border-bottom: 3px solid #2196f3; font-weight: 600; color: #2196f3;">
+                        生成 & 读取
+                    </button>
+                    <button id="tabHistory" class="share-mode-tab" onclick="switchShareTab('history')" style="flex: 1; padding: 12px; border: none; background: none; cursor: pointer; border-bottom: 3px solid transparent; font-weight: 500; color: var(--text-secondary);">
+                        我的一图流
+                    </button>
+                </div>
+                
+                <!-- 云端视图 -->
+                <div id="viewCloud" class="share-view">
+                    <div style="background: rgba(33,150,243,0.05); border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 20px;">
+                        <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px;">
+                            输入 6 位短码读取，或点击生成上传
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="cloudShareCodeInput" class="share-code-textarea" style="flex: 1; width: auto; height: 48px; margin: 0; font-size: 18px; text-align: center; letter-spacing: 2px; font-weight: bold; text-transform: uppercase;" placeholder="6位短码" maxlength="8">
+                            <button class="t-btn t-btn-primary" onclick="importCloudShareCode(this)" style="width: 100px; flex-shrink: 0; justify-content: center; height: 48px; font-size: 15px;">
+                                导入
+                            </button>
+                        </div>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.05);">
+                            <button class="t-btn t-btn-primary" onclick="generateCloudShareCode(this)" style="width: 100%; justify-content: center; height: 44px; background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);">
+                                生成短码
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 折叠的本地代码区 -->
+                    <div class="local-code-toggle" onclick="toggleLocalCode()">
+                        Advanced: 显示离线长代码 (Gzip)
+                    </div>
+                    <div id="localCodeSection" class="local-code-section">
+                        <textarea id="shareCodeInput" class="share-code-textarea" placeholder="在此处粘贴长代码..." spellcheck="false" style="height: 100px;"></textarea>
+                        <div style="display: flex; gap: 10px; margin-top: 10px;">
+                            <button class="t-btn t-btn-ghost" onclick="generateShareCode(this)" style="flex: 1; justify-content: center;">
+                                生成本地码
+                            </button>
+                            <button class="t-btn t-btn-ghost" onclick="importShareCode()" style="flex: 1; justify-content: center;">
+                                导入本地码
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 历史记录视图 -->
+                <div id="viewHistory" class="share-view" style="display: none;">
+                    <div id="historyListContainer" class="history-list-container">
+                        <div style="text-align: center; color: var(--text-coord); padding: 40px; font-style: italic;">
+                            暂无历史记录<br>
+                            <span style="font-size: 12px;">生成或读取短码后会自动保存到这里</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 10px;">
+                        <button class="t-btn t-btn-ghost" onclick="exportHistoryBackup()" style="font-size: 12px; padding: 4px 10px;">
+                            💾 备份所有记录
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -9525,6 +9816,182 @@
         function closeShareModal() {
             var modal = document.getElementById('shareCodeModal');
             modal.classList.remove('active');
+        }
+        
+        // ========== 历史记录系统 (My One-Picture Flow) ==========
+        var HistorySystem = {
+            KEY: 'gbf_share_history_v1',
+            
+            // 获取列表
+            getList: function() {
+                var raw = localStorage.getItem(this.KEY);
+                return raw ? JSON.parse(raw) : [];
+            },
+            
+            // 保存记录 (自动置顶)
+            save: function(code, note, author) {
+                var list = this.getList();
+                var now = new Date();
+                var newItem = {
+                    code: code,
+                    note: note || '未命名配置',
+                    author: author || '访客',
+                    time: now.getTime(),
+                    dateStr: now.toLocaleDateString('zh-CN')
+                };
+                
+                // 如果代码已存在，先删除旧的（为了置顶）
+                list = list.filter(function(item) { return item.code !== code; });
+                list.unshift(newItem); // 加到最前
+                
+                // 限制最大数量（例如 50 条）
+                if (list.length > 50) list.pop();
+                
+                localStorage.setItem(this.KEY, JSON.stringify(list));
+                this.render(); // 刷新界面
+            },
+            
+            // 删除记录
+            delete: function(code) {
+                if(!confirm('确定删除这条记录吗？')) return;
+                var list = this.getList().filter(function(item) { return item.code !== code; });
+                localStorage.setItem(this.KEY, JSON.stringify(list));
+                this.render();
+            },
+            
+            // 更新备注
+            updateNote: function(code, newNote) {
+                var list = this.getList();
+                var item = list.find(function(i) { return i.code === code; });
+                if(item) {
+                    item.note = newNote;
+                    localStorage.setItem(this.KEY, JSON.stringify(list));
+                }
+            },
+            
+            // 渲染列表 (核心 UI 逻辑)
+            render: function() {
+                var container = document.getElementById('historyListContainer');
+                if(!container) return;
+                
+                var list = this.getList();
+                if(list.length === 0) {
+                    container.innerHTML = '<div style="text-align: center; color: var(--text-coord); padding: 40px; font-style: italic;">暂无历史记录<br><span style="font-size: 12px;">生成或读取短码后会自动保存到这里</span></div>';
+                    return;
+                }
+                
+                var html = '';
+                list.forEach(function(item) {
+                    // 处理标题：如果是旧格式 "作者 - BOSS - 日期"，只取 BOSS 部分
+                    var displayTitle = item.note || '未命名配置';
+                    if (displayTitle.includes(' - ')) {
+                        var parts = displayTitle.split(' - ');
+                        // 取中间部分（BOSS名），如果只有两部分就取第一部分
+                        displayTitle = parts.length >= 3 ? parts[1] : parts[0];
+                    }
+                    
+                    // 格式化日期
+                    var dateDisplay = item.dateStr || new Date(item.time).toLocaleDateString('zh-CN');
+                    
+                    html += '<div class="history-card">';
+                    html += '<div class="history-info">';
+                    
+                    // 标题行（大标题，可编辑）
+                    html += '<div class="history-title-row">';
+                    html += '<input type="text" class="history-name-input" value="' + displayTitle + '" onchange="HistorySystem.updateNote(\'' + item.code + '\', this.value)" placeholder="在此输入自定义标题..." title="点击修改标题">';
+                    html += '</div>';
+                    
+                    // 标签行（元数据标签）
+                    html += '<div class="history-tags">';
+                    html += '<span class="h-tag tag-code" title="点击复制短码" onclick="navigator.clipboard.writeText(\'' + item.code + '\');showToast(\'短码已复制\')">🏷️ ' + item.code + '</span>';
+                    html += '<span class="h-tag" title="作者">👤 ' + (item.author || '未知') + '</span>';
+                    html += '<span class="h-tag" title="保存日期">📅 ' + dateDisplay + '</span>';
+                    html += '</div>';
+                    
+                    html += '</div>';
+                    
+                    // 操作按钮
+                    html += '<div class="history-actions">';
+                    html += '<button class="h-btn delete" onclick="HistorySystem.delete(\'' + item.code + '\')" title="删除">🗑️</button>';
+                    html += '<button class="h-btn load" onclick="importHistoryCode(\'' + item.code + '\')" title="读取">📥</button>';
+                    html += '</div>';
+                    
+                    html += '</div>';
+                });
+                
+                container.innerHTML = html;
+            }
+        };
+        
+        // ========== 界面交互函数 ==========
+        
+        // 切换 Tab
+        function switchShareTab(mode) {
+            var tabCloud = document.getElementById('tabCloud');
+            var tabHistory = document.getElementById('tabHistory');
+            var viewCloud = document.getElementById('viewCloud');
+            var viewHistory = document.getElementById('viewHistory');
+            
+            if (mode === 'cloud') {
+                tabCloud.classList.add('active'); 
+                tabCloud.style.borderBottomColor = '#2196f3'; 
+                tabCloud.style.color = '#2196f3';
+                tabHistory.classList.remove('active'); 
+                tabHistory.style.borderBottomColor = 'transparent'; 
+                tabHistory.style.color = 'var(--text-secondary)';
+                viewCloud.style.display = 'block';
+                viewHistory.style.display = 'none';
+            } else {
+                tabHistory.classList.add('active'); 
+                tabHistory.style.borderBottomColor = '#2196f3'; 
+                tabHistory.style.color = '#2196f3';
+                tabCloud.classList.remove('active'); 
+                tabCloud.style.borderBottomColor = 'transparent'; 
+                tabCloud.style.color = 'var(--text-secondary)';
+                viewCloud.style.display = 'none';
+                viewHistory.style.display = 'block';
+                HistorySystem.render(); // 切换时刷新列表
+            }
+        }
+        
+        // 展开/收起本地代码
+        function toggleLocalCode() {
+            var section = document.getElementById('localCodeSection');
+            if (section.style.display === 'block') {
+                section.style.display = 'none';
+            } else {
+                section.style.display = 'block';
+            }
+        }
+        
+        // [桥接] 历史记录读取
+        function importHistoryCode(code) {
+            var input = document.getElementById('cloudShareCodeInput');
+            if(input) input.value = code;
+            
+            // 切换回云端 Tab
+            switchShareTab('cloud');
+            
+            // 自动触发读取（延迟一下确保 UI 更新完成）
+            setTimeout(function() {
+                var dummyBtn = { innerHTML: '📥 读取', disabled: false };
+                importCloudShareCode(dummyBtn);
+            }, 100);
+        }
+        
+        // [桥接] 导出备份
+        function exportHistoryBackup() {
+            var data = HistorySystem.getList();
+            if(data.length === 0) {
+                showToast('暂无历史记录可导出', 'warning');
+                return;
+            }
+            var blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            var link = document.createElement('a');
+            link.download = 'gbfop_history_backup_' + new Date().toISOString().slice(0,10) + '.json';
+            link.href = URL.createObjectURL(blob);
+            link.click();
+            showToast('历史记录已导出', 'success');
         }
         
         // ========== 方案 A+D：结构重组 + 图片去重压缩系统 ==========
@@ -9962,191 +10429,362 @@
             return true;
         }
         
-        async function generateShareCode(btn) {
-            var input = document.getElementById('shareCodeInput');
-            var loadingToast = null;
+        
+        // ========== 云端分享系统 (Cloudflare 集成) ==========
+        
+        /**
+         * 云端 API 配置
+         */
+        var CloudShareConfig = {
+            API_BASE_URL: 'https://api.gbfop.com', // 🔴 您的 Cloudflare Worker 域名
+            TIMEOUT: 10000 // 请求超时时间（毫秒）
+        };
+        
+        /**
+         * 模式切换函数
+         */
+        function switchShareMode(mode) {
+            var localTab = document.getElementById('localModeTab');
+            var cloudTab = document.getElementById('cloudModeTab');
+            var localContent = document.getElementById('localModeContent');
+            var cloudContent = document.getElementById('cloudModeContent');
             
-            try {
-                loadingToast = showToast('正在生成分享代码...', 'loading');
+            if (mode === 'local') {
+                localTab.classList.add('active');
+                cloudTab.classList.remove('active');
+                localContent.style.display = 'block';
+                cloudContent.style.display = 'none';
                 
-                var data = collectData();
-                data.isShareCode = true;
-                data.exportTime = new Date().toISOString();
+                localTab.style.borderBottomColor = '#2196f3';
+                localTab.style.color = '#2196f3';
+                cloudTab.style.borderBottomColor = 'transparent';
+                cloudTab.style.color = 'var(--text-secondary)';
+            } else {
+                cloudTab.classList.add('active');
+                localTab.classList.remove('active');
+                cloudContent.style.display = 'block';
+                localContent.style.display = 'none';
                 
-                // ========== 应用 A+D 压缩 ==========
-                var originalSize = JSON.stringify(data).length;
-                var minifiedData = minifyData(data);
-                var jsonStr = JSON.stringify(minifiedData);
-                var compressedSize = jsonStr.length;
-                // ========== 压缩完成 ==========
-                
-                var finalCode = '';
-                var compressionType = '';
-                
-                if (window.CompressionStream) {
-                    try {
-                        const stream = new Blob([jsonStr]).stream();
-                        const compressedStream = stream.pipeThrough(new CompressionStream("gzip"));
-                        const response = await new Response(compressedStream);
-                        const blob = await response.blob();
-                        
-                        const buffer = await blob.arrayBuffer();
-                        const base64 = btoa(new Uint8Array(buffer).reduce((data, byte) => data + String.fromCharCode(byte), ''));
-                        
-                        finalCode = 'GBFOP_G1:' + base64;
-                        compressionType = 'Gzip';
-                    } catch (gzipErr) {
-                        console.warn('Gzip 压缩失败，降级到 Base64:', gzipErr);
-                        throw gzipErr;
-                    }
-                } else {
-                    throw new Error('不支持 Gzip');
-                }
-                
-                if (!finalCode) {
-                    var base64 = btoa(unescape(encodeURIComponent(jsonStr)));
-                    finalCode = 'GBFOP_B1:' + base64;
-                    compressionType = 'Base64';
-                }
-                
-                input.value = finalCode;
-                input.select();
-                
-                try {
-                    await navigator.clipboard.writeText(finalCode);
-                    
-                    hideToast(loadingToast);
-                    
-                    var originalHTML = btn.innerHTML;
-                    btn.innerHTML = '✅ 已复制！';
-                    btn.disabled = true;
-                    
-                    // 显示压缩效果统计
-                    var structureReduction = ((originalSize - compressedSize) / originalSize * 100).toFixed(1);
-                    var finalReduction = ((originalSize - finalCode.length) / originalSize * 100).toFixed(1);
-                    var sizeInfo = '原始: ' + (originalSize / 1024).toFixed(1) + 'KB → 结构压缩: ' + (compressedSize / 1024).toFixed(1) + 'KB (-' + structureReduction + '%) → Gzip: ' + (finalCode.length / 1024).toFixed(1) + 'KB (总计-' + finalReduction + '%)';
-                    showToast('代码已生成并复制！(' + compressionType + ')<br>' + sizeInfo, 'success');
-                    
-                    setTimeout(function() {
-                        btn.innerHTML = originalHTML;
-                        btn.disabled = false;
-                    }, 2000);
-                } catch (clipErr) {
-                    hideToast(loadingToast);
-                    showToast('代码已生成，请手动复制！', 'success');
-                }
-            } catch (err) {
-                if (loadingToast) hideToast(loadingToast);
-                console.error('生成代码失败:', err);
-                showToast('生成代码失败：' + err.message, 'error');
+                cloudTab.style.borderBottomColor = '#2196f3';
+                cloudTab.style.color = '#2196f3';
+                localTab.style.borderBottomColor = 'transparent';
+                localTab.style.color = 'var(--text-secondary)';
             }
         }
         
-        async function importShareCode() {
+        // ==========================================
+        // GBFOP 分享系统 (Cloudflare + 本地兼容版)
+        // ==========================================
+        const API_BASE_URL = "https://api.gbfop.com"; // 您的自定义域名
+
+        // --- 核心工具：数据瘦身 (Minifier) ---
+        function minifySmartV1(data) {
+            // 深度克隆防止修改原数据
+            var meta = JSON.parse(JSON.stringify(data));
+            var turnsObj = meta.turns || {}; 
+            delete meta.turns;
+
+            // 提取表头
+            var allKeys = new Set();
+            var turnIndices = Object.keys(turnsObj).sort(function(a,b){return parseInt(a)-parseInt(b)});
+            turnIndices.forEach(function(idx) {
+                Object.keys(turnsObj[idx]).forEach(function(k){ allKeys.add(k) });
+            });
+            var header = Array.from(allKeys);
+
+            // 转换为数组
+            var rows = turnIndices.map(function(idx) {
+                var turnData = turnsObj[idx];
+                var row = [parseInt(idx)]; 
+                var rowValues = header.map(function(key) {
+                    var val = turnData[key];
+                    if (val === null || val === undefined || val === false) return "";
+                    if (val === true) return 1;
+                    return val;
+                });
+
+                // 裁剪末尾空值
+                while(rowValues.length > 0 && rowValues[rowValues.length-1] === "") {
+                    rowValues.pop();
+                }
+                return row.concat(rowValues);
+            });
+
+            return ["MIN_V1", meta, header, rows];
+        }
+
+        // --- 核心工具：数据还原 (Unminifier) ---
+        function unminifySmartV1(minified) {
+            // 如果不是数组，或者没有标记，说明是普通 JSON，直接返回
+            if (!Array.isArray(minified) || minified[0] !== "MIN_V1") return minified;
+
+            var meta = minified[1];
+            var header = minified[2];
+            var rows = minified[3];
+            var turns = {};
+
+            rows.forEach(function(row) {
+                var turnIdx = row[0];
+                var turnData = {};
+                for (var i = 0; i < header.length; i++) {
+                    var val = row[i + 1];
+                    if (val === undefined) val = ""; 
+                    if (val === 1) val = true; // 还原布尔值
+                    turnData[header[i]] = val;
+                }
+                turns[turnIdx] = turnData;
+            });
+
+            meta.turns = turns;
+            return meta;
+        }
+
+        // ==========================================
+        // 区域 A：本地长代码 (Gzip + Base64)
+        // 对应 HTML ID: shareCodeInput
+        // ==========================================
+        
+        // A1. 生成本地长代码
+        async function generateShareCode(btn) {
             var input = document.getElementById('shareCodeInput');
-            var code = input.value.trim();
+            var originalText = btn.innerHTML;
             
-            if (!code) {
-                showToast('请先粘贴分享代码！', 'error');
-                return;
-            }
-            
-            var loadingToast = null;
+            btn.innerHTML = '⏳ 压缩中...';
+            btn.disabled = true;
             
             try {
-                loadingToast = showToast('正在解析代码...', 'loading');
+                // 1. 获取数据并瘦身
+                var data = collectData();
+                var minifiedData = minifySmartV1(data);
+                var jsonStr = JSON.stringify(minifiedData);
                 
-                var jsonStr = '';
-                var compressionType = '';
+                // 2. Gzip 压缩
+                var stream = new Blob([jsonStr]).stream();
+                var compressedStream = stream.pipeThrough(new CompressionStream("gzip"));
+                var response = await new Response(compressedStream);
+                var blob = await response.blob();
                 
-                if (code.startsWith('GBFOP_G1:')) {
-                    code = code.substring(9);
-                    compressionType = 'Gzip';
-                    
-                    if (!window.DecompressionStream) {
-                        throw new Error('您的浏览器不支持 Gzip 解压，请使用 Chrome 80+ 或 Edge 80+');
-                    }
-                    
-                    const binaryString = atob(code);
-                    const bytes = new Uint8Array(binaryString.length);
-                    for (let i = 0; i < binaryString.length; i++) {
-                        bytes[i] = binaryString.charCodeAt(i);
-                    }
-                    
-                    const stream = new Blob([bytes]).stream();
-                    const decompressedStream = stream.pipeThrough(new DecompressionStream("gzip"));
-                    const response = await new Response(decompressedStream);
-                    jsonStr = await response.text();
-                    
-                } else if (code.startsWith('GBFOP_B1:')) {
-                    code = code.substring(9);
-                    compressionType = 'Base64';
-                    jsonStr = decodeURIComponent(escape(atob(code)));
-                    
-                } else if (code.startsWith('GBFOP:')) {
-                    code = code.substring(6);
-                    compressionType = 'Gzip (旧格式)';
-                    
-                    if (!window.DecompressionStream) {
-                        throw new Error('您的浏览器不支持 Gzip 解压');
-                    }
-                    
-                    const binaryString = atob(code);
-                    const bytes = new Uint8Array(binaryString.length);
-                    for (let i = 0; i < binaryString.length; i++) {
-                        bytes[i] = binaryString.charCodeAt(i);
-                    }
-                    
-                    const stream = new Blob([bytes]).stream();
-                    const decompressedStream = stream.pipeThrough(new DecompressionStream("gzip"));
-                    const response = await new Response(decompressedStream);
-                    jsonStr = await response.text();
-                    
-                } else {
-                    throw new Error('代码格式不正确，请确保复制了完整的分享代码（应以 GBFOP_ 开头）');
-                }
+                // 3. 转 Base64
+                var buffer = await blob.arrayBuffer();
+                var base64 = btoa(new Uint8Array(buffer).reduce(function(data, byte) {
+                    return data + String.fromCharCode(byte);
+                }, ''));
                 
-                var rawData = JSON.parse(jsonStr);
+                // 4. 输出到上方文本框
+                input.value = "GBFOP:" + base64;
+                input.select();
                 
-                // ========== 应用 A+D 解压 ==========
-                var data = unminifyData(rawData);
-                // ========== 解压完成 ==========
-                
-                validateImportData(data);
-                
-                if (confirm('确定要覆盖当前配置吗？\n\n导入信息：\n- 模式：' + data.mode + '人\n- 阶段数：' + (data.phases ? data.phases.length : 0) + '\n- 压缩方式：' + compressionType)) {
-                    hideToast(loadingToast);
-                    loadingToast = showToast('正在导入配置...', 'loading');
-                    
-                    restoreData(data);
-                    
-                    closeShareModal();
-                    
-                    hideToast(loadingToast);
-                    
-                    showToast('配置导入成功！', 'success');
+                try {
+                    await navigator.clipboard.writeText(input.value);
+                    showToast('✅ 本地代码已复制', 'success');
+                    btn.innerHTML = '✅ 已复制';
+                } catch (e) {
+                    btn.innerHTML = '✅ 生成成功';
                 }
                 
             } catch (err) {
-                if (loadingToast) hideToast(loadingToast);
-                console.error('导入失败:', err);
+                console.error(err);
+                showToast("生成失败: " + err.message, 'error');
+                btn.innerHTML = '❌ 失败';
                 
-                var errorMsg = '代码解析失败';
-                if (err.message.includes('atob') || err.message.includes('invalid character')) {
-                    errorMsg = '代码格式错误，请检查是否完整复制（不要有换行或空格）';
-                } else if (err.message.includes('JSON')) {
-                    errorMsg = '数据格式损坏，无法解析 JSON';
-                } else if (err.message.includes('Decompression')) {
-                    errorMsg = '解压失败，代码可能已损坏或不完整';
-                } else if (err.message.includes('不支持')) {
-                    errorMsg = err.message;
-                } else if (err.message.includes('版本') || err.message.includes('模式') || err.message.includes('阶段')) {
-                    errorMsg = '数据验证失败：' + err.message;
-                } else {
-                    errorMsg = err.message;
+            } finally {
+                setTimeout(function() { 
+                    btn.innerHTML = originalText; 
+                    btn.disabled = false; 
+                }, 2000);
+            }
+        }
+        
+        // A2. 导入本地长代码
+        async function importShareCode() {
+            var input = document.getElementById('shareCodeInput');
+            var code = input.value.trim();
+            var btn = event.currentTarget;
+            var originalText = btn.innerHTML;
+            
+            if (!code) { 
+                showToast("请先在上方粘贴代码！", 'warning'); 
+                return; 
+            }
+            
+            btn.innerHTML = '⏳ 解析中...';
+            btn.disabled = true;
+            
+            try {
+                // 1. 清洗前缀
+                if (code.startsWith("GBFOP:")) code = code.substring(6);
+                if (code.startsWith("GBFOP_G1:")) code = code.substring(9);
+                if (code.startsWith("GBFOP_B1:")) code = code.substring(9);
+                
+                // 2. Base64 -> Uint8Array
+                var binaryString = atob(code);
+                var bytes = new Uint8Array(binaryString.length);
+                for (var i = 0; i < binaryString.length; i++) {
+                    bytes[i] = binaryString.charCodeAt(i);
                 }
                 
-                showToast(errorMsg, 'error');
+                // 3. Gzip 解压
+                var jsonStr;
+                try {
+                    var stream = new Blob([bytes]).stream();
+                    var decompressedStream = stream.pipeThrough(new DecompressionStream("gzip"));
+                    var response = await new Response(decompressedStream);
+                    jsonStr = await response.text();
+                } catch (e) {
+                    // 兼容旧版纯 Base64
+                    jsonStr = binaryString; 
+                }
+                
+                // 4. 恢复数据
+                var rawData = JSON.parse(jsonStr);
+                var data = unminifySmartV1(rawData);
+                
+                // 校验
+                if (typeof validateImportData === 'function') validateImportData(data);
+                
+                if(confirm("确定导入此本地配置吗？")) {
+                    restoreData(data);
+                    closeShareModal();
+                    showToast('导入成功！', 'success');
+                }
+                
+            } catch (err) {
+                console.error(err);
+                showToast("代码无效或损坏", 'error');
+                
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+        
+        // ==========================================
+        // 区域 B：云端短码 (Cloudflare)
+        // 对应 HTML ID: cloudShareCodeInput
+        // ==========================================
+        
+        // B1. 生成云端短码
+        async function generateCloudShareCode(btn) {
+            var input = document.getElementById('cloudShareCodeInput'); // 注意：下方的小输入框
+            var originalText = btn.innerHTML;
+            
+            btn.innerHTML = '⏳ 上传中...';
+            btn.disabled = true;
+            
+            try {
+                var data = collectData();
+                
+                // === 确保 metadata 存在并补充信息 ===
+                if (!data.metadata) {
+                    data.metadata = {};
+                }
+                // 补充作者信息（如果没有）
+                if (!data.metadata.lastEditor) {
+                    data.metadata.lastEditor = AuthorSystem.currentAuthor || '访客';
+                }
+                // 补充模式名称（用于生成备注）
+                var modeName = data.mode === 9 ? '极妈模板' : 'BOSS名称';
+                data.metadata.modeName = modeName;
+                // 补充时间戳
+                data.metadata.timestamp = new Date().getTime();
+                // =====================================
+                
+                var minifiedData = minifySmartV1(data); // 同样先瘦身，节省服务器空间
+                
+                // POST 请求
+                var response = await fetch(API_BASE_URL + "/save", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(minifiedData)
+                });
+                
+                if (!response.ok) throw new Error("服务器错误 " + response.status);
+                
+                var result = await response.json();
+                if (result.success) {
+                    input.value = result.id; // 填入下方输入框
+                    input.select();
+                    
+                    // ========== 保存到历史记录 ==========
+                    var author = data.metadata.lastEditor || '访客';
+                    var defaultTitle = modeName; // 只存模式名作为标题（例如："BOSS名称" 或 "极妈模板"）
+                    HistorySystem.save(result.id, defaultTitle, author);
+                    // ====================================
+                    
+                    try {
+                        await navigator.clipboard.writeText(result.id);
+                        showToast('✅ 短码已生成并复制', 'success');
+                        btn.innerHTML = '✅ 已复制';
+                    } catch (e) {
+                        btn.innerHTML = '✅ 成功';
+                    }
+                } else {
+                    throw new Error(result.error);
+                }
+                
+            } catch (err) {
+                console.error(err);
+                showToast("云端生成失败: " + err.message, 'error');
+                btn.innerHTML = '❌ 失败';
+                
+            } finally {
+                setTimeout(function() { 
+                    btn.innerHTML = originalText; 
+                    btn.disabled = false; 
+                }, 2000);
+            }
+        }
+        
+        // B2. 导入云端短码
+        async function importCloudShareCode(btn) {
+            var input = document.getElementById('cloudShareCodeInput'); // 注意：下方的小输入框
+            var code = input.value.trim().toUpperCase();
+            var originalText = btn.innerHTML;
+            
+            if (!code) { 
+                showToast("请输入6位短码！", 'warning'); 
+                return; 
+            }
+            
+            btn.innerHTML = '⏳ 下载中...';
+            btn.disabled = true;
+            
+            try {
+                var response = await fetch(API_BASE_URL + "/get?id=" + code);
+                if (response.status === 404) throw new Error("短码不存在");
+                if (!response.ok) throw new Error("连接失败");
+                
+                var jsonBody = await response.json();
+                var data = unminifySmartV1(jsonBody);
+                
+                if (typeof validateImportData === 'function') validateImportData(data);
+                
+                if(confirm("找到云端配置 [" + code + "]，确定导入吗？")) {
+                    restoreData(data);
+                    
+                    // ========== 保存到历史记录 ==========
+                    var importAuthor = (data.metadata && data.metadata.lastEditor) || '未知作者';
+                    // 获取模式名称
+                    var importTitle = '配置';
+                    if (data.metadata && data.metadata.modeName) {
+                        importTitle = data.metadata.modeName; // 使用保存的模式名
+                    } else if (data.mode) {
+                        importTitle = data.mode === 9 ? '极妈模板' : 'BOSS名称'; // 兼容旧数据
+                    }
+                    HistorySystem.save(code, importTitle, importAuthor);
+                    // ====================================
+                    
+                    closeShareModal();
+                    showToast('导入成功！', 'success');
+                }
+                
+            } catch (err) {
+                console.error(err);
+                showToast("读取失败: " + err.message, 'error');
+                
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
             }
         }
     </script>
