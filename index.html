@@ -7851,6 +7851,14 @@
         
         // ========== 自定义空白模板加载函数 ==========
         function loadEmptyTemplate() {
+            // ========== [修复] 先生成干净的 6 人骨架 ==========
+            // 这样可以确保：
+            // 1. DOM 结构正确（只有 A-J 列，没有 K-M 列残留）
+            // 2. 事件监听器正确绑定（拖拽功能正常）
+            // 3. 所有初始化函数都被调用（initDynamicElements 等）
+            loadTemplate(6, true);  // 传入 true 表示恢复模式，不弹窗、不保存
+            // ====================================================
+            
             // 👇👇👇 第二步：请在下方粘贴空模板 JSON 👇👇👇
             // ========== 空白模板 JSON（请在此处粘贴） ==========
             var emptyTemplateJSON = '{"version":3,"mode":"custom","savedAt":"2026-01-19T08:44:47.395Z","skills":[],"texts":[],"phases":[{"name":"新阶段","rowspan":1,"rows":[{"index":0,"coord":2,"text":"1T","exists":true}],"className":"phase-100-80"}],"tTexts":[{"row":0,"col":"A","text":"阶段","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"B","text":"回合/特动","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"C","text":"备注","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"D","text":"召唤石","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"E","text":"主角","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"F","text":"2号位","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"G","text":"3号位","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"H","text":"4号位","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"I","text":"后排1","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":0,"col":"J","text":"后排2","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":true},{"row":2,"col":"A","text":"新阶段","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":false},{"row":2,"col":"B","text":"1T","fontSize":"11px","color":"","customSize":false,"customColor":false,"isHeader":false}],"rows":[{"index":0,"hasPhase":true,"rowspan":1,"phaseName":"新阶段","phaseClass":"phase-100-80"}],"headerImages":[],"swapSections":[],"metadata":{"authors":["真實lowb"],"lastEditor":"真實lowb"},"mergedCells":[]}';
@@ -7858,17 +7866,24 @@
             // ========== 空白模板 JSON 结束 ==========
             // 👆👆👆 第二步：JSON 粘贴区域结束 👆👆👆
             
-            try {
-                // 解析 JSON 字符串
-                var data = JSON.parse(emptyTemplateJSON);
-                
-                // 使用现有的 restoreData 函数加载数据
-                restoreData(data);
-                
+            // 如果有自定义 JSON，再加载数据
+            if (emptyTemplateJSON && emptyTemplateJSON.trim()) {
+                try {
+                    // 解析 JSON 字符串
+                    var data = JSON.parse(emptyTemplateJSON);
+                    
+                    // 使用现有的 restoreData 函数加载数据
+                    // 现在 DOM 已经是干净的 6 人结构，可以安全地恢复数据
+                    restoreData(data);
+                    
+                    showToast('已加载自定义空白模板', 'success');
+                } catch (err) {
+                    console.error('加载空白模板失败:', err);
+                    showToast('❌ 加载空白模板失败：' + err.message, 'error');
+                }
+            } else {
+                // 如果没有自定义 JSON，就显示干净的 6 人空模板
                 showToast('已加载自定义空白模板', 'success');
-            } catch (err) {
-                console.error('加载空白模板失败:', err);
-                showToast('❌ 加载空白模板失败：' + err.message, 'error');
             }
         }
         
@@ -10790,4 +10805,3 @@
     </script>
 </body>
 </html>
-
