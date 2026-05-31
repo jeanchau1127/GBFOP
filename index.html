@@ -7091,6 +7091,20 @@
         }
         
         function restoreData(data){
+            // ========== 数据洗白：修复旧URL ==========
+            // 将旧域名 prd-game-a1- 替换为新域名 prd-game-a-
+            // 适用场景：云端短码导入、本地JSON导入、历史记录加载
+            try {
+                var jsonStr = JSON.stringify(data);
+                if (jsonStr.indexOf('prd-game-a1-') !== -1) {
+                    jsonStr = jsonStr.replace(/prd-game-a1-/g, 'prd-game-a-');
+                    data = JSON.parse(jsonStr);
+                    console.log('[URL修复] 已将旧域名 prd-game-a1- 替换为 prd-game-a-');
+                }
+            } catch(e) {
+                console.warn('[URL修复] 数据洗白失败:', e);
+            }
+            
             // ========== 方案 B：记录加载的模式 ==========
             if (data.mode) {
                 window._currentLoadedMode = data.mode;
