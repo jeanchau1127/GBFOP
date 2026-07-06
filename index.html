@@ -8831,9 +8831,15 @@
         function fetchImageAsBase64(url) {
             // 代理列表（按可靠性排序）
             var proxies = [
+                // 1. 使用用户自己的 Cloudflare Worker 代理（最稳定，需更新 worker 代码）
+                function(u) { return (typeof API_BASE_URL !== 'undefined' ? API_BASE_URL : 'https://api.gbfop.com') + '/proxy?url=' + encodeURIComponent(u); },
+                // 2. wsrv.nl 图片缓存代理（支持 CORS，通常不会被墙）
+                function(u) { return 'https://wsrv.nl/?url=' + encodeURIComponent(u); },
+                // 3. AllOrigins 代理
+                function(u) { return 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u); },
+                // 4. 原有代理作为备用
                 function(u) { return 'https://corsproxy.io/?' + encodeURIComponent(u); },
-                function(u) { return 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u); },
-                function(u) { return 'https://proxy.cors.sh/' + u; }
+                function(u) { return 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u); }
             ];
             
             // 先尝试直接获取
