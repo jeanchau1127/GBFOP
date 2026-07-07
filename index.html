@@ -68,7 +68,7 @@
         /* [优化] 表格容器 - 允许横向滚动 */
         .table-wrapper {
             width: 100%;
-            overflow-x: auto;
+            /* 移除 overflow-x: auto，否则会导致内部的 position: sticky 针对视口失效 */
             margin: 0 auto;
         }
         
@@ -82,9 +82,9 @@
             background: var(--bg-table); 
             box-shadow: 0 4px 16px var(--shadow); 
             border-radius: 12px; 
-            overflow: hidden; 
+            /* 移除 overflow: hidden */
         }
-        .guide-table thead { position: static; }
+        /* 移除旧的 thead 整体吸顶，交由内部行独立控制 */
         .guide-table th, .guide-table td { 
             border: 1px solid var(--border-color); 
             padding: 8px 10px; 
@@ -124,8 +124,8 @@
         
         .guide-table th { background: var(--bg-header); color: var(--text-on-dark); font-weight: bold; }
         /* 数据行悬停效果 */
-        .guide-table tbody tr:not(.add-phase-row):hover td { background: rgba(33, 150, 243, 0.05); }
-        [data-theme="dark"] .guide-table tbody tr:not(.add-phase-row):hover td { background: rgba(33, 150, 243, 0.1); }
+        .guide-table tbody tr:not(.add-phase-row):not(.swap-header-row):not(.swap-source-row):not(.swap-data-row):hover td { background: rgba(33, 150, 243, 0.05); }
+        [data-theme="dark"] .guide-table tbody tr:not(.add-phase-row):not(.swap-header-row):not(.swap-source-row):not(.swap-data-row):hover td { background: rgba(33, 150, 243, 0.1); }
         
         /* ========== BOSS 栏与状态栏视觉分割优化 ========== */
         /* BOSS 大图行 - 悬浮层级，投射阴影到下方 */
@@ -1892,7 +1892,7 @@
             border-radius: 16px;
             border: none !important;
             box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-            overflow: hidden;
+            /* 移除 overflow: hidden 以支持 position: sticky */
             /* [修改] 改为自动布局，允许内容撑开 */
             table-layout: auto;
             width: auto;
@@ -2232,23 +2232,23 @@
             transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
-        .guide-table tbody tr:not(.add-phase-row):hover {
+        .guide-table tbody tr:not(.add-phase-row):not(.swap-header-row):not(.swap-source-row):not(.swap-data-row):hover {
             position: relative;
             z-index: 10;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             transform: translateY(-1px);
         }
         
-        .guide-table tbody tr:not(.add-phase-row):hover td {
+        .guide-table tbody tr:not(.add-phase-row):not(.swap-header-row):not(.swap-source-row):not(.swap-data-row):hover td {
             background: var(--bg-table) !important;
             border-bottom-color: transparent !important;
         }
         
-        [data-theme="dark"] .guide-table tbody tr:not(.add-phase-row):hover {
+        [data-theme="dark"] .guide-table tbody tr:not(.add-phase-row):not(.swap-header-row):not(.swap-source-row):not(.swap-data-row):hover {
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
         
-        [data-theme="dark"] .guide-table tbody tr:not(.add-phase-row):hover td {
+        [data-theme="dark"] .guide-table tbody tr:not(.add-phase-row):not(.swap-header-row):not(.swap-source-row):not(.swap-data-row):hover td {
             background: #2a2a2a !important;
         }
         
@@ -2364,10 +2364,10 @@
         }
         
         /* 确保悬停时 note-cell 也能正确高亮 */
-        .guide-table tbody tr:not(.add-phase-row):hover .note-cell {
+        .guide-table tbody tr:not(.add-phase-row):not(.swap-header-row):not(.swap-source-row):not(.swap-data-row):hover .note-cell {
             background: rgba(29, 69, 133, 0.04) !important;
         }
-        [data-theme="dark"] .guide-table tbody tr:not(.add-phase-row):hover .note-cell {
+        [data-theme="dark"] .guide-table tbody tr:not(.add-phase-row):not(.swap-header-row):not(.swap-source-row):not(.swap-data-row):hover .note-cell {
             background: rgba(74, 122, 184, 0.08) !important;
         }
         
@@ -2430,7 +2430,15 @@
             border-bottom: 2px solid var(--border-color) !important; /* 底部加粗线，区分正文 */
         }
         
-        /* === Group 1: 召唤石区域 (A-D 列 / 前3个td，第1个有colspan=2) === */
+        /* === 基础技能源行独立吸顶 === */
+        .guide-table thead tr.skill-source-row th,
+        .guide-table thead tr.skill-source-row td {
+            position: sticky !important;
+            top: 70px !important; /* 直接贴在悬浮工具栏下方 */
+            z-index: 50 !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            background: var(--bg-top-row);
+        }
         /* 跟随左侧基础表头颜色 */
         .skill-source-row .source-cell:nth-child(1),
         .skill-source-row .source-cell:nth-child(2),
@@ -2503,7 +2511,7 @@
         .swap-header-row th {
             background: linear-gradient(180deg, #f8f9fa 0%, #eef1f5 100%) !important;
             border-top: 2px solid #c2a05d !important; /* 金色分割线 */
-            border-bottom: 1px solid var(--border-color) !important;
+            border-bottom: 2px solid #e0e4e8 !important; /* 与 character-header 保持一致，避免 1px 漏底 */
             position: relative;
             padding: 8px 4px !important;
         }
@@ -2512,6 +2520,7 @@
         [data-theme="dark"] .swap-header-row th {
             background: linear-gradient(180deg, #2a2a2a 0%, #222 100%) !important;
             border-top-color: #8b7355 !important;
+            border-bottom: 2px solid #3a3a3a !important; /* 暗色模式与 character-header 保持一致 */
         }
         
         /* 2. 换人行左侧标签格 (A-D列) - 简约风格 */
@@ -2551,32 +2560,11 @@
             transform: scale(1.1);
         }
         
-        /* 4. 换人行角色格 */
+        /* 4. 换人行角色格 (完全继承 .character-header 的安全排版) */
         .swap-header-row .swap-char-cell {
-            min-width: 110px;
-            min-height: 180px;
-            height: 180px;
-            padding: 10px 4px 28px 4px !important;
+            /* 只保留覆盖特有的样式，尺寸与排版交由基础类控制 */
             vertical-align: middle;
             position: relative;
-        }
-        .swap-header-row .swap-char-cell img {
-            width: auto;
-            height: auto;
-            max-height: 130px;
-            max-width: 100%;
-            display: block;
-            margin: 0 auto;
-            object-fit: contain;
-        }
-        .swap-header-row .swap-char-cell .char-name {
-            font-size: 12px;
-            color: var(--text-primary);
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            right: 0;
-            text-align: center;
         }
         
         /* 5. 换人行技能源 (Source Row) */
@@ -2596,12 +2584,58 @@
         .swap-header-row .swap-char-cell.drag-feedback {
             background-color: rgba(33, 150, 243, 0.15) !important;
             box-shadow: inset 0 0 0 2px #2196f3 !important;
-            z-index: 10;
+            z-index: 52 !important; /* 必须高于 swap-header-row 本身的 z-index(51)，避免拖拽时层级掉落导致闪烁 */
         }
         
         /* 导出图片时隐藏换人行的删除按钮 */
         .exporting .swap-delete-btn {
             display: none !important;
+        }
+
+        /* ========== 表头与换人行吸顶逻辑 (Sticky Stacking) ========== */
+        
+        /* 1. 基础表头整体取消吸顶，仅保留技能源行吸顶 */
+        .guide-table thead {
+            /* 取消原先的 thead 整体吸顶 */
+            position: relative;
+            background: var(--bg-table);
+        }
+        
+        /* 2. 换人行 (Swap Row) 取消角色行吸顶，仅保留技能行吸顶覆盖 */
+        .swap-header-row td,
+        .swap-header-row th {
+            /* 取消吸顶 */
+            position: relative;
+            background: linear-gradient(180deg, #f8f9fa 0%, #eef1f5 100%);
+            padding: 8px 4px !important; /* 与 character-header 内边距一致 */
+            box-sizing: border-box;
+        }
+        
+        .swap-source-row td.source-cell {
+            position: sticky !important;
+            top: 70px !important; /* 直接停靠在工具栏下方，与基础技能源栏相同高度 */
+            z-index: 51 !important; /* 层级高于基础技能源栏，产生覆盖效果 */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+            background: var(--bg-top-row);
+        }
+
+        /* 暗色模式下换人行吸顶背景 */
+        [data-theme="dark"] .swap-header-row td,
+        [data-theme="dark"] .swap-header-row th {
+            background: linear-gradient(180deg, #2a2a2a 0%, #222 100%);
+        }
+        [data-theme="dark"] .swap-source-row td.source-cell {
+            background: var(--bg-top-row);
+        }
+
+        /* 3. 导出图片时关闭所有吸顶 (防止 html2canvas 渲染重影) */
+        table.exporting thead,
+        table.exporting .swap-header-row td,
+        table.exporting .swap-header-row th,
+        table.exporting .swap-source-row td {
+            position: static !important;
+            box-shadow: none !important;
+            top: auto !important;
         }
 
         /* ========== 优化: 拖拽反馈与空槽位质感 ========== */
@@ -2610,6 +2644,7 @@
             background-color: rgba(33, 150, 243, 0.15) !important;
             box-shadow: inset 0 0 0 2px #2196f3 !important;
             transition: all 0.1s;
+            z-index: 52 !important; /* 防止在吸顶行中层级塌陷 */
         }
         
         /* 2. 空槽位的"容器凹陷"质感 */
@@ -4336,6 +4371,25 @@
             });
         }
         
+        // 全局拖拽自动滚动
+        document.addEventListener('dragover', function(e) {
+            if (draggedElement) {
+                var edgeSize = 50; // 触发滚动的边缘距离
+                var scrollSpeed = 20; // 滚动速度
+                if (e.clientY < edgeSize) {
+                    window.scrollBy(0, -scrollSpeed);
+                } else if (window.innerHeight - e.clientY < edgeSize) {
+                    window.scrollBy(0, scrollSpeed);
+                }
+                
+                if (e.clientX < edgeSize) {
+                    window.scrollBy(-scrollSpeed, 0);
+                } else if (window.innerWidth - e.clientX < edgeSize) {
+                    window.scrollBy(scrollSpeed, 0);
+                }
+            }
+        });
+
         /**
          * 绑定剪贴板粘贴按钮事件
          * @param {HTMLElement} btn - 粘贴按钮元素
@@ -9403,9 +9457,9 @@
             }
             
             // ------------------------------------------------
-            // 2. 备注列 (I): 添加"整行合并/拆分"控制面板
+            // 2. I列/M列: 添加"整行合并/拆分"按钮
             // ------------------------------------------------
-            if(col === 'I') {
+            if(col === 'I' || col === 'M') {
                 updateRowControls(cell);
             }
         }
@@ -9414,15 +9468,19 @@
         var ICON_MERGE = '<svg viewBox="0 0 24 24"><path d="M20 9h-7.5l2.5-2.5-1.4-1.4L9 9.7l4.6 4.6 1.4-1.4L12.5 10.5H20v-1.5zm-16 6h7.5l-2.5 2.5 1.4 1.4L15 14.3l-4.6-4.6-1.4 1.4L11.5 13.5H4v1.5z"/></svg>'; // 收缩箭头
         var ICON_SPLIT = '<svg viewBox="0 0 24 24"><path d="M15 15h7.5l-2.5 2.5 1.4 1.4 4.6-4.6-4.6-4.6-1.4 1.4 2.5 2.5H15v-1.5zM9 9H1.5l2.5-2.5L2.6 5.1-2 9.7l4.6 4.6 1.4-1.4L1.5 10.5H9v-1.5z"/></svg>'; // 扩散箭头
         
-        // 更新I列的行控面板
+        // 更新 I 列 (6人模式) 或 M 列 (9人模式) 的合并/拆分控制按钮
         function updateRowControls(noteCell) {
-            // 1. 清理旧面板，防止重复堆叠
+            // 1. 清理旧按钮
+            var oldBtns = noteCell.querySelectorAll('.micro-fab.merge, .micro-fab.split');
+            oldBtns.forEach(function(btn) { btn.remove(); });
+            
+            // 清理旧面板 (防御性代码，兼容旧版遗留)
             var oldPanel = noteCell.querySelector('.note-cell-controls');
             if(oldPanel) oldPanel.remove();
             
-            // 验证这是 I 列
+            // 验证这是 I 列 或 M 列
             var noteCellCoord = noteCell.querySelector('.coord');
-            if(!noteCellCoord || !noteCellCoord.textContent.match(/,I\)$/)) return;
+            if(!noteCellCoord || (!noteCellCoord.textContent.match(/,I\)$/) && !noteCellCoord.textContent.match(/,M\)$/))) return;
             
             var row = noteCell.parentElement;
             if(!row) return;
@@ -9449,30 +9507,32 @@
             // 如果既不是合并也不是拆分（异常状态），不显示按钮
             if(!isFullyMerged && !isFullySplit) return;
             
-            // 4. 创建面板
-            var panel = document.createElement('div');
-            panel.className = 'note-cell-controls';
-            
-            // 5. 根据状态互斥显示按钮
+            // 4. 根据状态互斥显示左上角微型按钮
             if (isFullyMerged) {
                 // 状态：已合并 -> 显示【拆分】按钮
                 var splitBtn = document.createElement('button');
-                splitBtn.className = 'row-action-btn split';
-                splitBtn.innerHTML = ICON_SPLIT;
+                splitBtn.className = 'micro-fab split top-left';
+                splitBtn.innerHTML = '↹'; // 使用简单的字符图标，与铅笔 ✎ 类似风格
                 splitBtn.title = '拆分单元格';
                 splitBtn.onclick = function(e) { e.stopPropagation(); splitRowAll(row); };
-                panel.appendChild(splitBtn);
+                noteCell.appendChild(splitBtn);
+                
+                // 应用字号
+                var size = getDefaultFontSize() + 'px';
+                splitBtn.style.fontSize = size;
             } else {
                 // 状态：未合并 -> 显示【合并】按钮
                 var mergeBtn = document.createElement('button');
-                mergeBtn.className = 'row-action-btn merge';
-                mergeBtn.innerHTML = ICON_MERGE;
+                mergeBtn.className = 'micro-fab merge top-left';
+                mergeBtn.innerHTML = '⇄'; // 使用简单的字符图标
                 mergeBtn.title = '合并整行技能';
                 mergeBtn.onclick = function(e) { e.stopPropagation(); mergeRowAll(row); };
-                panel.appendChild(mergeBtn);
+                noteCell.appendChild(mergeBtn);
+                
+                // 应用字号
+                var size = getDefaultFontSize() + 'px';
+                mergeBtn.style.fontSize = size;
             }
-            
-            noteCell.appendChild(panel);
         }
         
         // 整行合并逻辑
@@ -9509,11 +9569,11 @@
             // 更新UI：E列只留铅笔
             addCellButtons(firstCell); 
             
-            // 查找 I 列并刷新控制面板（使用精确匹配）
+            // 查找 I 列或 M 列并刷新控制面板
             var iCell = null;
             for(var j = 0; j < allCells.length; j++) {
                 var coord = allCells[j].querySelector('.coord');
-                if(coord && coord.textContent.match(/,I\)$/)) {
+                if(coord && (coord.textContent.match(/,I\)$/) || coord.textContent.match(/,M\)$/))) {
                     iCell = allCells[j];
                     break;
                 }
@@ -9540,7 +9600,7 @@
                 var existingICells = Array.from(row.querySelectorAll('td'));
                 for(var k = 0; k < existingICells.length; k++) {
                     var coordEl = existingICells[k].querySelector('.coord');
-                    if(coordEl && coordEl.textContent.match(/,I\)$/)) {
+                    if(coordEl && (coordEl.textContent.match(/,I\)$/) || coordEl.textContent.match(/,M\)$/))) {
                         updateRowControls(existingICells[k]);
                         break;
                     }
@@ -9550,10 +9610,7 @@
             
             // 恢复为1列
             eCell.setAttribute('colspan', 1);
-            // 同时移除 colspan 属性（某些浏览器可能需要）
-            if(currentColspan <= 1) {
-                eCell.removeAttribute('colspan');
-            }
+            eCell.removeAttribute('colspan');
             
             // 获取行号
             var coordObj = getCellCoord(eCell);
@@ -9582,7 +9639,7 @@
                 var iCell = null;
                 for(var j = 0; j < freshCells.length; j++) {
                     var coordEl = freshCells[j].querySelector('.coord');
-                    if(coordEl && coordEl.textContent.match(/,I\)$/)) {
+                    if(coordEl && (coordEl.textContent.match(/,I\)$/) || coordEl.textContent.match(/,M\)$/))) {
                         iCell = freshCells[j];
                         break;
                     }
@@ -9672,10 +9729,10 @@
                 
                 recalculateAllCoords();
                 
-                // [新增] 恢复数据后，刷新所有I列的控制按钮状态
+                // [新增] 恢复数据后，刷新所有I列/M列的控制按钮状态
                 document.querySelectorAll('.note-cell').forEach(function(cell){
                     var coord = cell.querySelector('.coord');
-                    if(coord && coord.textContent.includes(',I)')) {
+                    if(coord && (coord.textContent.includes(',I)') || coord.textContent.includes(',M)'))) {
                         updateRowControls(cell);
                     }
                 });
@@ -10787,7 +10844,14 @@
             try {
                 var response = await fetch(API_BASE_URL + "/get?id=" + code);
                 if (response.status === 404) throw new Error("短码不存在");
-                if (!response.ok) throw new Error("连接失败");
+                if (!response.ok) {
+                    try {
+                        var errJson = await response.json();
+                        throw new Error(errJson.error || "连接失败(" + response.status + ")");
+                    } catch(e) {
+                        throw new Error("连接失败(" + response.status + ")");
+                    }
+                }
                 
                 var jsonBody = await response.json();
                 var data = unminifySmartV1(jsonBody);
