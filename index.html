@@ -153,7 +153,7 @@
         
         .top-row th { background: var(--bg-top-row); }
         .source-cell { background: var(--bg-top-row); color: var(--text-on-dark); }
-        .character-header { background: var(--bg-char-header) !important; position: relative; padding: 10px 4px 28px 4px !important; min-height: 180px; min-width: 110px; height: 180px; }
+        .character-header { background: var(--bg-char-header) !important; position: relative; padding: 10px 4px 28px 4px !important; min-height: 180px; min-width: 110px; height: 180px; box-sizing: border-box; }
         .character-header img { width: auto; height: auto; max-height: 140px; max-width: 100%; display: block; margin: 5px auto 10px auto; object-fit: contain; }
         .character-header .char-name { font-size: 12px; color: var(--text-primary); position: absolute; bottom: 5px; left: 0; right: 0; text-align: center; border-bottom: none; }
         .character-header .char-name:hover,
@@ -2430,14 +2430,20 @@
             border-bottom: 2px solid var(--border-color) !important; /* 底部加粗线，区分正文 */
         }
         
-        /* === 基础技能源行独立吸顶 === */
-        .guide-table thead tr.skill-source-row th,
-        .guide-table thead tr.skill-source-row td {
-            position: sticky !important;
-            top: 70px !important; /* 直接贴在悬浮工具栏下方 */
-            z-index: 50 !important;
+        /* === 基础技能源行取消独立吸顶，由 thead 统一管理 === */
+        /* Chromium 内核中对 td/tr 单独使用 sticky 会导致拖拽(drag&drop)命中测试失效。
+           因此我们将 sticky 作用于整个 thead，并利用负 top 值完美隐藏不需要吸顶的部分 */
+        .guide-table thead tr.skill-source-row {
+            position: relative !important;
+            top: auto !important;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             background: var(--bg-top-row);
+        }
+        .guide-table thead tr.skill-source-row th,
+        .guide-table thead tr.skill-source-row td {
+            /* 移除 td 的 sticky，避免拖拽失效 */
+            position: relative;
+            background: inherit;
         }
         /* 跟随左侧基础表头颜色 */
         .skill-source-row .source-cell:nth-child(1),
@@ -2565,6 +2571,8 @@
             /* 只保留覆盖特有的样式，尺寸与排版交由基础类控制 */
             vertical-align: middle;
             position: relative;
+            padding: 10px 4px 28px 4px !important;
+            height: 180px;
         }
         
         /* 5. 换人行技能源 (Source Row) */
@@ -2594,10 +2602,14 @@
 
         /* ========== 表头与换人行吸顶逻辑 (Sticky Stacking) ========== */
         
-        /* 1. 基础表头整体取消吸顶，仅保留技能源行吸顶 */
+        /* 1. 基础表头整体吸顶 (通过负 top 隐藏不需要吸顶的行) */
+        /* BOSS(180) + 状态(60) + 角色(180) = 420px. 
+           我们需要技能源行在 top: 70px (悬浮工具栏下方) 吸顶。
+           因此 thead 整体 top = 70 - 420 = -350px */
         .guide-table thead {
-            /* 取消原先的 thead 整体吸顶 */
-            position: relative;
+            position: sticky !important;
+            top: -350px !important;
+            z-index: 50 !important;
             background: var(--bg-table);
         }
         
@@ -2611,12 +2623,18 @@
             box-sizing: border-box;
         }
         
-        .swap-source-row td.source-cell {
+        .swap-source-row {
             position: sticky !important;
             top: 70px !important; /* 直接停靠在工具栏下方，与基础技能源栏相同高度 */
             z-index: 51 !important; /* 层级高于基础技能源栏，产生覆盖效果 */
             box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
             background: var(--bg-top-row);
+        }
+        
+        .swap-source-row td.source-cell {
+            /* 移除 td 的 sticky */
+            position: relative;
+            background: inherit;
         }
 
         /* 暗色模式下换人行吸顶背景 */
@@ -10886,6 +10904,60 @@
                 btn.disabled = false;
             }
         }
+
+        // [修复] 针对 Chromium 内核中 position: sticky 元素在拖拽时命中测试(Hit-testing)失效的 Bug。
+        // 由于换人技能行 (.swap-source-row) 位于 tbody 中且开启了 sticky，浏览器原生 dragover 无法准确定位到滚动后的元素。
+        // 我们在全局拦截拖拽事件，利用 elementFromPoint 精准定位视觉上真正处于鼠标下方的元素并派发事件。
+        document.addEventListener('dragover', function(e) {
+            var el = document.elementFromPoint(e.clientX, e.clientY);
+            if (el) {
+                var dropZone = el.closest('.swap-source-row .source-cell, .drag-drop-zone');
+                if (dropZone && dropZone.getBoundingClientRect().top > 0) { // 确保在视口内
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'copy';
+                }
+            }
+        });
+
+        document.addEventListener('drop', function(e) {
+            var el = document.elementFromPoint(e.clientX, e.clientY);
+            if (el) {
+                var dropZone = el.closest('.swap-source-row .source-cell, .drag-drop-zone');
+                // 如果命中了一个处于 sticky 状态且存在 ondrop/addEventListener(drop) 的元素，但原生 e.target 并不是它
+                if (dropZone && !dropZone.contains(e.target)) {
+                    e.preventDefault();
+                    // 对于绑定了原生 ondrop 属性的元素
+                    if (typeof dropZone.ondrop === 'function') {
+                        dropZone.ondrop(e);
+                    } else {
+                        // 如果是通过 addEventListener 绑定的，我们需要手动构造或者直接依靠我们的 drop 处理逻辑
+                        // 这里最简单的办法是将 drag-feedback 移除，并调用其内部逻辑。由于数据提取通用，
+                        // 我们直接复用一个提取和赋值的逻辑
+                        var imgSrc = '';
+                        if (e.dataTransfer) {
+                            var htmlData = e.dataTransfer.getData('text/html');
+                            if (htmlData) {
+                                var match = htmlData.match(/<img[^>]+src="([^">]+)"/);
+                                if (match) imgSrc = match[1];
+                            }
+                            if (!imgSrc) {
+                                var textData = e.dataTransfer.getData('text/plain');
+                                if (textData && textData.trim().match(/^https?:\/\//i)) imgSrc = textData.trim();
+                            }
+                        }
+                        if (imgSrc) {
+                            var targetImg = dropZone.querySelector('img');
+                            if (targetImg) {
+                                targetImg.src = imgSrc;
+                                targetImg.style.display = 'block';
+                                dropZone.classList.remove('has-empty-state');
+                                GBFGuide.Storage.save();
+                            }
+                        }
+                    }
+                }
+            }
+        });
     </script>
 </body>
 </html>
