@@ -332,34 +332,60 @@
         .author-badge {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
-            padding: 6px 14px;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
+            padding: 6px 12px;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.96), rgba(246,248,255,0.92)) padding-box,
+                linear-gradient(135deg, rgba(88,101,242,0.35), rgba(76,201,240,0.28), rgba(255,122,162,0.24)) border-box;
+            border: 1px solid transparent;
             cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-primary);
+            font-size: 12px;
+            font-weight: 600;
+            color: #33455f;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            box-shadow: 0 6px 18px rgba(88,101,242,0.08), inset 0 1px 0 rgba(255,255,255,0.7);
             white-space: nowrap;
-            height: 36px;
             box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+        .author-badge::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(255,255,255,0.4), transparent 42%, rgba(76,201,240,0.08));
+            pointer-events: none;
         }
         .author-badge:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(var(--beam-skill-color), 0.15);
-            border-color: rgba(var(--beam-skill-color), 0.4);
-            color: rgb(var(--beam-skill-color));
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 10px 24px rgba(88,101,242,0.14), 0 0 0 3px rgba(76,201,240,0.05);
+            color: #233854;
         }
         .author-badge .author-icon {
-            font-size: 14px;
-            opacity: 0.7;
+            opacity: 0.95;
+            width: 14px;
+            height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #5b6da8;
+        }
+        .author-badge .author-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
         }
         [data-theme="dark"] .author-badge {
-            background: rgba(40, 40, 45, 0.8);
-            backdrop-filter: blur(8px);
+            color: #eef4ff;
+            background:
+                linear-gradient(135deg, rgba(34,38,50,0.94), rgba(26,30,42,0.96)) padding-box,
+                linear-gradient(135deg, rgba(114,137,255,0.34), rgba(76,201,240,0.24), rgba(255,122,162,0.22)) border-box;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+        [data-theme="dark"] .author-badge .author-icon {
+            color: #b8c6ff;
+            background: rgba(184,198,255,0.08);
         }
         
         /* 🌟 呼吸灯动画 - 引导用户点击 */
@@ -370,7 +396,7 @@
         }
         .author-badge.pulse {
             animation: badge-pulse 2s infinite;
-            border-color: rgba(var(--beam-skill-color), 0.5);
+            border-color: transparent;
         }
         
         /* 创作者弹窗遮罩 */
@@ -2430,18 +2456,19 @@
             border-bottom: 2px solid var(--border-color) !important; /* 底部加粗线，区分正文 */
         }
         
-        /* === 基础技能源行取消独立吸顶，由 thead 统一管理 === */
-        /* Chromium 内核中对 td/tr 单独使用 sticky 会导致拖拽(drag&drop)命中测试失效。
-           因此我们将 sticky 作用于整个 thead，并利用负 top 值完美隐藏不需要吸顶的部分 */
+        /* === 基础技能源行独立吸顶 === */
+        /* [修复] Chromium 内核中对 td/th 单独使用 sticky 会导致拖拽命中测试失效。
+           因此我们将 sticky 作用于 tr 级别。这会完美保留拖拽，且无需使用难以控制的负 top */
         .guide-table thead tr.skill-source-row {
-            position: relative !important;
-            top: auto !important;
+            position: sticky !important;
+            top: 70px !important;
+            z-index: 50 !important;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             background: var(--bg-top-row);
         }
         .guide-table thead tr.skill-source-row th,
         .guide-table thead tr.skill-source-row td {
-            /* 移除 td 的 sticky，避免拖拽失效 */
+            /* 移除 td 的 sticky，由父元素 tr 统一管理 */
             position: relative;
             background: inherit;
         }
@@ -2602,14 +2629,10 @@
 
         /* ========== 表头与换人行吸顶逻辑 (Sticky Stacking) ========== */
         
-        /* 1. 基础表头整体吸顶 (通过负 top 隐藏不需要吸顶的行) */
-        /* BOSS(180) + 状态(60) + 角色(180) = 420px. 
-           我们需要技能源行在 top: 70px (悬浮工具栏下方) 吸顶。
-           因此 thead 整体 top = 70 - 420 = -350px */
+        /* 1. 基础表头整体取消吸顶，改回局部吸顶以避免负高度计算不准确的问题 */
         .guide-table thead {
-            position: sticky !important;
-            top: -350px !important;
-            z-index: 50 !important;
+            position: relative;
+            z-index: 40; /* 必须给 thead 设定一个 z-index，否则会被后续元素遮挡导致拖拽失效 */
             background: var(--bg-table);
         }
         
@@ -2834,10 +2857,11 @@
             top: 15px;
             z-index: 1000;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 0.8rem 1.2rem;
-            margin: 0 auto 25px;
+            gap: 12px;
+            flex-wrap: wrap; /* 允许换行，取消 overflow-x 的限制，从而彻底解放 Tooltip */
+            padding: 0.7rem 1rem;
+            margin: 0 auto 20px;
             max-width: 1800px;
             border-radius: 16px;
             background: rgba(255, 255, 255, 0.85);
@@ -2846,6 +2870,10 @@
             border: 1px solid rgba(255, 255, 255, 0.6);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255,255,255,0.5);
             transition: all 0.3s ease;
+            scrollbar-width: none;
+        }
+        .toolbar-console::-webkit-scrollbar {
+            display: none;
         }
         [data-theme="dark"] .toolbar-console {
             background: rgba(30, 32, 38, 0.85);
@@ -2857,6 +2885,19 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            flex: 0 0 auto;
+        }
+        .toolbar-main {
+            min-width: max-content;
+        }
+        .toolbar-actions {
+            margin-left: auto;
+        }
+        .toolbar-meta {
+            gap: 8px;
+            margin-left: auto;
+            flex: 0 0 auto;
+            justify-content: flex-end;
         }
         
         /* 右侧工具组 - 自动靠右 */
@@ -2932,6 +2973,48 @@
             box-shadow: 0 6px 16px rgba(43, 88, 118, 0.4);
         }
 
+        .toolbar-meta > .t-btn,
+        .toolbar-meta > .author-badge,
+        .toolbar-meta > .toolbar-toolbox > .t-btn {
+            height: 32px;
+            min-width: auto;
+            border-radius: 10px;
+            box-sizing: border-box;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .toolbar-meta > .t-btn,
+        .toolbar-meta > .toolbar-toolbox > .t-btn {
+            padding: 6px 12px;
+        }
+        .toolbar-meta > .t-btn svg,
+        .toolbar-meta > .toolbar-toolbox > .t-btn svg {
+            flex-shrink: 0;
+        }
+        .toolbar-share-btn {
+            color: #33455f;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.96), rgba(246,248,255,0.92)) padding-box,
+                linear-gradient(135deg, rgba(46,111,209,0.34), rgba(76,201,240,0.24), rgba(124,92,255,0.18)) border-box;
+            border: 1px solid transparent;
+            box-shadow: 0 6px 16px rgba(46,111,209,0.08), inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+        .toolbar-share-btn:hover {
+            color: #233854;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.98), rgba(246,248,255,0.96)) padding-box,
+                linear-gradient(135deg, rgba(46,111,209,0.42), rgba(76,201,240,0.28), rgba(124,92,255,0.22)) border-box;
+            box-shadow: 0 10px 20px rgba(46,111,209,0.12), 0 0 0 3px rgba(76,201,240,0.04);
+            transform: translateY(-1px);
+        }
+        [data-theme="dark"] .toolbar-share-btn {
+            color: #eef4ff;
+            background:
+                linear-gradient(135deg, rgba(34,38,50,0.94), rgba(26,30,42,0.96)) padding-box,
+                linear-gradient(135deg, rgba(46,111,209,0.34), rgba(76,201,240,0.22), rgba(124,92,255,0.18)) border-box;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+
         .toolbar-input-group {
             display: flex;
             align-items: center;
@@ -2969,9 +3052,219 @@
             text-align: center;
             pointer-events: none;
             animation: fadeInTooltip 0.2s;
-            z-index: 1001;
+            z-index: 10020;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
         }
         @keyframes fadeInTooltip { from { opacity: 0; transform: translate(-50%, 5px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+        .toolbar-console [data-tooltip]:hover::after {
+            top: calc(100% + 8px);
+            bottom: auto;
+            z-index: 100000; /* 确保提示在最前端，不会被 thead 的 z-index 覆盖 */
+        }
+
+        @media (max-width: 920px) {
+            .toolbar-console [data-tooltip]:hover::after {
+                top: calc(100% + 10px);
+                bottom: auto;
+                font-size: 10px;
+                padding: 4px 8px;
+                max-width: min(220px, calc(100vw - 24px));
+                white-space: normal;
+                z-index: 100000;
+                line-height: 1.35;
+            }
+        }
+
+        .toolbar-toolbox {
+            position: relative;
+        }
+        .toolbar-toolbox-panel {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            width: min(360px, calc(100vw - 32px));
+            padding: 14px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.22s ease;
+            z-index: 1003;
+        }
+        .toolbar-toolbox.active .toolbar-toolbox-panel {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        [data-theme="dark"] .toolbar-toolbox-panel {
+            background: rgba(30, 32, 38, 0.96);
+            border-color: rgba(255,255,255,0.08);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        }
+        .toolbox-section-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-coord);
+            margin: 0 0 10px;
+        }
+        .toolbox-section + .toolbox-section {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        [data-theme="dark"] .toolbox-section + .toolbox-section {
+            border-top-color: rgba(255,255,255,0.08);
+        }
+        .toolbox-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+        .toolbox-action {
+            width: 100%;
+            justify-content: flex-start;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.035);
+            border: 1px solid rgba(0,0,0,0.06);
+            color: var(--text-primary);
+            gap: 8px;
+            font-size: 13px;
+        }
+        .toolbox-action:hover {
+            border-color: rgba(var(--beam-skill-color), 0.35);
+            background: rgba(var(--beam-skill-color), 0.07);
+            color: rgb(var(--beam-skill-color));
+        }
+        [data-theme="dark"] .toolbox-action {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.08);
+        }
+        .toolbox-links {
+            display: grid;
+            gap: 8px;
+        }
+        .toolbox-link {
+            display: block;
+            padding: 12px 14px;
+            text-decoration: none;
+            color: var(--text-primary);
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.06);
+            background: rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+        .toolbox-link:hover {
+            border-color: rgba(var(--beam-skill-color), 0.35);
+            background: rgba(var(--beam-skill-color), 0.07);
+        }
+        [data-theme="dark"] .toolbox-link {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.08);
+        }
+        .toolbox-link-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .toolbox-link-desc {
+            margin-top: 4px;
+            font-size: 12px;
+            line-height: 1.45;
+            color: var(--text-secondary);
+        }
+        .hide-on-compact {
+            display: inline;
+        }
+
+        @media (max-width: 1180px) {
+            .toolbar-console {
+                top: 10px;
+                padding: 0.65rem 0.85rem;
+                gap: 10px;
+            }
+            .toolbar-divider {
+                margin: 0 8px;
+            }
+        }
+
+        @media (max-width: 920px) {
+            .toolbar-console {
+                gap: 8px;
+                border-radius: 14px;
+            }
+            .toolbar-group {
+                gap: 6px;
+            }
+            .toolbar-meta {
+                justify-content: flex-end;
+            }
+            .toolbar-divider {
+                display: none;
+            }
+            .toolbar-input-group {
+                padding: 2px 6px;
+            }
+            .t-input {
+                width: 30px;
+                font-size: 12px;
+            }
+            .t-btn-ghost,
+            .t-btn-primary {
+                padding: 7px 10px;
+            }
+            .toolbar-main .t-btn-ghost svg,
+            .toolbar-meta > .t-btn svg,
+            .toolbar-toolbox > .t-btn svg {
+                margin-right: 0 !important;
+            }
+            .hide-on-compact,
+            .author-badge #currentAuthorDisplay {
+                display: none;
+            }
+            .author-badge {
+                min-width: 32px !important;
+                justify-content: center;
+            }
+            .toolbar-meta > .t-btn,
+            .toolbar-meta > .author-badge,
+            .toolbar-meta > .toolbar-toolbox > .t-btn {
+                min-width: 32px;
+                width: 32px;
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .toolbar-console {
+                padding: 0.55rem 0.7rem;
+                gap: 6px;
+            }
+            .toolbar-group {
+                gap: 4px;
+            }
+            .t-btn-icon {
+                width: 34px;
+                height: 34px;
+            }
+            .toolbar-toolbox-panel {
+                right: -8px;
+                width: min(320px, calc(100vw - 20px));
+            }
+            .toolbox-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
         /* ========== 素材网站下拉菜单 (Resource Dropdown) ========== */
         .resource-dropdown {
@@ -3672,107 +3965,115 @@
     <div id="statusBar">拖拽中...松开放置</div>
     <div id="floatingIcon"></div>
     <div class="toolbar-console">
-        <div class="toolbar-group">
-            <button class="t-btn t-btn-icon" onclick="toggleTheme()" data-tooltip="切换深色/浅色模式">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            </button>
-            <button class="t-btn t-btn-icon" id="btnCoordToggle" onclick="toggleCoords()" data-tooltip="显示/隐藏坐标">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
-            </button>
-            <div class="toolbar-divider"></div>
-            <div class="toolbar-input-group" data-tooltip="默认字号 (px)">
-                <span class="mini-label">Aa</span>
-                <input type="number" id="defaultFontSize" class="t-input" value="11" min="10" max="24" onchange="saveDefaultFontSize()">
-            </div>
-            <div class="toolbar-input-group" data-tooltip="图标缩放 (10=100%)">
-                <span class="mini-label">🔍</span>
-                <input type="number" id="iconScale" class="t-input" value="10" min="5" max="20" onchange="saveIconScale()">
-            </div>
-        </div>
-        <div class="toolbar-group">
-            <!-- BOSS模板选择按钮 -->
+        <div class="toolbar-group toolbar-main">
             <button class="t-btn t-btn-ghost" onclick="showBossSelectModal()" data-tooltip="切换副本模式 (9人/6人)">
-                <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>BOSS模板
+                <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg><span class="hide-on-compact">BOSS模板</span>
             </button>
             <button class="t-btn t-btn-ghost" id="btnAddSwapRow" onclick="insertSwapRow()" data-tooltip="在底部增加换人行">
-                <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>增加换人行
-            </button>
-            <div class="toolbar-divider"></div>
-            <button class="t-btn t-btn-ghost" id="btnReset" onclick="resetData()" data-tooltip="重置为当前模式默认状态">
-                <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 2v6h6M21.5 22v-6h-6"/><path d="M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.3"/></svg>重置
-            </button>
-            <button class="t-btn t-btn-ghost" onclick="clearAll()" data-tooltip="清空所有已放置的技能图标">
-                <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>清空技能
-            </button>
-            <div class="toolbar-divider"></div>
-            <button class="t-btn t-btn-ghost" onclick="loadConfig()" data-tooltip="加载保存布局">
-                <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>加载配置
-            </button>
-            <button class="t-btn t-btn-ghost" onclick="saveAsDefault()" data-tooltip="保存当前布局">
-                <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>保存配置
-            </button>
-            <div class="toolbar-divider"></div>
-            <button class="t-btn t-btn-ghost" onclick="exportJSON()" data-tooltip="导出配置 JSON">
-                <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>导出
-            </button>
-            <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
-            <button class="t-btn t-btn-ghost" onclick="document.getElementById('importFile').click()" data-tooltip="导入配置 JSON">
-                <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>导入
+                <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <span class="hide-on-compact">增加换人行</span>
             </button>
         </div>
-        <div class="toolbar-group toolbar-group-end">
-            <!-- 素材网站下拉菜单 -->
-            <div class="resource-dropdown" id="resourceDropdown">
-                <button class="t-btn t-btn-ghost" onclick="toggleResourceDropdown(event)">
-                    <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><line x1="12" y1="6" x2="12" y2="10"></line><line x1="12" y1="14" x2="12.01" y2="14"></line></svg>
-                    素材网站
-                    <span class="arrow">▼</span>
+        <div class="toolbar-group toolbar-meta">
+            <div class="toolbar-toolbox" id="toolbarToolbox">
+                <button class="t-btn t-btn-ghost" onclick="toggleToolbarToolbox(event)" data-tooltip="打开更多工具">
+                    <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18"></path><path d="M6 7v10"></path><path d="M10 7l1.5 10"></path><path d="M14 7l-1.5 10"></path><path d="M18 7v10"></path><path d="M5 17h14"></path></svg>
+                    <span class="hide-on-compact">工具箱</span>
                 </button>
-                <div class="resource-dropdown-menu">
-                    <a href="https://gbf.wiki/" target="_blank" class="resource-dropdown-item">
-                        <div class="item-title">
-                            GBF Wiki (English)
-                            <span class="recommend-badge">推荐</span>
+                <div class="toolbar-toolbox-panel">
+                    <div class="toolbox-section">
+                        <p class="toolbox-section-title">显示与编辑</p>
+                        <div class="toolbox-grid">
+                            <button class="t-btn toolbox-action" onclick="toggleTheme(); closeToolbarToolbox();" data-tooltip="切换深色/浅色模式">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                                切换主题
+                            </button>
+                            <button class="t-btn toolbox-action" id="btnCoordToggle" onclick="toggleCoords(); closeToolbarToolbox();" data-tooltip="显示/隐藏坐标">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+                                显示坐标
+                            </button>
                         </div>
-                        <div class="item-desc">✅ 图片可直接导出，资料全面</div>
-                    </a>
-                    <a href="https://mizagbf.github.io/GBFAL/" target="_blank" class="resource-dropdown-item">
-                        <div class="item-title">
-                            GBFAL (Asset Library)
-                            <span class="recommend-badge">推荐</span>
+                    </div>
+                    <div class="toolbox-section">
+                        <p class="toolbox-section-title">显示参数</p>
+                        <div class="toolbox-grid">
+                            <div class="toolbar-input-group" data-tooltip="默认字号 (px)">
+                                <span class="mini-label">Aa</span>
+                                <input type="number" id="defaultFontSize" class="t-input" value="11" min="10" max="24" onchange="saveDefaultFontSize()">
+                            </div>
+                            <div class="toolbar-input-group" data-tooltip="图标缩放 (10=100%)">
+                                <span class="mini-label">🔍</span>
+                                <input type="number" id="iconScale" class="t-input" value="10" min="5" max="20" onchange="saveIconScale()">
+                            </div>
                         </div>
-                        <div class="item-desc">✅ 纯净素材库，支持搜索下载</div>
-                    </a>
-                    <div class="resource-dropdown-divider"></div>
-                    <a href="https://gbf.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank" class="resource-dropdown-item warning-item">
-                        <div class="item-title">
-                            灰机 Wiki (中文)
-                            <span class="warn-badge">⚠️</span>
+                    </div>
+                    <div class="toolbox-section">
+                        <p class="toolbox-section-title">常用工具</p>
+                        <div class="toolbox-grid">
+                            <button class="t-btn toolbox-action" id="btnReset" onclick="resetData(); closeToolbarToolbox();" data-tooltip="重置为当前模式默认状态">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 2v6h6M21.5 22v-6h-6"></path><path d="M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.3"></path></svg>
+                                重置内容
+                            </button>
+                            <button class="t-btn toolbox-action" onclick="clearAll(); closeToolbarToolbox();" data-tooltip="清空所有已放置的技能图标">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                清空技能
+                            </button>
+                            <button class="t-btn toolbox-action" onclick="loadConfig(); closeToolbarToolbox();" data-tooltip="加载保存布局">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                加载配置
+                            </button>
+                            <button class="t-btn toolbox-action" onclick="saveAsDefault(); closeToolbarToolbox();" data-tooltip="保存当前布局">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                                保存配置
+                            </button>
+                            <button class="t-btn toolbox-action" onclick="exportJSON(); closeToolbarToolbox();" data-tooltip="导出配置 JSON">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                导出配置
+                            </button>
+                            <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
+                            <button class="t-btn toolbox-action" onclick="document.getElementById('importFile').click(); closeToolbarToolbox();" data-tooltip="导入配置 JSON">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                导入配置
+                            </button>
+                            <button class="t-btn toolbox-action" onclick="exportAsImage(); closeToolbarToolbox();" data-tooltip="⚠️ Wiki/外网图片可能导出空白，建议截图">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                导出图片
+                            </button>
                         </div>
-                        <div class="item-desc">❌ 跨域限制，图片无法直接导出<br>请先保存图片再上传使用</div>
-                    </a>
+                    </div>
+                    <div class="toolbox-section">
+                        <p class="toolbox-section-title">素材网站</p>
+                        <div class="toolbox-links">
+                            <a href="https://gbf.wiki/" target="_blank" class="toolbox-link" onclick="closeToolbarToolbox()">
+                                <div class="toolbox-link-title">GBF Wiki <span class="recommend-badge">推荐</span></div>
+                                <div class="toolbox-link-desc">图片可直接导出，资料较完整。</div>
+                            </a>
+                            <a href="https://mizagbf.github.io/GBFAL/" target="_blank" class="toolbox-link" onclick="closeToolbarToolbox()">
+                                <div class="toolbox-link-title">GBFAL <span class="recommend-badge">推荐</span></div>
+                                <div class="toolbox-link-desc">纯净素材库，支持搜索下载。</div>
+                            </a>
+                            <a href="https://gbf.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank" class="toolbox-link" onclick="closeToolbarToolbox()">
+                                <div class="toolbox-link-title">灰机 Wiki <span class="warn-badge">⚠️</span></div>
+                                <div class="toolbox-link-desc">外网图片可能受限制，建议先保存图片再上传使用。</div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- 分享代码按钮 - 与导出图片统一样式 -->
-            <button class="t-btn t-btn-primary" onclick="openShareModal()" data-tooltip="一键生成并复制分享代码 (Gzip压缩)">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px">
-                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                    <polyline points="16 6 12 2 8 6"></polyline>
-                    <line x1="12" y1="2" x2="12" y2="15"></line>
-                </svg>
-                分享代码
+            <!-- 分享 / 导入按钮 -->
+            <button class="t-btn toolbar-share-btn" onclick="openShareModal()" data-tooltip="分享配置、读取短码、导入本地码">
+                <svg style="margin-right:4px" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+                <span class="hide-on-compact">分享 / 导入</span>
             </button>
-            <button class="t-btn t-btn-primary" onclick="exportAsImage()" data-tooltip="⚠️ Wiki/外网图片可能导出空白，建议截图">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                导出图片
-            </button>
-            <!-- 创作者徽章 -->
+            
+            <!-- 作者徽章 -->
             <div class="author-badge" id="authorBadge" onclick="openAuthorModal()" data-tooltip="点击编辑创作者信息">
-                <span class="author-icon">✎</span>
+                <span class="author-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                        <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"></path>
+                        <path d="M5 20a7 7 0 0 1 14 0"></path>
+                    </svg>
+                </span>
                 <span id="currentAuthorDisplay">访客</span>
             </div>
         </div>
@@ -4217,6 +4518,21 @@
             }
         }
         
+        // ========== 顶部工具箱控制 ==========
+        function toggleToolbarToolbox(e) {
+            e.stopPropagation();
+            var toolbox = document.getElementById('toolbarToolbox');
+            if (!toolbox) return;
+            toolbox.classList.toggle('active');
+        }
+
+        function closeToolbarToolbox() {
+            var toolbox = document.getElementById('toolbarToolbox');
+            if (toolbox) {
+                toolbox.classList.remove('active');
+            }
+        }
+
         // ========== 素材网站下拉菜单控制 ==========
         function toggleResourceDropdown(e) {
             e.stopPropagation();
@@ -4226,6 +4542,10 @@
         
         // 点击外部关闭下拉菜单
         document.addEventListener('click', function(e) {
+            var toolbox = document.getElementById('toolbarToolbox');
+            if (toolbox && !toolbox.contains(e.target)) {
+                toolbox.classList.remove('active');
+            }
             var dropdown = document.getElementById('resourceDropdown');
             if (dropdown && !dropdown.contains(e.target)) {
                 dropdown.classList.remove('active');
@@ -9811,7 +10131,7 @@
     <!-- 分享代码弹窗 -->
     <div id="shareCodeModal" class="boss-select-modal" onclick="if(event.target===this) closeShareModal()">
         <div class="boss-select-content" style="max-width: 550px;">
-            <div class="boss-select-title" style="text-align: center;">一图流云端</div>
+            <div class="boss-select-title" style="text-align: center;">分享 / 导入中心</div>
             <button class="share-modal-close-x" onclick="closeShareModal()" style="top: 20px; right: 20px;">×</button>
             
             <div style="margin-top: 20px;">
